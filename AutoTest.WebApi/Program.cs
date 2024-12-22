@@ -1,3 +1,6 @@
+using AutoTest.DAL.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -11,6 +14,12 @@ builder.Services.AddSwaggerGen(c =>
         Description = "An example WebApi for AutoTest"
     });
 });
+
+//PostgreSQL configurations
+var connectionString = builder.Configuration.GetConnectionString("localhost");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
