@@ -9,6 +9,6 @@ public interface IRepository<TEntity> where TEntity : BaseEntity
     Task<bool> Update(TEntity entity);
     Task<bool> UpdateRange(IEnumerable<TEntity> entities);
     Task<bool> Delete(TEntity entity);
-    Task<TEntity?> GetById(int id);
+    Task<TEntity?> GetById(long id);
     IQueryable<TEntity> GetAll();
 }

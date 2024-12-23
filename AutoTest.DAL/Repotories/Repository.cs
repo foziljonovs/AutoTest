@@ -40,7 +40,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
     public IQueryable<TEntity> GetAll()
         => _dbSet.AsQueryable();
 
-    public async Task<TEntity?> GetById(int id)
+    public async Task<TEntity?> GetById(long id)
     {
         TEntity? entity = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
         if (entity == null)
