@@ -15,12 +15,31 @@ public class UserService(
     IMapper mapper,
     ITokenService service) : IUserService
 {
-    private IUnitOfWork _unitOfWork = unitOfWork;
-    private IMapper _mapper = mapper;
-    private ITokenService _service = service;
-    public Task<bool> ChangePasswordAsync(long id, UserChangePasswordDto dto, CancellationToken cancellation = default)
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IMapper _mapper = mapper;
+    private readonly ITokenService _service = service;
+    public async Task<bool> ChangePasswordAsync(long id, UserChangePasswordDto dto, CancellationToken cancellation = default)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var user = await _unitOfWork.User.GetById(id);
+            if (user is null) 
+                throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
+
+            if (!PasswordHelper.Verify(dto.CurrentPassword, user.Password, user.Salt))
+                return false;
+
+            var hasher = PasswordHelper.Hash(dto.NewPassword);
+            user.Password = hasher.Hash;
+            user.Salt = hasher.Salt;
+
+            var result = await _unitOfWork.User.Update(user);
+            return result;
+        }
+        catch (Exception ex)
+        {
+            throw new StatusCodeException(HttpStatusCode.InternalServerError, $"An error occured while changing password. {ex.Message}");
+        }
     }
 
     public async Task<bool> DeleteAsync(long id, CancellationToken cancellation = default)
@@ -118,13 +137,43 @@ public class UserService(
         }
     }
 
-    public Task<bool> UpdateAsync(long id, UpdateUserDto dto, CancellationToken cancellation = default)
+    public async Task<bool> UpdateAsync(long id, UpdateUserDto dto, CancellationToken cancellation = default)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var user = await _unitOfWork.User.GetById(id);
+            if(user is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
+
+            var mapped = _mapper.Map(dto, user);
+            mapped.Id = id;
+            mapped.UpdatedDate = DateTime.Now.AddHours(5);
+
+            var result = await _unitOfWork.User.Update(mapped);
+            return result;
+        }
+        catch(Exception ex)
+        {
+            throw new StatusCodeException(HttpStatusCode.InternalServerError, $"An error occured while updating a user. {ex.Message}");
+        }
     }
 
-    public Task<bool> VerifyPasswordAsync(long id, string password, CancellationToken cancellation = default)
+    public async Task<bool> VerifyPasswordAsync(long id, string password, CancellationToken cancellation = default)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var user = await _unitOfWork.User.GetById(id);
+            if(user is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
+
+            if (!PasswordHelper.Verify(password, user.Password, user.Salt))
+                return false;
+
+            return true;
+        }
+        catch(Exception ex)
+        {
+            throw new StatusCodeException(HttpStatusCode.InternalServerError, $"An error occured while verifying a password. {ex.Message}");
+        }
     }
 }

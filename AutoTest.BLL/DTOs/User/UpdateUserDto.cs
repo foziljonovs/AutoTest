@@ -10,6 +10,4 @@ public class UpdateUserDto
     public string Lastname { get; set; }
     [JsonPropertyName("phone_number")]
     public string PhoneNumber { get; set; }
-    [JsonPropertyName("password")]
-    public string Password { get; set; }
 }
