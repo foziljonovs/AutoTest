@@ -1,24 +1,20 @@
+using AutoTest.BLL.Common.Mapper;
 using AutoTest.DAL.Data;
+using AutoTest.WebApi.Configurations.Auth;
+using AutoTest.WebApi.Configurations.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-    {
-        Title = "AutoTest.WebApi",
-        Version = "v1",
-        Description = "An example WebApi for AutoTest"
-    });
-});
-
-//PostgreSQL configurations
-var connectionString = builder.Configuration.GetConnectionString("localhost");
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
+builder.Services
+    .AddEndpointsApiExplorer()
+    .AddDbContextConfigure(builder.Configuration)
+    .AddServiceConfigure()
+    .AddConfigureCors()
+    .AddSwaggerConfigure()
+    .AddJwtConfigure(builder.Configuration)
+    .AddAutoMapper(typeof(MapperProfile));
 
 builder.Services.AddOpenApi();
 
