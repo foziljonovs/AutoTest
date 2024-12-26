@@ -4,6 +4,7 @@ using AutoTest.Domain.Enums;
 using AutoTest.BLL.DTOs.User;
 using System.Text.Json.Serialization;
 using AutoTest.BLL.DTOs.Tests.Question;
+using AutoTest.BLL.DTOs.Tests.Topic;
 
 namespace AutoTest.BLL.DTOs.Tests.Test;
 
@@ -26,7 +27,7 @@ public class TestDto
     [JsonPropertyName("questions")]
     public List<QuestionDto> Question { get; set; }
     [JsonPropertyName("topics")]
-    public List<Topic> Topics { get; set; } //TopicDto
+    public List<TopicDto> Topics { get; set; }
     [JsonPropertyName("files")]
-    public List<TestFile> Files { get; set; } //TestFileDto
+    public List<TestFile> Files { get; set; } 
 }

@@ -24,7 +24,7 @@ public class OptionService(
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Question not found");
 
             var option = _mapper.Map<Ct.Option>(dto);
-            option.CreatedDate = DateTime.Now.AddHours(5);
+            option.CreatedDate = DateTime.UtcNow.AddHours(5);
 
             await _unitOfWork.Option.Add(option);
             return true;
@@ -96,11 +96,10 @@ public class OptionService(
             if (option is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Option not found");
 
-            var updateOption = _mapper.Map<Ct.Option>(dto);
-            updateOption.Id = id;
-            updateOption.CreatedDate = option.CreatedDate.AddHours(5);
+            _mapper.Map(dto, option);
+            option.UpdatedDate = DateTime.UtcNow.AddHours(5);
 
-            var result = await _unitOfWork.Option.Update(updateOption);
+            var result = await _unitOfWork.Option.Update(option);
             return result;
         }
         catch(Exception ex)

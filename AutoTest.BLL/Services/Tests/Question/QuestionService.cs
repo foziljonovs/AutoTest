@@ -24,7 +24,7 @@ public class QuestionService(
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
             var question = _mapper.Map<CT.Question>(dto);
-            question.CreatedDate = DateTime.Now.AddHours(5);
+            question.CreatedDate = DateTime.UtcNow.AddHours(5);
 
             await _unitOfWork.Question.Add(question);
             return true;
@@ -125,11 +125,11 @@ public class QuestionService(
             if (question is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Question not found");
 
-            var updatedQuestion = _mapper.Map<CT.Question>(dto);
-            updatedQuestion.Id = id;
-            updatedQuestion.UpdatedDate = DateTime.Now.AddHours(5);
+            _mapper.Map(dto, question);
+            question.Id = id;
+            question.UpdatedDate = DateTime.UtcNow.AddHours(5);
 
-            var result = await _unitOfWork.Question.Update(updatedQuestion);
+            var result = await _unitOfWork.Question.Update(question);
             return result;
         }
         catch(Exception ex)

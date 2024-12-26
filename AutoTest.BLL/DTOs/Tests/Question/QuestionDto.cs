@@ -1,4 +1,5 @@
-﻿using AutoTest.BLL.DTOs.Tests.Test;
+﻿using AutoTest.BLL.DTOs.Tests.Option;
+using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.Domain.Entities.Tests;
 using AutoTest.Domain.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,5 +20,5 @@ public class QuestionDto
     [JsonPropertyName("test")]
     public TestDto Test { get; set; }
     [JsonPropertyName("options")]
-    public List<Option> Options { get; set; } = new List<Option>(); //OptionDto
+    public List<OptionDto> Options { get; set; } = new List<OptionDto>();
 }

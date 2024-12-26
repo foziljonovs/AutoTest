@@ -16,18 +16,18 @@ public class TokenService(IConfiguration configuration) : ITokenService
         var claims = new List<Claim>
         {
             new Claim("Id", user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Firstname = " " + user.Lastname),
+            new Claim(ClaimTypes.Name, user.Firstname + " " + user.Lastname),
             new Claim("PhoneNumber", user.PhoneNumber),
             new Claim(ClaimTypes.Role, "User")
         };
 
-        var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecretKey"]));
-        var credentials = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256Signature);
+        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["SecretKey"]));
+        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature);
         var tokenDestrictor = new JwtSecurityToken(
-            configuration["Issuer"],
-            configuration["Audience"],
+            _configuration["Issuer"],
+            _configuration["Audience"],
             claims,
-            expires: DateTime.Now.AddMinutes(double.Parse(configuration["Lifetime"])),
+            expires: DateTime.Now.AddMinutes(double.Parse(_configuration["Lifetime"])),
             signingCredentials: credentials);
 
         return new JwtSecurityTokenHandler().WriteToken(tokenDestrictor);
