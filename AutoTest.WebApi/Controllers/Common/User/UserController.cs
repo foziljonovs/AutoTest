@@ -129,11 +129,11 @@ public class UserController(IUserService service) : ControllerBase
             return Ok(response);
         }
         catch(StatusCodeException ex)
-        {
+{
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
         catch(Exception ex)
-        {
+    {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }
