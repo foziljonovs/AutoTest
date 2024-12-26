@@ -25,6 +25,7 @@ public class TestService(
                 throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
 
             var test = _mapper.Map<CT.Test>(dto);
+            test.CreatedDate = DateTime.UtcNow.AddHours(5);
             await _unitOfWork.Test.Add(test);
 
             return true;
@@ -119,11 +120,10 @@ public class TestService(
             if(existsTest is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
-            var test = _mapper.Map<CT.Test>(dto);
-            test.Id = id;
-            test.UpdatedDate = DateTime.Now.AddHours(5);
+            _mapper.Map(dto, existsTest);
+            existsTest.UpdatedDate = DateTime.UtcNow.AddHours(5);
 
-            var result = await _unitOfWork.Test.Update(test);
+            var result = await _unitOfWork.Test.Update(existsTest);
             return result;
         }
         catch (Exception ex)

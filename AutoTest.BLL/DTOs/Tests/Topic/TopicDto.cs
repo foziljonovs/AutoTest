@@ -12,7 +12,7 @@ public class TopicDto
     [JsonPropertyName("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("description"))]
+    [JsonPropertyName("description")]
     public string? Description { get; set; }
     [JsonPropertyName("test_id")]
     public long TestId { get; set; }

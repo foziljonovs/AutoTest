@@ -123,7 +123,7 @@ public class UserService(
             var hasher = PasswordHelper.Hash(dto.Password);
             var mapped = _mapper.Map<User>(dto);
 
-            mapped.CreatedDate = DateTime.Now.AddHours(5);
+            mapped.CreatedDate = DateTime.UtcNow.AddHours(5);
             mapped.Salt = hasher.Salt;
             mapped.Password = hasher.Hash;
 
@@ -147,7 +147,7 @@ public class UserService(
 
             var mapped = _mapper.Map(dto, user);
             mapped.Id = id;
-            mapped.UpdatedDate = DateTime.Now.AddHours(5);
+            mapped.UpdatedDate = DateTime.UtcNow.AddHours(5);
 
             var result = await _unitOfWork.User.Update(mapped);
             return result;

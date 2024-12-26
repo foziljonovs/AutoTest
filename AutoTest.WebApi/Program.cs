@@ -1,37 +1,28 @@
-using AutoTest.DAL.Data;
-using Microsoft.EntityFrameworkCore;
+using AutoTest.BLL.Common.Mapper;
+using AutoTest.WebApi.Configurations;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
-    {
-        Title = "AutoTest.WebApi",
-        Version = "v1",
-        Description = "An example WebApi for AutoTest"
-    });
-});
 
-//PostgreSQL configurations
-var connectionString = builder.Configuration.GetConnectionString("localhost");
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
-
-builder.Services.AddOpenApi();
-
+builder.Services
+    .AddDbConfigure(builder.Configuration)
+    .AddServiceConfigure()
+    .AddAutoMapper(typeof(MapperProfile))
+    .AddEndpointsApiExplorer()
+    .AddCorsConfigure()
+    .AddSwaggerConfigure()
+    .AddJwtConfigure(builder.Configuration)
+    .AddOpenApi();
+    
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "AutoTest.WebApi v1");
-    });
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();

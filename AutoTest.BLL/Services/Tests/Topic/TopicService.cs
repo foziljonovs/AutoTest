@@ -24,7 +24,7 @@ public class TopicService(
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
             var topic = _mapper.Map<Ct.Topic>(dto);
-            topic.CreatedDate = DateTime.Now.AddHours(5);
+            topic.CreatedDate = DateTime.UtcNow.AddHours(5);
 
             await _unitOfWork.Topic.Add(topic);
             return true;
@@ -96,11 +96,10 @@ public class TopicService(
             if (existsTopic is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Topic not found");
 
-            var topic = _mapper.Map<Ct.Topic>(dto);
-            topic.Id = id;
-            topic.UpdatedDate = DateTime.Now.AddHours(5);
+            _mapper.Map(dto, existsTopic);
+            existsTest.UpdatedDate = DateTime.UtcNow.AddHours(5);
 
-            var result = await _unitOfWork.Topic.Update(topic);
+            var result = await _unitOfWork.Topic.Update(existsTopic);
             return result;
         }
         catch(Exception ex)
