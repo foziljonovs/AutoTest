@@ -8,7 +8,9 @@
         Title="MainWindow"
         Background="Transparent"
         WindowStyle="None"
-        Height="500" Width="800">
+        Height="500"
+        Width="800"
+        WindowStartupLocation="CenterScreen">
     <Grid Background="#dad7cd">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -16,6 +18,7 @@
         </Grid.ColumnDefinitions>
 
         <Border
+            Grid.Column="0"
             Background="#a3b18a"
             Margin="5 5 0 5"
             CornerRadius="5">
@@ -44,6 +47,7 @@
                         VerticalAlignment="Center"/>
 
                     <Button 
+                        Click="Button_Click"
                         Grid.Row="1"
                         Content="Main"
                         Margin="3 0"
@@ -69,12 +73,23 @@
                         Margin="3 0 3 5"
                         FontSize="14"
                         VerticalAlignment="Bottom"
-                        Style="{DynamicResource closeButton}"
+                        Style="{DynamicResource closeButton}" 
                         Click="closeButton_Click">
                         
                     </Button>
                 </Grid>
             </Grid>
+        </Border>
+        <Border 
+            CornerRadius="5"
+            Margin="5"
+            Background="#a3b18a"
+            Grid.Column="1">
+            <Frame
+                Name="PageNavigator"
+                NavigationUIVisibility="Hidden">
+
+            </Frame>
         </Border>
     </Grid>
 </Window>
