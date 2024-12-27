@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoTest.Desktop.Pages.MainForPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,5 +27,11 @@ namespace AutoTest.Desktop.Windows
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
             => Application.Current.Shutdown();
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage page = new MainPage();
+            PageNavigator.Content = page;
+        }
     }
 }
