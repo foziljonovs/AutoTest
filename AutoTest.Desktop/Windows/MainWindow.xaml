@@ -10,7 +10,8 @@
         WindowStyle="None"
         Height="500"
         Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
     <Grid Background="#dad7cd">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

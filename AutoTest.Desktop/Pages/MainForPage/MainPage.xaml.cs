@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoTest.Desktop.Components.MainForComponents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,46 @@ namespace AutoTest.Desktop.Pages.MainForPage
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ShowTests();
+            ShowTopics();
+        }
+
+        private void ShowTests()
+        {
+            st_tests.Children.Clear();
+
+            for(int i = 0; i < 10; i++)
+            {
+                MainTestComponent component = new MainTestComponent();
+                st_tests.Children.Add(component);
+            }
+        }
+
+        private List<string> topics = new List<string>
+        {
+            "C#",
+            "java",
+            "Ruby",
+            "PHP",
+            "Go",
+            "Java Script",
+            "HTML",
+            "Css"
+        };
+        private void ShowTopics()
+        {
+            st_topics.Children.Clear();
+
+            foreach(var item in topics)
+            {
+                MainTopicComponents component  = new MainTopicComponents();
+                component.SetValues(item);
+                st_topics.Children.Add(component);
+            }
         }
     }
 }

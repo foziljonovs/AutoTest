@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AutoTest.Desktop.Pages.MainForPage"
       mc:Ignorable="d"
-      Title="MainPage">
+      Title="MainPage"
+      Loaded="Page_Loaded">
 
     <Grid Margin="5">
         <Grid.RowDefinitions>
@@ -17,7 +18,7 @@
             <Label Name="MainLbl"
                    Content="Welcome to AutoTest ..."
                    FontSize="20"
-                    Foreground="#3a5a40"
+                    Foreground="#344e41"
                     FontFamily="Jetbrains Mono"
                     FontWeight="SemiBold"
                     HorizontalAlignment="Left"
@@ -25,45 +26,53 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row="0"
-                  Margin="0 0 20 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 <Label
-                    Grid.Column="0"
-                    Content="No"
-                    HorizontalAlignment="Center"
+                       Grid.Row="0"
+                       Content="Tests"
+                       FontSize="20"
+                       Foreground="#344e41"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource Label}"/>
+
+                <ScrollViewer 
+                    Margin="0 10"
+                    Grid.Row="1">
+                    <StackPanel
+                        x:Name="st_tests"
+                        Margin="0 0 5 0">
+                    </StackPanel>
+                </ScrollViewer>
+
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Content="Topics"
+                    FontSize="20"
+                    Foreground="#344e41"
+                    VerticalAlignment="Center"
                     Style="{StaticResource Label}"/>
 
-                <Label
-                    Grid.Column="1"
-                    Content="Title"
-                    Style="{StaticResource Label}"/>
+                <WrapPanel
+                            Grid.Row="1"
+                            x:Name="st_topics"
+                            Margin="5 0"
+                            Orientation="Horizontal">
 
-                <Label
-                    Grid.Column="2"
-                    Content="Level"
-                    Style="{StaticResource Label}"/>
-
-                <Label
-                    Grid.Column="3"
-                    Content="Status"
-                    Style="{StaticResource Label}"/>
-
-                <Label
-                    Grid.Column="4"
-                    Content="Topic"
-                    Style="{StaticResource Label}"/>
+                </WrapPanel>
             </Grid>
         </Grid>
     </Grid>

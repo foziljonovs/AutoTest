@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="AutoTest.Desktop.Components.MainForComponents.MainTopicComponents"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AutoTest.Desktop.Components.MainForComponents"
+             mc:Ignorable="d" 
+             Height="45">
+    <Border
+        x:Name="st_border"
+        Margin="5 3 0 0"
+        Background="#a3b18a"
+        CornerRadius="5"
+        BorderThickness="1"
+        BorderBrush="#344e41">
+        <TextBlock
+            x:Name="tbTopic"
+            Grid.Column="0"
+            Text="C#"
+            Margin="5"
+            VerticalAlignment="Center"
+            FontSize="13"
+            Foreground="#344e41"
+            FontWeight="SemiBold"/>
+    </Border>
+</UserControl>

@@ -33,5 +33,11 @@ namespace AutoTest.Desktop.Windows
             MainPage page = new MainPage();
             PageNavigator.Content = page;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainPage page = new MainPage();
+            PageNavigator.Content = page;
+        }
     }
 }
