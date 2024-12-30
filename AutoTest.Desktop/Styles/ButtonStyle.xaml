@@ -35,11 +35,33 @@
                         Background="{TemplateBinding Background}">
                         <Label FontFamily="Jetbrains Mono"
                                FontWeight="SemiBold"
-                               Foreground="White"
+                               Foreground="#dad7cd"
                                FontSize="{TemplateBinding FontSize}"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"
                                Content="{TemplateBinding Content}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="mainEditButton" TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="5 7"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="B"
+                        CornerRadius="5"
+                        Background="#344e41">
+                        <Path
+                            Stretch="Fill"
+                            Height="20"
+                            Width="20"
+                            Data=""/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
