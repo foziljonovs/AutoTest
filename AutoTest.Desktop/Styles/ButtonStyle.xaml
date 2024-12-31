@@ -47,7 +47,6 @@
     </Style>
 
     <Style x:Key="mainEditButton" TargetType="{x:Type Button}">
-        <Setter Property="Margin" Value="5 7"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -56,13 +55,85 @@
                     <Border
                         x:Name="B"
                         CornerRadius="5"
-                        Background="#344e41">
-                        <Path
-                            Stretch="Fill"
-                            Height="20"
-                            Width="20"
-                            Data=""/>
+                        Background="#e09f3e">
+                        <Image
+                            Source="D:\AutoTest\AutoTest\AutoTest.Desktop\Assets\edit.png"
+                            Stretch="Uniform"
+                            Margin="5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
                     </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#e07a5f"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#e07a5f"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="mainAddButton" TargetType="{x:Type Button}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                    x:Name="B"
+                    CornerRadius="5"
+                    Background="#fff3b0">
+                        <Image
+                            Source="D:\AutoTest\AutoTest\AutoTest.Desktop\Assets\add_9055016.png"
+                            Stretch="Uniform"
+                            Margin="5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#f2cc8f"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#f2cc8f"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="mainDeleteButton" TargetType="{x:Type Button}">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="B"
+                        CornerRadius="5"
+                        Background="#9e2a2b">
+                        <Image
+                            Source="D:\AutoTest\AutoTest\AutoTest.Desktop\Assets\trash_9054992.png"
+                            Stretch="Uniform"
+                            Margin="5"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#d90429"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#d90429"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

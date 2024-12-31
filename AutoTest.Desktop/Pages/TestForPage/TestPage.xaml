@@ -1,0 +1,53 @@
+﻿<Page x:Class="AutoTest.Desktop.Pages.TestForPage.TestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoTest.Desktop.Pages.TestForPage"
+      mc:Ignorable="d" 
+      Title="TestPage"
+      Loaded="Page_Loaded">
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Label
+                x:Name="TestLbl"
+                Content="Yout tests ..."
+                FontSize="20"
+                Foreground="#344e41"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Style="{DynamicResource Label}"/>
+
+            <Border
+                Width="60"
+                Height="25"
+                CornerRadius="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Margin="0 0 10 0"
+                Background="#dad7cd">
+                <Label Content="Create"
+                       HorizontalAlignment="Center"
+                       Foreground="#344e41"
+                       Style="{DynamicResource Label}"/>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <ScrollViewer
+                Margin="0 10">
+                <StackPanel
+                    x:Name="st_tests"
+                    Margin="0 0 5 0">
+                    
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
