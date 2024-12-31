@@ -1,4 +1,5 @@
 ﻿using AutoTest.Desktop.Pages.MainForPage;
+using AutoTest.Desktop.Pages.TestForPage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,12 @@ namespace AutoTest.Desktop.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MainPage page = new MainPage();
+            PageNavigator.Content = page;
+        }
+
+        private void TestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TestPage page = new TestPage();
             PageNavigator.Content = page;
         }
     }

@@ -5,8 +5,89 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AutoTest.Desktop.Components.TestForComponents"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+             Height="45">
+    <Border
+        x:Name="st_Border"
+        Margin="5 3 5 0"
+        Background="#a3b18a"
+        CornerRadius="5"
+        BorderThickness="1"
+        BorderBrush="#344e41">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.6*"/>
+                <ColumnDefinition Width="75"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                x:Name="tbNumber"
+                Grid.Column="0"
+                Text="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="#344e41"
+                FontSize="13"
+                FontWeight="SemiBold"/>
+
+            <TextBlock
+                x:Name="tbTitle"
+                Grid.Column="1"
+                Text="What is C#?"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="#344e41"
+                FontSize="13"
+                FontWeight="SemiBold"/>
+
+            <TextBlock
+                x:Name="tbLevel"
+                Grid.Column="2"
+                Text="Easy"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="#344e41"
+                FontSize="13"
+                FontWeight="SemiBold"/>
+
+            <TextBlock
+                x:Name="tbStatus"
+                Grid.Column="3"
+                Text="Active"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="#344e41"
+                FontSize="13"
+                FontWeight="SemiBold"/>
+
+            <TextBlock
+                x:Name="tbTopic"
+                Grid.Column="4"
+                Text="C#"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Foreground="#344e41"
+                FontSize="13"
+                FontWeight="SemiBold"/>
+
+            <Grid Grid.Column="5">
+                <Button x:Name="EditBtn"
+                        Height="30"
+                        Width="30"
+                        Margin="5 0 0 0"
+                        Style="{DynamicResource mainEditButton}"
+                        HorizontalAlignment="Left"/>
+
+                <Button x:Name="DeleteBtn"
+                        Height="30"
+                        Width="30"
+                        Margin="0 0 5 0"
+                        Style="{DynamicResource mainDeleteButton}"
+                        HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
+    </Border>
 </UserControl>

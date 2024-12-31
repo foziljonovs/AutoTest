@@ -18,11 +18,10 @@
             <Label Name="MainLbl"
                    Content="Welcome to AutoTest ..."
                    FontSize="20"
-                    Foreground="#344e41"
-                    FontFamily="Jetbrains Mono"
-                    FontWeight="SemiBold"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"/>
+                   Foreground="#344e41"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Style="{DynamicResource Label}"/>
         </Grid>
 
         <Grid Grid.Row="1">

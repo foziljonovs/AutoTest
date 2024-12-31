@@ -58,9 +58,11 @@
 
                     <Button 
                         Grid.Row="2"
+                        x:Name="TestBtn"
                         Content="Tests"
                         Margin="3 0"                                                                                              
                         FontSize="14"           
+                        Click="TestBtn_Click"
                         Background="#588157"
                         Style="{DynamicResource mainButton}"/>
 
