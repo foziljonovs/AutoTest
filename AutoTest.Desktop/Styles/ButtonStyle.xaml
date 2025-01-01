@@ -24,6 +24,27 @@
         </Setter>
     </Style>
 
+    <Style x:Key="loginCloseButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="B"
+                        CornerRadius="5"
+                        Background="{TemplateBinding Background}">
+                        <materialDesign:PackIcon
+                            Kind="Close"    
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Foreground="#9e2a2b"
+                            Width="20"
+                            Height="20"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style x:Key="mainButton" TargetType="{x:Type Button}">
         <Setter Property="Height" Value="40"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -138,6 +159,52 @@
                             <Setter TargetName="B" Property="Background" Value="#d90429"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EyeButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="B"
+                        CornerRadius="5"
+                        Background="Transparent">
+                        <materialDesign:PackIcon
+                            Kind="Eye"
+                            Foreground="#588157"
+                            Width="20"
+                            Height="20"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DisEyeButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="B"
+                        CornerRadius="5"
+                        Background="Transparent">
+                        <materialDesign:PackIcon
+                            Kind="EyeOff"
+                            Foreground="#588157"
+                            Width="20"
+                            Height="20"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+                    </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

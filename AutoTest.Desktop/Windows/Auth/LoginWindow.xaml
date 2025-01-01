@@ -1,0 +1,68 @@
+﻿<Window x:Class="AutoTest.Desktop.Windows.Auth.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoTest.Desktop.Windows.Auth"
+        mc:Ignorable="d"
+        Title="LoginWindow" 
+        WindowStartupLocation="CenterScreen"
+        Height="400"
+        Width="600"
+        WindowStyle="None"
+        Background="Transparent"
+        Loaded="Window_Loaded">
+    <Border
+        Background="#a3b18a"
+        CornerRadius="5"
+        BorderThickness="1"
+        BorderBrush="#a3b18a">
+        <Grid
+            Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border
+                Grid.Row="0"
+                CornerRadius="5">
+                <Border.Background>
+                    <VisualBrush Stretch="Fill">
+                        <VisualBrush.Visual>
+                            <Border
+                                CornerRadius="5">
+                                <Image
+                                    Source="pack://application:,,,/Assets/loginBackground.jpg"
+                                    Stretch="Fill"/>
+                            </Border>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Border.Background>
+            </Border>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Button
+                    x:Name="CloseBtn"
+                    Width="30"
+                    Height="30"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    Click="CloseBtn_Click"
+                    Style="{DynamicResource loginCloseButtonStyle}"/>
+
+                <Frame Grid.Row="1"
+                       Name="LoginPageNavigator"
+                       NavigationUIVisibility="Hidden">
+
+                </Frame>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

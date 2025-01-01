@@ -1,0 +1,124 @@
+﻿<Page x:Class="AutoTest.Desktop.Pages.AuthForPage.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoTest.Desktop.Pages.AuthForPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      Title="LoginPage">
+    <StackPanel>
+        <Label Name="LoginLbl"
+                   Grid.Row="0"
+                   Content="Login"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="#344e41"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{DynamicResource Label}"/>
+
+        <Border
+            Height="40"
+            Width="250"
+            CornerRadius="10"
+            BorderThickness="1"
+            BorderBrush="#344e41">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:PackIcon
+                    Grid.Column="0"
+                    Kind="Account"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Foreground="#588157"
+                    Width="20"
+                    Height="20"/>
+
+                <TextBox
+                    Grid.Column="1"
+                    x:Name="UsernameTxt"
+                    FontFamily="Jetbrains Mono"
+                    FontWeight="SemiBold"
+                    FontSize="18"   
+                    VerticalContentAlignment="Center"
+                    Foreground="#344e41"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Margin="5 0"/>
+            </Grid>
+        </Border>
+
+        <Border 
+            Height="40"
+            Width="250"
+            CornerRadius="10"
+            BorderBrush="#344e41"
+            BorderThickness="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <materialDesign:PackIcon
+                    Grid.Column="0"
+                    Kind="Lock"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Foreground="#588157"
+                    Width="20"
+                    Height="20"/>
+                <DockPanel Grid.Column="1">
+                    <PasswordBox
+                        x:Name="PasswordPwd"
+                        Background="Transparent"
+                        Visibility="Visible"
+                        BorderThickness="0"
+                        Width="160"
+                        HorizontalAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        Foreground="#344e41"/>
+
+                    <TextBox
+                        x:Name="PasswordTxt"
+                        Visibility="Collapsed"
+                        Width="160"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        FontFamily="Jetbrains Mono"
+                        FontWeight="SemiBold"
+                        Foreground="#344e41"/>
+
+                    <Button x:Name="EyeButton"
+                            Margin="0 0 10 0"
+                            Visibility="Visible"
+                            HorizontalAlignment="Right"
+                            Click="EyeButton_Click"
+                            Style="{DynamicResource EyeButtonStyle}"/>
+
+                    <Button x:Name="DisEyeButton"
+                            Margin="0 0 10 0"
+                            Visibility="Collapsed"
+                            Click="DisEyeButton_Click"
+                            Style="{DynamicResource DisEyeButtonStyle}"/>
+                </DockPanel>
+            </Grid>
+        </Border>
+
+        <Button x:Name="LoginBtn"
+                Content="Login"
+                Width="250"
+                FontSize="18"
+                Background="#588157"
+                Click="LoginBtn_Click"
+                Style="{DynamicResource mainButton}"/>
+    </StackPanel>
+</Page>
