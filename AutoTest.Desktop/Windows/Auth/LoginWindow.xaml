@@ -44,7 +44,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
 
                 <Button
@@ -59,7 +58,9 @@
 
                 <Frame Grid.Row="1"
                        Name="LoginPageNavigator"
-                       NavigationUIVisibility="Hidden">
+                       NavigationUIVisibility="Hidden"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch">
 
                 </Frame>
             </Grid>
