@@ -3,6 +3,7 @@ using AutoTest.Desktop.Integrated.Api.Auth;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Auth;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace AutoTest.Desktop.Integrated.Servers.Repositories.Auth;
@@ -15,7 +16,7 @@ public class AuthServer : IAuthServer
         {
             HttpClient client = new HttpClient();
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, $"{AuthApi.LoginApi}");
-            var content = new StringContent(JsonConvert.SerializeObject(dto), null, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
             httpRequestMessage.Content = content;
             var response = await client.SendAsync(httpRequestMessage);
 
@@ -24,7 +25,7 @@ public class AuthServer : IAuthServer
                 string responseContent = await response.Content.ReadAsStringAsync();
                 dynamic jsonResponse = JsonConvert.DeserializeObject(responseContent)!;
                 string token = jsonResponse.token.ToString();
-                //save to identity
+
                 return (result: true, token: token);
             }
             else
@@ -32,7 +33,7 @@ public class AuthServer : IAuthServer
                 return (result: false, token: "");
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return (result: false, token: "");
         }
