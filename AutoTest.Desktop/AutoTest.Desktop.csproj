@@ -18,6 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AutoTest.BLL\AutoTest.BLL.csproj" />
+    <ProjectReference Include="..\AutoTest.Desktop.Integrated\AutoTest.Desktop.Integrated.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Assets\loginBackground.jpg" />
   </ItemGroup>
 

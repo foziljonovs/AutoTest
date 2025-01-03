@@ -47,7 +47,7 @@
                     <TextBox
                         Grid.Column="1"
                         Text="+998"
-                        x:Name="UsernameTxt"
+                        x:Name="PhoneNumberTxt"
                         FontFamily="Jetbrains Mono"
                         FontWeight="SemiBold"
                         FontSize="18"   

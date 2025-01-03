@@ -1,10 +1,15 @@
 ﻿using AutoTest.BLL.DTOs.User;
+using AutoTest.Desktop.Integrated.Servers.Interfaces.Auth;
 
 namespace AutoTest.Desktop.Integrated.Services.Auth;
 
-public class AuthService(IAuthService server) : IAuthService
+public class AuthService : IAuthService
 {
-    private readonly IAuthService _server = server;
+    private readonly IAuthServer _server;
+    public AuthService(IAuthServer server)
+    {
+        this._server = server;
+    }
     public async Task<(bool result, string token)> LoginAsync(LoginDto dto, CancellationToken cancellation = default)
     {
         try
