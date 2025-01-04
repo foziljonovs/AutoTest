@@ -21,17 +21,14 @@ public static class TokenHandler
                 case "Id":
                     identity.Id = long.Parse(claim.Value);
                     break;
-                case "Firstname":
-                    identity.Firstname = claim.Value;
-                    break;
-                case "Lastname":
-                    identity.Lastname = claim.Value;
+                case "Name":
+                    identity.Name = claim.Value;
                     break;
                 case "PhoneNumber":
                     identity.PhoneNumber = claim.Value;
                     break;
                 case "Role":
-                    identity.RoleName = claim.Value;
+                    identity.Role = claim.Value;
                     break;
             }
         }
