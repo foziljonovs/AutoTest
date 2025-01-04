@@ -16,16 +16,14 @@ public class AuthServer : IAuthServer
         {
             HttpClient client = new HttpClient();
             HttpRequestMessage httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, $"{AuthApi.LoginApi}");
-            var content = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
+            var content = new StringContent(JsonConvert.SerializeObject(dto), null, "application/json");
             httpRequestMessage.Content = content;
             var response = await client.SendAsync(httpRequestMessage);
 
             if (response.IsSuccessStatusCode)
             {
-                string responseContent = await response.Content.ReadAsStringAsync();
-                dynamic jsonResponse = JsonConvert.DeserializeObject(responseContent)!;
-                string token = jsonResponse.token.ToString();
-
+                string token = await response.Content.ReadAsStringAsync();
+                //save to identity
                 return (result: true, token: token);
             }
             else
@@ -33,7 +31,7 @@ public class AuthServer : IAuthServer
                 return (result: false, token: "");
             }
         }
-        catch (Exception ex)
+        catch
         {
             return (result: false, token: "");
         }

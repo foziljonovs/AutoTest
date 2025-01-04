@@ -25,12 +25,20 @@ namespace AutoTest.Desktop.Pages.AuthForPage
 
         private void EyeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            PasswordTxt.Text = PasswordPwd.Password;
+            PasswordPwd.Visibility = Visibility.Collapsed;
+            PasswordTxt.Visibility = Visibility.Visible;
+            EyeButton.Visibility = Visibility.Collapsed;
+            DisEyeButton.Visibility = Visibility.Visible;
         }
 
         private void DisEyeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            PasswordPwd.Password = PasswordTxt.Text;
+            PasswordTxt.Visibility = Visibility.Collapsed;
+            PasswordPwd.Visibility = Visibility.Visible;
+            DisEyeButton.Visibility = Visibility.Collapsed;
+            EyeButton.Visibility = Visibility.Visible;
         }
 
         private void SetIdentityToken(string token)
@@ -40,10 +48,8 @@ namespace AutoTest.Desktop.Pages.AuthForPage
             identity.Token = token;
             identity.Id = tkn.Id;
             identity.PhoneNumber = tkn.PhoneNumber;
-            identity.RoleName = tkn.RoleName;
-            identity.Firstname = tkn.Firstname;
-            identity.Lastname = tkn.Lastname;
-
+            identity.Role = tkn.Role;
+            identity.Name = tkn.Name;
         }
 
         private async void LoginBtn_Click(object sender, RoutedEventArgs e)
@@ -67,21 +73,12 @@ namespace AutoTest.Desktop.Pages.AuthForPage
                             TokenHandler.ParseToken(res.token);
                             SetIdentityToken(res.token);
 
-                            string role = IdentitySingelton.GetInstance().RoleName;
-                            
-                            if(role == "User")
-                            {
-                                var currentWindow = Window.GetWindow(this);
+                            var currentWindow = Window.GetWindow(this);
 
-                                MainWindow window = new MainWindow();
-                                window.Show();
+                            MainWindow window = new MainWindow();
+                            window.Show();
 
-                                currentWindow.Close();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Sizga ruxsat yo'q!");
-                            }
+                            currentWindow.Close();
                         }
                         else
                         {
@@ -131,6 +128,11 @@ namespace AutoTest.Desktop.Pages.AuthForPage
             {
                 MessageBox.Show("Login oynasini yuklashda xatolik yuz berdi!");
             }
+        }
+
+        private void PasswordPwd_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordTxt.Text = PasswordPwd.Password;
         }
     }
 }
