@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AutoTest.Desktop.Pages.AuthForPage" 
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:local1="clr-namespace:AutoTest.Desktop.Components.Loader"
       mc:Ignorable="d" 
       Title="RegisterPage">
 
@@ -120,7 +120,8 @@
                             VerticalContentAlignment="Center"
                             Foreground="#344e41"
                             Background="Transparent"
-                            BorderThickness="0"/>
+                            BorderThickness="0"
+                            PasswordChanged="PasswordPwb_PasswordChanged"/>
 
                         <TextBox
                             x:Name="PasswordTxt"
@@ -171,19 +172,27 @@
                             HorizontalAlignment="Right"/>
                 </Grid>
             </Border>
+            <Grid>
+                <StackPanel>
+                    <Button
+                        x:Name="RegisterBtn"
+                        Content="Register"
+                        Height="40"
+                        Width="250"
+                        Background="#588157"
+                        Foreground="#dad7cd"
+                        FontSize="18"
+                        FontWeight="SemiBold"
+                        Margin="0 5"
+                        Click="RegisterBtn_Click"
+                        Style="{DynamicResource mainButton}"/>
+                </StackPanel>
+
+                <local1:Loader x:Name="Loader"
+                               Visibility="Collapsed"
+                               HorizontalAlignment="Center"/>
+            </Grid>
             
-            <Button
-                x:Name="RegisterBtn"
-                Content="Register"
-                Height="40"
-                Width="250"
-                Background="#588157"
-                Foreground="#dad7cd"
-                FontSize="18"
-                FontWeight="SemiBold"
-                Margin="0 5"
-                Click="RegisterBtn_Click"
-                Style="{DynamicResource mainButton}"/>
 
         </StackPanel>
     </Grid>

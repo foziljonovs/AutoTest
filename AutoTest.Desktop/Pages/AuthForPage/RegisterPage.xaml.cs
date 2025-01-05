@@ -1,7 +1,11 @@
-﻿using AutoTest.Desktop.Windows.Auth;
+﻿using AutoTest.BLL.DTOs.User;
+using AutoTest.Desktop.Integrated.Servers.Repositories.Auth;
+using AutoTest.Desktop.Integrated.Services.Auth;
+using AutoTest.Desktop.Windows.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +17,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
+using WPF.Notifier;
 
 namespace AutoTest.Desktop.Pages.AuthForPage
 {
@@ -21,14 +30,103 @@ namespace AutoTest.Desktop.Pages.AuthForPage
     /// </summary>
     public partial class RegisterPage : Page
     {
+        private readonly IAuthService _authService;
         public RegisterPage()
         {
             InitializeComponent();
+            this._authService = new AuthService(new AuthServer());
         }
 
-        private void RegisterBtn_Click(object sender, RoutedEventArgs e)
+        Notifier notifier = new Notifier(cfg =>
         {
-            MessageBox.Show("Register");    
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
+                corner: Corner.TopRight,
+                offsetX: 20,
+                offsetY: 20);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(2));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+            cfg.DisplayOptions.Width = 200;
+            cfg.DisplayOptions.TopMost = true;
+        });
+
+        private async void RegisterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                RegisterBtn.Visibility = Visibility.Collapsed;
+                Loader.Visibility = Visibility.Visible;
+
+                if(IsInternetAvailable())
+                {
+                    if(!string.IsNullOrEmpty(FullnameTxt.Text) ||
+                        !string.IsNullOrEmpty(PasswordTxt.Text) ||
+                        !string.IsNullOrEmpty(UsernameTxt.Text))
+                    {
+                        string[] fullname = FullnameTxt.Text.Split(' ');
+
+                        RegisterDto register = new RegisterDto();
+                        register.Firstname = fullname[0];
+                        register.Lastname = fullname[1];
+                        register.PhoneNumber = UsernameTxt.Text;
+                        register.Password = PasswordTxt.Text;
+
+                        var res = await _authService.RegisterAsync(register);
+                        if(res)
+                        {
+                            notifier.ShowSuccess("Siz muvaffaqiyatli ro'yxatdan o'tdingiz!");
+                            if(Application.Current.MainWindow is LoginWindow window)
+                            {
+                                window.LoginPageNavigator.Content = new LoginPage();
+                            }
+                        }
+                        else
+                        {
+                            notifier.ShowError("Ro'yxatdan o'tishda xatolik yuz berdi!");
+                            Loader.Visibility = Visibility.Collapsed;
+                            RegisterBtn.Visibility = Visibility.Visible;
+                        }
+                    }
+                    else
+                    {
+                        notifier.ShowWarning("Malumotlar to'liq kiritilmagan!");
+                        Loader.Visibility = Visibility.Collapsed;
+                        RegisterBtn.Visibility = Visibility.Visible;
+                    }
+                }
+                else
+                {
+                    notifier.ShowWarning("Internet aloqasi yo'q!");
+                    Loader.Visibility = Visibility.Collapsed;
+                    RegisterBtn.Visibility = Visibility.Visible;
+                }
+            }
+            catch(Exception ex)
+            {
+                notifier.ShowError($"Xatolik yuz berdi!");
+                Loader.Visibility = Visibility.Collapsed;
+                RegisterBtn.Visibility = Visibility.Visible;
+            }
+        }
+
+        private bool IsInternetAvailable()
+        {
+            try
+            {
+                using(Ping ping = new Ping())
+                {
+                    PingReply reply = ping.Send("www.google.com");
+                    return reply.Status == IPStatus.Success;
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
 
         private void EyeButton_Click(object sender, RoutedEventArgs e)
@@ -59,6 +157,11 @@ namespace AutoTest.Desktop.Pages.AuthForPage
             {
                 MessageBox.Show("Login oynasini yuklashda xatolik yuz berdi!");
             }
+        }
+
+        private void PasswordPwb_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PasswordTxt.Text = PasswordPwb.Password;
         }
     }
 }
