@@ -156,13 +156,11 @@
                         Click="LoginBtn_Click"
                         Style="{DynamicResource mainButton}"/>
                 </StackPanel>
+                <local:Loader
+                            x:Name="Loader"
+                            Visibility="Collapsed"
+                            HorizontalAlignment="Center"/>
             </Grid>
-
-            <local:Loader
-                    x:Name="Loader"
-                    Visibility="Collapsed"
-                    HorizontalAlignment="Center"/>
-
         </StackPanel>
     </Grid>
 </Page>

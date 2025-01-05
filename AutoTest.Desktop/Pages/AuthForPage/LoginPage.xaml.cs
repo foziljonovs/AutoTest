@@ -8,6 +8,10 @@ using System.Net.NetworkInformation;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace AutoTest.Desktop.Pages.AuthForPage
 {
@@ -22,6 +26,24 @@ namespace AutoTest.Desktop.Pages.AuthForPage
             InitializeComponent();
             this._authService = new AuthService(new AuthServer());
         }
+
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
+                corner: Corner.TopRight,
+                offsetX: 20,
+                offsetY: 20);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(2));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+
+            cfg.DisplayOptions.Width = 200;
+            cfg.DisplayOptions.TopMost = true;
+        });
 
         private void EyeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -48,7 +70,7 @@ namespace AutoTest.Desktop.Pages.AuthForPage
             identity.Token = token;
             identity.Id = tkn.Id;
             identity.PhoneNumber = tkn.PhoneNumber;
-            identity.Role = tkn.Role;
+            //identity.RoleName = tkn.RoleName;
             identity.Name = tkn.Name;
         }
 
@@ -62,7 +84,7 @@ namespace AutoTest.Desktop.Pages.AuthForPage
                 if(IsInternetAvailable())
                 {
                     if(!string.IsNullOrEmpty(PhoneNumberTxt.Text) ||
-                        !string.IsNullOrEmpty(PasswordPwd.Password.ToString()))
+                        !string.IsNullOrEmpty(PasswordTxt.Text))
                     {
                         LoginDto login = new LoginDto();
 
@@ -85,28 +107,28 @@ namespace AutoTest.Desktop.Pages.AuthForPage
                         }
                         else
                         {
-                            MessageBox.Show("Login yoki parol noto'g'ri!");
+                            notifier.ShowError("Login yoki parol noto'g'ri!");
                             Loader.Visibility = Visibility.Collapsed;
                             LoginBtn.Visibility = Visibility.Visible;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Login yoki parol kiritilmagan!");
+                        notifier.ShowWarning("Login yoki parol kiritilmagan!");
                         Loader.Visibility = Visibility.Collapsed;
                         LoginBtn.Visibility = Visibility.Visible;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Internet aloqasi yo'q!");
+                    notifier.ShowWarning("Internet aloqasi yo'q!");
                     Loader.Visibility = Visibility.Collapsed;
                     LoginBtn.Visibility = Visibility.Visible;
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                notifier.ShowError("Xatolik yuz berdi!");
                 Loader.Visibility = Visibility.Collapsed;
                 LoginBtn.Visibility = Visibility.Visible;
             }

@@ -9,12 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Loader1.gif" />
     <None Remove="Assets\loginBackground.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="3.1.0" />
     <PackageReference Include="MaterialDesignThemes" Version="5.1.0" />
+    <PackageReference Include="ToastNotifications" Version="2.5.1" />
+    <PackageReference Include="ToastNotifications.Messages" Version="2.5.1" />
+    <PackageReference Include="WPF.Notifier" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Loader1.gif" />
     <Resource Include="Assets\loginBackground.jpg" />
   </ItemGroup>
 

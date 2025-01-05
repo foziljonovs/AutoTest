@@ -8,8 +8,8 @@
     <Grid>
         <Image
             Source="/Assets/Loader1.gif"
-            Width="50"
-            Height="50"
+            Width="40"
+            Height="40"
             RenderTransformOrigin="0.5, 0.5"
             Visibility="Visible">
             
