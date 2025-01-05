@@ -33,12 +33,20 @@ namespace AutoTest.Desktop.Pages.AuthForPage
 
         private void EyeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            PasswordTxt.Text = PasswordPwb.Password;
+            PasswordPwb.Visibility = Visibility.Collapsed;
+            PasswordTxt.Visibility = Visibility.Visible;
+            EyeButton.Visibility = Visibility.Collapsed;
+            DisEyeButton.Visibility = Visibility.Visible;
         }
 
         private void DisEyeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            PasswordPwb.Password = PasswordTxt.Text;
+            PasswordTxt.Visibility = Visibility.Collapsed;
+            PasswordPwb.Visibility = Visibility.Visible;
+            DisEyeButton.Visibility = Visibility.Collapsed;
+            EyeButton.Visibility = Visibility.Visible;
         }
 
         private void Border_MouseUp(object sender, MouseButtonEventArgs e)

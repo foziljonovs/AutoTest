@@ -54,6 +54,9 @@ namespace AutoTest.Desktop.Pages.AuthForPage
 
         private async void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
+            LoginBtn.Visibility = Visibility.Collapsed;
+            Loader.Visibility = Visibility.Visible;
+
             try
             {
                 if(IsInternetAvailable())
@@ -83,21 +86,29 @@ namespace AutoTest.Desktop.Pages.AuthForPage
                         else
                         {
                             MessageBox.Show("Login yoki parol noto'g'ri!");
+                            Loader.Visibility = Visibility.Collapsed;
+                            LoginBtn.Visibility = Visibility.Visible;
                         }
                     }
                     else
                     {
                         MessageBox.Show("Login yoki parol kiritilmagan!");
+                        Loader.Visibility = Visibility.Collapsed;
+                        LoginBtn.Visibility = Visibility.Visible;
                     }
                 }
                 else
                 {
                     MessageBox.Show("Internet aloqasi yo'q!");
+                    Loader.Visibility = Visibility.Collapsed;
+                    LoginBtn.Visibility = Visibility.Visible;
                 }
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                Loader.Visibility = Visibility.Collapsed;
+                LoginBtn.Visibility = Visibility.Visible;
             }
         }
 

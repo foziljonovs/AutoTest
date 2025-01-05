@@ -136,14 +136,14 @@
 
                         <Button x:Name="EyeButton"
                                 Margin="0 0 10 0"
-                                Visibility="Collapsed"
+                                Visibility="Visible"
                                 HorizontalAlignment="Right"
                                 Click="EyeButton_Click"
                                 Style="{DynamicResource EyeButtonStyle}"/>
 
                         <Button x:Name="DisEyeButton"
                                 Margin="0 0 10 0"
-                                Visibility="Visible"
+                                Visibility="Collapsed"
                                 Click="DisEyeButton_Click"
                                 Style="{DynamicResource DisEyeButtonStyle}"/>
                     </DockPanel>
