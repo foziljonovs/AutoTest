@@ -40,6 +40,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
         private async Task GetAllTest()
         {
             st_tests.Children.Clear();
+            TestLoader.Visibility = Visibility.Visible;
 
             var tests = await Task.Run(async () => await _testService.GetAllAsync());
             
@@ -47,6 +48,9 @@ namespace AutoTest.Desktop.Pages.MainForPage
 
             if(tests.Count > 0)
             {
+                TestLoader.Visibility = Visibility.Collapsed;
+                TestEmptyData.Visibility = Visibility.Collapsed;
+
                 foreach(var test in tests)
                 {
                     MainTestComponent component = new MainTestComponent();
@@ -58,7 +62,8 @@ namespace AutoTest.Desktop.Pages.MainForPage
             }
             else
             {
-
+                TestLoader.Visibility = Visibility.Collapsed;
+                TestEmptyData.Visibility = Visibility.Visible;
             }
         }
 
