@@ -57,7 +57,7 @@
                         Background="{TemplateBinding Background}">
                         <Label FontFamily="Jetbrains Mono"
                                FontWeight="SemiBold"
-                               Foreground="#dad7cd"
+                               Foreground="White"
                                FontSize="{TemplateBinding FontSize}"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Center"

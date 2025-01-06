@@ -9,7 +9,7 @@
     <Border
         x:Name="st_Border"
         Margin="5 3 5 0"
-        Background="#a3b18a"
+        Background="White"
         CornerRadius="5"
         BorderThickness="1"
         BorderBrush="#344e41">
@@ -29,7 +29,7 @@
                 Text="1"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Foreground="#344e41"
+                Foreground="Black"
                 FontSize="13"
                 FontWeight="SemiBold"/>
 
@@ -39,7 +39,7 @@
                 Text="What is C#?"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Foreground="#344e41"
+                Foreground="Black"
                 FontSize="13"
                 FontWeight="SemiBold"/>
 
@@ -49,7 +49,7 @@
                 Text="Easy"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Foreground="#344e41"
+                Foreground="Black"
                 FontSize="13"
                 FontWeight="SemiBold"/>
 
@@ -59,7 +59,7 @@
                 Text="Active"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Foreground="#344e41"
+                Foreground="Black"
                 FontSize="13"
                 FontWeight="SemiBold"/>
 
@@ -69,7 +69,7 @@
                 Text="C#"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Foreground="#344e41"
+                Foreground="Black"
                 FontSize="13"
                 FontWeight="SemiBold"/>
 
