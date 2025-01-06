@@ -18,7 +18,7 @@
             <Label Name="MainLbl"
                    Content="Welcome to AutoTest ..."
                    FontSize="20"
-                   Foreground="#344e41"
+                   Foreground="Black"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    Style="{DynamicResource Label}"/>
@@ -38,7 +38,7 @@
                        Grid.Row="0"
                        Content="Tests"
                        FontSize="20"
-                       Foreground="#344e41"
+                       Foreground="Black"
                        VerticalAlignment="Center"
                        Style="{StaticResource Label}"/>
 
@@ -61,7 +61,7 @@
                     Grid.Row="0"
                     Content="Topics"
                     FontSize="20"
-                    Foreground="#344e41"
+                    Foreground="Black"
                     VerticalAlignment="Center"
                     Style="{StaticResource Label}"/>
 

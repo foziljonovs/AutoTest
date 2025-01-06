@@ -17,7 +17,7 @@
         <Label
             Grid.Row="0"
             Content="Register"
-            Foreground="#344e41"
+            Foreground="Black"
             FontSize="20"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
@@ -51,7 +51,7 @@
                         FontWeight="SemiBold"
                         FontSize="18"   
                         VerticalContentAlignment="Center"
-                        Foreground="#344e41"
+                        Foreground="Black"
                         Background="Transparent"
                         BorderThickness="0"/>
                 </Grid>
@@ -84,7 +84,7 @@
                         FontWeight="SemiBold"
                         FontSize="18"   
                         VerticalContentAlignment="Center"
-                        Foreground="#344e41"
+                        Foreground="Black"
                         Background="Transparent"
                         BorderThickness="0"/>
                 </Grid>
@@ -118,7 +118,7 @@
                             FontSize="18"   
                             Width="160"
                             VerticalContentAlignment="Center"
-                            Foreground="#344e41"
+                            Foreground="Black"
                             Background="Transparent"
                             BorderThickness="0"
                             PasswordChanged="PasswordPwb_PasswordChanged"/>
@@ -133,7 +133,7 @@
                             FontSize="18"
                             FontFamily="Jetbrains Mono"
                             FontWeight="SemiBold"
-                            Foreground="#344e41"/>
+                            Foreground="Black"/>
 
                         <Button x:Name="EyeButton"
                                 Margin="0 0 10 0"

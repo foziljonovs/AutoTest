@@ -9,7 +9,7 @@
     <Border
         x:Name="st_border"
         Margin="5 3 0 0"
-        Background="#a3b18a"
+        Background="White"
         CornerRadius="5"
         BorderThickness="1"
         BorderBrush="#344e41">
@@ -20,7 +20,7 @@
             Margin="5"
             VerticalAlignment="Center"
             FontSize="13"
-            Foreground="#344e41"
+            Foreground="Black"
             FontWeight="SemiBold"/>
     </Border>
 </UserControl>

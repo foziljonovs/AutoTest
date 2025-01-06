@@ -17,7 +17,7 @@
                        Content="Login"
                        FontSize="20"
                        FontWeight="Bold"
-                       Foreground="#344e41"
+                       Foreground="Black"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Style="{DynamicResource Label}"/>
@@ -52,7 +52,7 @@
                         FontWeight="SemiBold"
                         FontSize="18"   
                         VerticalContentAlignment="Center"
-                        Foreground="#344e41"
+                        Foreground="Black"
                         Background="Transparent"
                         BorderThickness="0"/>
                 </Grid>
@@ -88,7 +88,7 @@
                             HorizontalAlignment="Left"
                             VerticalContentAlignment="Center"
                             FontSize="18"
-                            Foreground="#344e41"
+                            Foreground="Black"
                             PasswordChanged="PasswordPwd_PasswordChanged"/>
 
                         <TextBox
@@ -101,7 +101,7 @@
                             FontSize="18"
                             FontFamily="Jetbrains Mono"
                             FontWeight="SemiBold"
-                            Foreground="#344e41"/>
+                            Foreground="Black"/>
 
                         <Button
                             x:Name="EyeButton"

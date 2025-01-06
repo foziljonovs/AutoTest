@@ -9,7 +9,7 @@
     <Border
         x:Name="st_border"
         Margin="5 3 5 0"
-        Background="#a3b18a"
+        Background="White"
         CornerRadius="5"
         BorderThickness="1"
         BorderBrush="#344e41">
@@ -28,7 +28,7 @@
                 VerticalAlignment="Center"
                 FontSize="13"
                 FontWeight="SemiBold"
-                Foreground="#344e41"/>
+                Foreground="Black"/>
 
             <TextBlock
                 x:Name="tbTitle"
@@ -38,7 +38,7 @@
                 VerticalAlignment="Center"
                 FontSize="13"
                 FontWeight="SemiBold"
-                Foreground="#344e41"/>
+                Foreground="Black"/>
 
             <TextBlock
                 x:Name="tbTopic"
@@ -48,7 +48,7 @@
                 VerticalAlignment="Center"
                 FontSize="13"
                 FontWeight="SemiBold"
-                Foreground="#344e41"/>
+                Foreground="Black"/>
         </Grid>
     </Border>
 </UserControl>

@@ -20,7 +20,9 @@
 
         <Border
             Grid.Column="0"
-            Background="#a3b18a"
+            Background="White"
+            BorderBrush="#588157"
+            BorderThickness="1"
             Margin="5 5 0 5"
             CornerRadius="5">
             <Grid>
@@ -41,7 +43,7 @@
                         Grid.Row="0"
                         Text="Auto Test"
                         FontSize="20"
-                        Foreground="#3a5a40"
+                        Foreground="Black"
                         FontFamily="Jetbrains Mono"
                         FontWeight="SemiBold"
                         HorizontalAlignment="Center"
@@ -86,7 +88,9 @@
         <Border 
             CornerRadius="5"
             Margin="5"
-            Background="#a3b18a"
+            Background="White"
+            BorderBrush="#588157"
+            BorderThickness="1"
             Grid.Column="1">
             <Frame
                 Name="PageNavigator"
