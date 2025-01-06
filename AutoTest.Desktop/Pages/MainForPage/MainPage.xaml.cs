@@ -1,4 +1,7 @@
 ﻿using AutoTest.Desktop.Components.MainForComponents;
+using AutoTest.Desktop.Integrated.Servers.Interfaces.Test;
+using AutoTest.Desktop.Integrated.Servers.Repositories.Test;
+using AutoTest.Desktop.Integrated.Services.Test;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +24,42 @@ namespace AutoTest.Desktop.Pages.MainForPage
     /// </summary>
     public partial class MainPage : Page
     {
+        private readonly ITestService _testService;
         public MainPage()
         {
             InitializeComponent();
+            this._testService = new TestService(new TestServer());
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ShowTests();
+            GetAllTest();
             ShowTopics();
+        }
+
+        private async Task GetAllTest()
+        {
+            st_tests.Children.Clear();
+
+            var tests = await Task.Run(async () => await _testService.GetAllAsync());
+            
+            int count = 1;
+
+            if(tests.Count > 0)
+            {
+                foreach(var test in tests)
+                {
+                    MainTestComponent component = new MainTestComponent();
+                    component.Tag = test;
+                    component.SetValues(test, count);
+                    st_tests.Children.Add(component);
+                    count++;
+                }
+            }
+            else
+            {
+
+            }
         }
 
         private void ShowTests()
@@ -54,6 +84,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
             "HTML",
             "Css"
         };
+
         private void ShowTopics()
         {
             st_topics.Children.Clear();
