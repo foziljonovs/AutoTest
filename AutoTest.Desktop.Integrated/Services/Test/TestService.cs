@@ -1,5 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Test;
+using AutoTest.Desktop.Integrated.Servers.Repositories.Test;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 
@@ -8,9 +9,9 @@ namespace AutoTest.Desktop.Integrated.Services.Test;
 public class TestService : ITestService
 {
     private readonly ITestServer _server;
-    public TestService(ITestServer server)
+    public TestService()
     {
-        this._server = server;
+        this._server = new TestServer();
     }
 
     public async Task<bool> AddAsync(CreateTestDto dto)
@@ -81,6 +82,10 @@ public class TestService : ITestService
                 return await _server.GetByIdAsync(id);
             else
                 return new TestDto();
+        }
+        catch(Exception ex)
+        {
+            return new TestDto();
         }
     }
 

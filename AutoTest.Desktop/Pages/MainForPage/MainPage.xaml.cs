@@ -2,6 +2,7 @@
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Test;
 using AutoTest.Desktop.Integrated.Servers.Repositories.Test;
 using AutoTest.Desktop.Integrated.Services.Test;
+using AutoTest.Desktop.Integrated.Services.Topic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,16 +26,18 @@ namespace AutoTest.Desktop.Pages.MainForPage
     public partial class MainPage : Page
     {
         private readonly ITestService _testService;
+        private readonly ITopicService _topicService;
         public MainPage()
         {
             InitializeComponent();
-            this._testService = new TestService(new TestServer());
+            this._testService = new TestService();
+            this._topicService = new TopicService();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            GetAllTest();
-            ShowTopics();
+            await GetAllTest();
+            await GetAllTopic();
         }
 
         private async Task GetAllTest()
@@ -67,38 +70,33 @@ namespace AutoTest.Desktop.Pages.MainForPage
             }
         }
 
-        private void ShowTests()
-        {
-            st_tests.Children.Clear();
-
-            for(int i = 0; i < 10; i++)
-            {
-                MainTestComponent component = new MainTestComponent();
-                st_tests.Children.Add(component);
-            }
-        }
-
-        private List<string> topics = new List<string>
-        {
-            "C#",
-            "java",
-            "Ruby",
-            "PHP",
-            "Go",
-            "Java Script",
-            "HTML",
-            "Css"
-        };
-
-        private void ShowTopics()
+        private async Task GetAllTopic()
         {
             st_topics.Children.Clear();
+            TopicLoader.Visibility = Visibility.Visible;
 
-            foreach(var item in topics)
+            var topics = await Task.Run(async () => await _topicService.GetAllAsync());
+
+            int allTopicCount = 0;
+
+            if(topics.Count > 0)
             {
-                MainTopicComponents component  = new MainTopicComponents();
-                component.SetValues(item);
-                st_topics.Children.Add(component);
+                TopicLoader.Visibility = Visibility.Collapsed;
+                TopicEmptyData.Visibility = Visibility.Collapsed;
+
+                foreach(var topic in topics)
+                {
+                    MainTopicComponents component = new MainTopicComponents();
+                    component.Tag = topic;
+                    component.SetValues(topic);
+                    st_topics.Children.Add(component);
+                    allTopicCount++;
+                }
+            }
+            else
+            {
+                TopicLoader.Visibility = Visibility.Collapsed;
+                TopicEmptyData.Visibility = Visibility.Visible;
             }
         }
     }

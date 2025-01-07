@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoTest.BLL.DTOs.Tests.Topic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,10 +25,12 @@ namespace AutoTest.Desktop.Components.MainForComponents
         {
             InitializeComponent();
         }
+        private long Id { get; set; }
 
-        public void SetValues(string value)
+        public void SetValues(TopicDto dto)
         {
-            tbTopic.Text = value;
+            Id = dto.Id;
+            tbTopic.Text = dto.Name;
         }
     }
 }
