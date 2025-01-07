@@ -12,23 +12,90 @@ public class TestService : ITestService
     {
         this._server = server;
     }
+
+    public async Task<bool> AddAsync(CreateTestDto dto)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+                return await _server.AddAsync(dto);
+            else
+                return false;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
+    public async Task<List<TestDto>> CompletedTaskAsync()
+    {
+        try
+        {
+            if (IsInternetAvailable())
+                return await _server.CompletedTaskAsync();
+            else
+                return new List<TestDto>();
+        }
+        catch (Exception ex)
+        {
+            return new List<TestDto>();
+        }
+    }
+
+    public async Task<bool> DeleteAsync(long id)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+                return await _server.DeleteAsync(id);
+            else
+                return false;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
     public async Task<List<TestDto>> GetAllAsync()
     {
         try
         {
             if(IsInternetAvailable())
-            {
-                var tests = await _server.GetAllAsync();
-                return tests;
-            }
+                return await _server.GetAllAsync();
             else
-            {
                 return new List<TestDto>();
-            }
         }
         catch(Exception ex)
         {
             return new List<TestDto>();
+        }
+    }
+
+    public async Task<TestDto> GetByIdAsync(long id)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+                return await _server.GetByIdAsync(id);
+            else
+                return new TestDto();
+        }
+    }
+
+    public async Task<bool> UpdateAsync(long id, UpdateTestDto dto)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+                return await _server.UpdateAsync(id, dto);
+            else
+                return false;
+        }
+        catch(Exception ex)
+        {
+            return false;
         }
     }
 
