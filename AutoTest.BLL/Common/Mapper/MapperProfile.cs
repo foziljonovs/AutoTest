@@ -16,30 +16,43 @@ public class MapperProfile : Profile
         /*-----------------------------------User-----------------------------------*/
         CreateMap<UserDto, User>()
             .ForMember(dest => dest.Tests, opt => opt.Ignore());
+
         CreateMap<User, UserDto>();
+
         CreateMap<RegisterDto, User>()
             .ForMember(dest => dest.Tests, opt => opt.Ignore());
+
         CreateMap<LoginDto, User>()
             .ForMember(dest => dest.Tests, opt => opt.Ignore());
+
         CreateMap<UpdateUserDto, User>()
             .ForMember(dest => dest.Tests, opt => opt.Ignore());
+
         CreateMap<UserChangePasswordDto, User>()
             .ForMember(dest => dest.Tests, opt => opt.Ignore());
 
         /*-----------------------------------Test-----------------------------------*/
         CreateMap<TestDto, Test>()
             .ForMember(dest => dest.User, opt => opt.Ignore());
-        CreateMap<Test, TestDto>();
+
+        CreateMap<Test, TestDto>()
+            .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User))
+            .ForMember(dest => dest.Topics, opt => opt.MapFrom(src => src.Topics))
+            .ForMember(dest => dest.Question, opt => opt.MapFrom(src => src.Question));
+
         CreateMap<CreateTestDto, Test>()
-            .ForMember(dest => dest.User, opt => opt.Ignore());
+            .ForMember(dest => dest.User, opt => opt.Ignore())
+            .ForMember(dest => dest.Topics, opt => opt.Ignore());
+
         CreateMap<UpdateTestDto, Test>()
-            .ForMember(dest => dest.User, opt => opt.Ignore());
+            .ForMember(dest => dest.User, opt => opt.Ignore())
+            .ForMember(dest => dest.Topics, opt => opt.Ignore());
 
         /*-----------------------------------Question-----------------------------------*/
-        CreateMap<QuestionDto, Question>();
         CreateMap<Question, QuestionDto>();
-        CreateMap<CreateQuestionDto, Question>();
-        CreateMap<UpdateQuestionDto, Question>();
+        CreateMap<QuestionDto, Question>();
+        CreateMap<CreateQuestionDto, Domain.Entities.Tests.Question>();
+        CreateMap<UpdateQuestionDto, Domain.Entities.Tests.Question>();
 
         /*-----------------------------------Option-----------------------------------*/
         CreateMap<OptionDto, Option>();
@@ -48,9 +61,15 @@ public class MapperProfile : Profile
         CreateMap<UpdateOptionDto, Option>();
 
         /*-----------------------------------Topic-----------------------------------*/
-        CreateMap<TopicDto, Topic>();
         CreateMap<Topic, TopicDto>();
-        CreateMap<CreateTopicDto, Topic>();
-        CreateMap<UpdateTopicDto, Topic>();
+
+        CreateMap<TopicDto, Topic>()
+            .ForMember(dest => dest.Tests, opt => opt.Ignore());
+
+        CreateMap<CreateTopicDto, Domain.Entities.Tests.Topic>()
+            .ForMember(dest => dest.Tests, opt => opt.Ignore());
+
+        CreateMap<UpdateTopicDto, Domain.Entities.Tests.Topic>()
+            .ForMember(dest => dest.Tests, opt => opt.Ignore()); ;
     }
 }

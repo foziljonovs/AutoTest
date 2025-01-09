@@ -1,5 +1,4 @@
-﻿using AutoTest.BLL.DTOs.Tests.Question;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Et = AutoTest.Domain.Entities.Tests;
 using System.Text.Json.Serialization;
 
 namespace AutoTest.BLL.DTOs.Tests.Option;
@@ -15,5 +14,5 @@ public class OptionDto
     [JsonPropertyName("question_id")]
     public long QuestionId { get; set; }
     [JsonPropertyName("question")]
-    public QuestionDto Question { get; set; }
+    public Et.Question Question { get; set; }
 }

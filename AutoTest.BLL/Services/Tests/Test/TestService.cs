@@ -25,6 +25,17 @@ public class TestService(
                 throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
 
             var test = _mapper.Map<CT.Test>(dto);
+
+            foreach(var topicId in dto.Topics)
+            {
+                var topic = await _unitOfWork.Topic.GetById(topicId);
+
+                if (topic is not null)
+                    test.Topics.Add(topic);
+                else
+                    break;
+            }
+
             test.CreatedDate = DateTime.UtcNow.AddHours(5);
             await _unitOfWork.Test.Add(test);
 
@@ -58,8 +69,7 @@ public class TestService(
     {
         try
         {
-            var tests = await _unitOfWork.Test.GetAll()
-                .ToListAsync(cancellationToken);
+            var tests = await _unitOfWork.Test.GetAllFullInformationAsync();
 
             if(!tests.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No tests found");

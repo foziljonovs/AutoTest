@@ -10,7 +10,5 @@ public class Topic : BaseEntity
 
     [Column("description"), MaxLength(500)] 
     public string? Description { get; set; }
-    [Column("test_id")]
-    public required long TestId { get; set; }
-    public Test Test { get; set; }
+    public List<Test> Tests { get; set; }
 }

@@ -44,7 +44,7 @@
                 x:Name="tbTopic"
                 Grid.Column="2"
                 Text="C#"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="13"
                 FontWeight="SemiBold"

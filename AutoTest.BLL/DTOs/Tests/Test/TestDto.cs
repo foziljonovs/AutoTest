@@ -1,10 +1,7 @@
 ﻿using AutoTest.Domain.Entities.Files;
-using AutoTest.Domain.Entities.Tests;
 using AutoTest.Domain.Enums;
 using AutoTest.BLL.DTOs.User;
-using System.Text.Json.Serialization;
-using AutoTest.BLL.DTOs.Tests.Question;
-using AutoTest.BLL.DTOs.Tests.Topic;
+using Et = AutoTest.Domain.Entities.Tests;
 
 namespace AutoTest.BLL.DTOs.Tests.Test;
 
@@ -17,7 +14,7 @@ public class TestDto
     public TestStatus Status { get; set; }
     public long UserId { get; set; }
     public UserDto User { get; set; }
-    public List<QuestionDto> Question { get; set; }
-    public List<TopicDto> Topics { get; set; }
+    public List<Et.Question> Question { get; set; }
+    public List<Et.Topic> Topics { get; set; }
     public List<TestFile> Files { get; set; } 
 }

@@ -9,6 +9,4 @@ public class UpdateTopicDto
 
     [JsonPropertyName("description")]
     public string? Description { get; set; }
-    [JsonPropertyName("test_id")]
-    public long TestId { get; set; }
 }
