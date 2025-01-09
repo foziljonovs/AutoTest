@@ -14,7 +14,7 @@ public class CreateTestDto
     public TestLevel Level { get; set; }
     [JsonPropertyName("status")]
     public TestStatus Status { get; set; }
-    public List<Et.Topic> Topics { get; set; } = new List<Et.Topic>();
+    public List<long> Topics { get; set; } = new List<long>();
     [JsonPropertyName("user_id")]
     public long UserId { get; set; }
 }
