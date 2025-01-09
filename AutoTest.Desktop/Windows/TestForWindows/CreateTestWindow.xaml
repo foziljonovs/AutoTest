@@ -1,0 +1,36 @@
+﻿<Window x:Class="AutoTest.Desktop.Windows.TestForWindows.CreateTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoTest.Desktop.Windows.TestForWindows"
+        mc:Ignorable="d"
+        Title="CreateTestWindow"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        Width="450"
+        Height="300">
+    <Grid Background="#dad7cd">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Label Content="Create Test"
+                   FontSize="18"
+                   Style="{DynamicResource Label}"
+                   HorizontalAlignment="Left"
+                   Margin="10 0 0 0"
+                   VerticalAlignment="Center"/>
+
+            <Button x:Name="CloseBtn"
+                    Click="CloseBtn_Click"
+                    Style="{DynamicResource WindowCloseBtnStyle}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="0 0 10 0"/>
+        </Grid>
+    </Grid>
+</Window>

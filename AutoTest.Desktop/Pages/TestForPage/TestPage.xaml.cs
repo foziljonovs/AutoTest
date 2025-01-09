@@ -1,4 +1,5 @@
 ﻿using AutoTest.Desktop.Components.TestForComponents;
+using AutoTest.Desktop.Windows.TestForWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,12 @@ namespace AutoTest.Desktop.Pages.TestForPage
                 TestComponent component = new TestComponent();
                 st_tests.Children.Add(component);
             }
+        }
+
+        private void Border_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            CreateTestWindow window = new CreateTestWindow();
+            window.ShowDialog();
         }
     }
 }
