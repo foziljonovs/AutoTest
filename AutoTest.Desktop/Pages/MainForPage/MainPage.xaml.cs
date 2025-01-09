@@ -34,10 +34,10 @@ namespace AutoTest.Desktop.Pages.MainForPage
             this._topicService = new TopicService();
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            await GetAllTest();
-            await GetAllTopic();
+            GetAllTest();
+            GetAllTopic();
         }
 
         private async Task GetAllTest()
