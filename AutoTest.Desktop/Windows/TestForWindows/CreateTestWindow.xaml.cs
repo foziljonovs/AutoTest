@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AutoTest.BLL.DTOs.Tests.Topic;
+using AutoTest.Desktop.Components.MainForComponents;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +21,14 @@ namespace AutoTest.Desktop.Windows.TestForWindows
     /// </summary>
     public partial class CreateTestWindow : Window
     {
+        private List<string> topics = new List<string>()
+        {
+            "C#",
+            "Java",
+            "Rust",
+            "C++",
+            "Go"
+        };
         public CreateTestWindow()
         {
             InitializeComponent();
@@ -26,5 +36,25 @@ namespace AutoTest.Desktop.Windows.TestForWindows
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
             => this.Close();
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            st_topics.Children.Clear();
+
+            foreach(var item in topics)
+            {
+                TopicDto topic = new TopicDto
+                {
+                    Id = 1,
+                    Name = item,
+                    Description = "Birnimalarda e"
+                };
+
+                MainTopicComponents component = new MainTopicComponents();
+                component.Tag = topic;
+                component.SetValues(topic);
+                st_topics.Children.Add(component);
+            }
+        }
     }
 }
