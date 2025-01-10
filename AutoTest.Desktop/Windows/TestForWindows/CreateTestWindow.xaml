@@ -4,17 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AutoTest.Desktop.Windows.TestForWindows"
+        xmlns:local1="clr-namespace:AutoTest.Desktop.Components.Loader"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="CreateTestWindow"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
-        Width="450"
-        Height="300">
+        Width="600"
+        Height="350"
+        Loaded="Window_Loaded">
     <Grid Background="#dad7cd">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -31,6 +35,203 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Margin="0 0 10 0"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.8*"/>
+                    <RowDefinition Height="0.8*"/>
+                    <RowDefinition Height="0.7*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0"
+                            Margin="0 3">
+                    <Label
+                        Content="Title"
+                        VerticalAlignment="Center"
+                        Margin="10 0 0 0"
+                        FontSize="14"
+                        Style="{DynamicResource Label}"/>
+                    <Border
+                        Margin="10 0"
+                        Height="30"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        BorderBrush="#344e41">
+                        <TextBox
+                            x:Name="txtTitle"
+                            Margin="3 0"
+                            FontSize="20"
+                            BorderThickness="0"
+                            Foreground="Black"
+                            Background="Transparent"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="1"
+                            Margin="0 3">
+                    <Label
+                            Content="Description"
+                            VerticalAlignment="Center"
+                            Margin="10 0 0 0"
+                            FontSize="14"
+                            Style="{DynamicResource Label}"/>
+                    <Border
+                            Margin="10 0"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Height="30"
+                            BorderBrush="#344e41">
+                        <TextBox
+                            x:Name="txtDesctiption"
+                            Margin="3 0"
+                            FontSize="20"
+                            BorderThickness="0"
+                            Foreground="Black"
+                            Background="Transparent"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="2">
+                    <Label Content="Level"
+                           Margin="10 0 0 0"
+                           FontSize="14"
+                           Style="{DynamicResource Label}"/>
+
+                    <ComboBox
+                            x:Name="LevelComboBox"
+                            Margin="10 5"
+                            FontSize="16"
+                            Foreground="Black"
+                            Background="Transparent"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3">
+                    <Label Content="Selected topics"
+                           Margin="10 0 0 0"
+                           FontSize="14"
+                           Style="{DynamicResource Label}"/>
+
+                    <StackPanel x:Name="st_topics"
+                                Margin="10 0"
+                                Orientation="Horizontal">
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Column="1"
+                  Margin="0 0 10 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            Margin="0 3 0 0">
+                    <Label Content="Topics"
+                           FontSize="14"
+                           Style="{DynamicResource Label}"/>
+
+                    <Grid>
+                        <Border 
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            Width="150"
+                            Height="30"
+                            BorderBrush="#344e41"
+                            HorizontalAlignment="Left">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <materialDesign:PackIcon
+                                    Grid.Column="0"
+                                    Kind="Search"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Foreground="#588157"
+                                    Height="20"
+                                    Width="20"/>
+
+                                <TextBox
+                                    Grid.Column="1"
+                                    Margin="0 0 3 0"
+                                    x:Name="txtTopicFilter"
+                                    BorderThickness="0"
+                                    FontSize="20"
+                                    Background="Transparent"/>
+                            </Grid>
+                        </Border>
+
+                        <Button
+                            x:Name="CreateTopicBtn"
+                            HorizontalAlignment="Right"
+                            Height="30"
+                            Width="35"
+                            Style="{DynamicResource mainAddButton}"/>
+                    </Grid>
+                </StackPanel>
+
+                <Grid Grid.Row="1"
+                      Margin="0 5 0 5">
+                    <local1:Loader
+                        x:Name="AllTopicLoader"
+                        HorizontalAlignment="Center"
+                        Visibility="Collapsed"/>
+
+                    <WrapPanel
+                        x:Name="st_AllTopic"
+                        Orientation="Horizontal">
+
+                    </WrapPanel>
+
+                    <Label 
+                        x:Name="TopicEmptyData"
+                        Content="Topic not found."
+                        FontSize="16"
+                        Visibility="Collapsed"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource Label}"/>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Button
+                Grid.Column="1"
+                x:Name="CancelBtn"
+                Content="Cancel"
+                Height="30"
+                Margin="0 0 10 0"
+                VerticalAlignment="Top"
+                Background="Red"
+                Style="{DynamicResource mainButton}"/>
+            <Grid
+                Grid.Column="2">
+                <StackPanel
+                    Margin="0 0 10 5">
+                    <Button x:Name="SaveBtn"
+                            Content="Save"
+                            Height="30"
+                            Background="Green"
+                            Style="{DynamicResource mainButton}"/>
+                </StackPanel>
+
+                <local1:Loader
+                    x:Name="BtnLoader"
+                    HorizontalAlignment="Center"
+                    Visibility="Collapsed"/>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
