@@ -2,7 +2,7 @@
 
 public enum TestLevel
 {
-    Easy = 1,
+    Easy = 0,
     Medium,
     Hard
 }

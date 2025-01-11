@@ -2,7 +2,7 @@
 
 public enum TestStatus
 {
-    InProcess = 1,
+    InProcess = 0,
     Completed,
     Canceled
 }
