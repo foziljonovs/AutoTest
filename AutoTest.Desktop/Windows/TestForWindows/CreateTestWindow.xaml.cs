@@ -1,5 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Topic;
 using AutoTest.Desktop.Components.MainForComponents;
+using AutoTest.Desktop.Integrated.Services.Topic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,40 +22,57 @@ namespace AutoTest.Desktop.Windows.TestForWindows
     /// </summary>
     public partial class CreateTestWindow : Window
     {
-        private List<string> topics = new List<string>()
-        {
-            "C#",
-            "Java",
-            "Rust",
-            "C++",
-            "Go"
-        };
+        private readonly ITopicService _topicService;
         public CreateTestWindow()
         {
             InitializeComponent();
+            this._topicService = new TopicService();
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
             => this.Close();
 
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            txtTitle.Clear();
+            txtDesctiption.Clear();
+            txtTopicFilter.Clear();
+            LevelComboBox.SelectedItem = -1;
+        }
+
+        private async Task GetAllTopic()
+        {
+            st_AllTopic.Children.Clear();
+            AllTopicLoader.Visibility = Visibility.Visible;
+
+            var topics = await Task.Run(async () => await _topicService.GetAllAsync());
+            ShowTopics(topics);
+        }
+
+        private void ShowTopics(List<TopicDto> topics)
+        {
+            AllTopicLoader.Visibility = Visibility.Collapsed;
+            if (topics.Any())
+            {
+                TopicEmptyData.Visibility = Visibility.Collapsed;
+
+                foreach (var topic in topics)
+                {
+                    MainTopicComponents component = new MainTopicComponents();
+                    component.Tag = topic;
+                    component.SetValues(topic);
+                    st_AllTopic.Children.Add(component);
+                }
+            }
+            else
+            {
+                TopicEmptyData.Visibility = Visibility.Visible;
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            st_topics.Children.Clear();
-
-            foreach(var item in topics)
-            {
-                TopicDto topic = new TopicDto
-                {
-                    Id = 1,
-                    Name = item,
-                    Description = "Birnimalarda e"
-                };
-
-                MainTopicComponents component = new MainTopicComponents();
-                component.Tag = topic;
-                component.SetValues(topic);
-                st_topics.Children.Add(component);
-            }
+            GetAllTopic();
         }
     }
 }
