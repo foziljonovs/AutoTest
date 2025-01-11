@@ -35,13 +35,15 @@ namespace AutoTest.Desktop.Components.MainForComponents
             tbTopic.Text = dto.Name;
         }
 
+        public long GetId() => Id;
+
         private void st_border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             var parentWindow = Window.GetWindow(this);
 
             if(parentWindow is CreateTestWindow window)
             {
-                window.AddTopic(Id);
+                window.AddTopic(this);
             }
             else
             {
@@ -49,9 +51,17 @@ namespace AutoTest.Desktop.Components.MainForComponents
 
                 if(page is MainPage mainPage)
                 {
-                    mainPage.AddTopic(Id);
+                    mainPage.AddTopic(this);
                 }
             }
+        }
+
+        public void SelectedState(bool isSelected)
+        {
+            if (isSelected)
+                st_border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B6B6B6"));
+            else
+                st_border.Background = Brushes.White;
         }
 
         private Page FindParentPage(DependencyObject child)
