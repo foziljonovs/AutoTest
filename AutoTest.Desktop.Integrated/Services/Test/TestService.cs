@@ -48,10 +48,11 @@ public class TestService : ITestService
     {
         try
         {
-            if (IsInternetAvailable())
-                return await _server.DeleteAsync(id);
-            else
-                return false;
+            return true;
+            //if (IsInternetAvailable())
+            //    return await _server.DeleteAsync(id);
+            //else
+            //    return false;
         }
         catch(Exception ex)
         {

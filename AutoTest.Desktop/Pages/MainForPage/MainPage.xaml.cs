@@ -27,7 +27,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
     {
         private readonly ITestService _testService;
         private readonly ITopicService _topicService;
-        private List<long> selectedTopics { get; set; } = new List<long>();
+        private long selectedTopicId {  get; set; }
         public MainPage()
         {
             InitializeComponent();
@@ -101,16 +101,17 @@ namespace AutoTest.Desktop.Pages.MainForPage
             }
         }
 
-        public void AddTopic(long id)
+        private MainTopicComponents selectedComponent = null!;
+        public void AddTopic(MainTopicComponents component)
         {
-            if (!selectedTopics.Contains(id))
-            {
-                selectedTopics.Add(id);
-            }
-            else
-            {
+            if (selectedComponent != null)
+                selectedComponent.st_border.Background = Brushes.White;
 
-            }
+            component.st_border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B6B6B6"));
+            selectedComponent = component;
+
+            if(selectedTopicId != component.GetId())
+                selectedTopicId = component.GetId();
         }
     }
 }

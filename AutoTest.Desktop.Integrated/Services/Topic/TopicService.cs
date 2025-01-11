@@ -31,11 +31,12 @@ public class TopicService : ITopicService
     {
         try
         {
-            using (Ping ping = new Ping())
-            {
-                PingReply reply = ping.Send("www.google.com");
-                return (reply.Status == IPStatus.Success);
-            }
+            return true;
+            //using (Ping ping = new Ping())
+            //{
+            //    PingReply reply = ping.Send("www.google.com");
+            //    return (reply.Status == IPStatus.Success);
+            //}
         }
         catch (Exception ex)
         {

@@ -71,15 +71,17 @@ namespace AutoTest.Desktop.Windows.TestForWindows
             }
         }
 
-        public void AddTopic(long id)
+        public void AddTopic(MainTopicComponents component)
         {
-            if (!selectedTopics.Contains(id))
+            if (!selectedTopics.Contains(component.GetId()))
             {
-                selectedTopics.Add(id);
+                selectedTopics.Add(component.GetId());
+                component.SelectedState(true);
             }
             else
             {
-
+                selectedTopics.Remove(component.GetId());
+                component.SelectedState(false);
             }
         }
 
