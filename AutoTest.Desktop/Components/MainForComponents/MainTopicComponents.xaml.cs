@@ -1,4 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Topic;
+using AutoTest.Desktop.Pages.MainForPage;
+using AutoTest.Desktop.Windows.TestForWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,41 @@ namespace AutoTest.Desktop.Components.MainForComponents
         {
             Id = dto.Id;
             tbTopic.Text = dto.Name;
+        }
+
+        private void st_border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var parentWindow = Window.GetWindow(this);
+
+            if(parentWindow is CreateTestWindow window)
+            {
+                window.AddTopic(Id);
+            }
+            else
+            {
+                var page = FindParentPage(this);
+
+                if(page is MainPage mainPage)
+                {
+                    mainPage.AddTopic(Id);
+                }
+            }
+        }
+
+        private Page FindParentPage(DependencyObject child)
+        {
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+            if (parentObject is Page page)
+            {
+                return page;
+            }
+            else if (parentObject != null)
+            {
+                return FindParentPage(parentObject);
+            }
+
+            return null!;
         }
     }
 }

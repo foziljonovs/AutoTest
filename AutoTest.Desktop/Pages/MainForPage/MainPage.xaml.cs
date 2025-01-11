@@ -27,6 +27,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
     {
         private readonly ITestService _testService;
         private readonly ITopicService _topicService;
+        private List<long> selectedTopics { get; set; } = new List<long>();
         public MainPage()
         {
             InitializeComponent();
@@ -97,6 +98,18 @@ namespace AutoTest.Desktop.Pages.MainForPage
             {
                 TopicLoader.Visibility = Visibility.Collapsed;
                 TopicEmptyData.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void AddTopic(long id)
+        {
+            if (!selectedTopics.Contains(id))
+            {
+                selectedTopics.Add(id);
+            }
+            else
+            {
+
             }
         }
     }
