@@ -48,11 +48,10 @@ public class TestService : ITestService
     {
         try
         {
-            return true;
-            //if (IsInternetAvailable())
-            //    return await _server.DeleteAsync(id);
-            //else
-            //    return false;
+            if (IsInternetAvailable())
+                return await _server.DeleteAsync(id);
+            else
+                return false;
         }
         catch(Exception ex)
         {
@@ -109,11 +108,12 @@ public class TestService : ITestService
     {
         try
         {
-            using(Ping ping = new Ping())
-            {
-                PingReply reply = ping.Send("www.google.com");
-                return (reply.Status == IPStatus.Success);
-            }
+            return true;
+            //using(Ping ping = new Ping())
+            //{
+            //    PingReply reply = ping.Send("www.google.com");
+            //    return (reply.Status == IPStatus.Success);
+            //}
         }
         catch(Exception ex)
         {

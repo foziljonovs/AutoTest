@@ -235,6 +235,7 @@
                             Content="Save"
                             Height="30"
                             Background="Green"
+                            Click="SaveBtn_Click"
                             Style="{DynamicResource mainButton}"/>
                 </StackPanel>
 
