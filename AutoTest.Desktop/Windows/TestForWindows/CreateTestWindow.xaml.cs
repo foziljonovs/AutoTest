@@ -23,6 +23,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
     public partial class CreateTestWindow : Window
     {
         private readonly ITopicService _topicService;
+        private List<long> selectedTopics { get; set; } = new List<long>();
         public CreateTestWindow()
         {
             InitializeComponent();
@@ -67,6 +68,18 @@ namespace AutoTest.Desktop.Windows.TestForWindows
             else
             {
                 TopicEmptyData.Visibility = Visibility.Visible;
+            }
+        }
+
+        public void AddTopic(long id)
+        {
+            if (!selectedTopics.Contains(id))
+            {
+                selectedTopics.Add(id);
+            }
+            else
+            {
+
             }
         }
 
