@@ -93,7 +93,7 @@
                         Margin="0 5"
                         Click="SaveBtn_Click"
                         Style="{DynamicResource mainButton}"
-                        Background="Green"/>
+                        Background="MediumSeaGreen"/>
             </StackPanel>
 
             <local1:Loader

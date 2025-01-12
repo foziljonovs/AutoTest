@@ -75,24 +75,26 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border
-                        x:Name="B"
-                        CornerRadius="5"
-                        Background="#e09f3e">
+                    x:Name="B"
+                    CornerRadius="5"
+                    Background="Gold">
                         <materialDesign:PackIcon
-                            Kind="Edit"
-                            Foreground="Black"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center"
-                            Width="20"
-                            Height="20"/>
+                        Kind="Edit"
+                        Foreground="Black"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Width="20"
+                        Height="20"/>
                     </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="B" Property="Background" Value="#e07a5f"/>
+                            <Setter TargetName="B" Property="Background" Value="#FFD966"/>
+                            <!-- Soft yellow for hover -->
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="B" Property="Background" Value="#e07a5f"/>
+                            <Setter TargetName="B" Property="Background" Value="#FFC000"/>
+                            <!-- Darker gold for pressed -->
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -109,22 +111,24 @@
                     <Border
                     x:Name="B"
                     CornerRadius="5"
-                    Background="#fff3b0">
+                    Background="MediumSeaGreen">
                         <materialDesign:PackIcon
-                            Kind="Add"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Width="20"
-                            Height="20"/>
+                        Kind="Add"
+                        Foreground="Black"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="20"
+                        Height="20"/>
                     </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="B" Property="Background" Value="#f2cc8f"/>
+                            <Setter TargetName="B" Property="Background" Value="#66CDAA"/>
+                            <!-- Lighter green for hover -->
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="B" Property="Background" Value="#f2cc8f"/>
+                            <Setter TargetName="B" Property="Background" Value="#3CB371"/>
+                            <!-- Darker green for pressed -->
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -139,24 +143,26 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border
-                        x:Name="B"
-                        CornerRadius="5"
-                        Background="#9e2a2b">
+                    x:Name="B"
+                    CornerRadius="5"
+                    Background="Tomato">
                         <materialDesign:PackIcon
-                            Kind="Delete"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Width="20"
-                            Height="20"/>
+                        Kind="Delete"
+                        Foreground="Black"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="20"
+                        Height="20"/>
                     </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="B" Property="Background" Value="#d90429"/>
+                            <Setter TargetName="B" Property="Background" Value="#FF6F61"/>
+                            <!-- Softer red for hover -->
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="B" Property="Background" Value="#d90429"/>
+                            <Setter TargetName="B" Property="Background" Value="#D64545"/>
+                            <!-- Darker red for pressed -->
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
