@@ -17,7 +17,7 @@
 
         <Grid Grid.Row="0">
             <Label Name="MainLbl"
-                   Content="Welcome to AutoTest ..."
+                   Content="Xush kelibsiz ... "
                    FontSize="20"
                    Foreground="Black"
                    HorizontalAlignment="Left"
@@ -37,7 +37,7 @@
                 </Grid.RowDefinitions>
                 <Label
                        Grid.Row="0"
-                       Content="Tests"
+                       Content="Testlar"
                        FontSize="20"
                        Foreground="Black"
                        VerticalAlignment="Center"
@@ -73,7 +73,7 @@
                 </Grid.RowDefinitions>
                 <Label
                     Grid.Row="0"
-                    Content="Topics"
+                    Content="Mavzular"
                     FontSize="20"
                     Foreground="Black"
                     VerticalAlignment="Center"

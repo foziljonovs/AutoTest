@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Label Content="Create Topic"
+            <Label Content="Mavzu yaratish"
                    FontSize="18"
                    HorizontalAlignment="Left"
                    Style="{DynamicResource Label}"
@@ -43,7 +43,7 @@
 
             <StackPanel Grid.Row="0">
                 <Label 
-                    Content="Name"
+                    Content="Nomi"
                     FontSize="14"
                     Margin="10 15 0 5"
                     Style="{DynamicResource Label}"/>
@@ -64,7 +64,7 @@
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <Label 
-                    Content="Description"
+                    Content="Tavsifi"
                     FontSize="14"
                     Margin="10 10 0 5"
                     Style="{DynamicResource Label}"/>
@@ -88,7 +88,7 @@
         <Grid Grid.Row="2">
             <StackPanel>
                 <Button x:Name="SaveBtn"
-                        Content="Save"
+                        Content="Saqlash"
                         Width="140"
                         Margin="0 5"
                         Click="SaveBtn_Click"

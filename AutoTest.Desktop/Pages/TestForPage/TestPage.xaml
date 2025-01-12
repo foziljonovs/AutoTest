@@ -17,7 +17,7 @@
         <Grid Grid.Row="0">
             <Label
                 x:Name="TestLbl"
-                Content="Yout tests ..."
+                Content="Sizning testlaringiz ..."
                 FontSize="20"
                 Foreground="#344e41"
                 HorizontalAlignment="Left"
@@ -33,7 +33,7 @@
                 Margin="0 0 10 0"
                 MouseUp="Border_MouseUp"
                 Background="#dad7cd">
-                <Label Content="Create"
+                <Label Content="Yaratish"
                        HorizontalAlignment="Center"
                        Foreground="#344e41"
                        Style="{DynamicResource Label}"/>

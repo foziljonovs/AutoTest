@@ -16,7 +16,7 @@
 
         <Label
             Grid.Row="0"
-            Content="Register"
+            Content="Ro'yxatdan o'tish"
             Foreground="Black"
             FontSize="20"
             HorizontalAlignment="Center"
@@ -155,7 +155,7 @@
                     MouseUp="Border_MouseUp">
                 <Grid>
                     <Label x:Name="RegisterLbl"
-                           Content="Already Registered? Log In Here!"
+                           Content="Tizimga kirish uchun!"
                            Style="{DynamicResource Label}"
                            FontWeight="SemiBold"
                            Margin="5 0"
@@ -176,7 +176,7 @@
                 <StackPanel>
                     <Button
                         x:Name="RegisterBtn"
-                        Content="Register"
+                        Content="Ro'yxatdan o'tish"
                         Height="40"
                         Width="250"
                         Background="#588157"

@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <Label Name="LoginLbl"
                        Grid.Row="0"
-                       Content="Login"
+                       Content="Tizimga kirish"
                        FontSize="20"
                        FontWeight="Bold"
                        Foreground="Black"
@@ -127,7 +127,7 @@
                     MouseUp="Border_MouseUp">
                 <Grid>
                     <Label x:Name="RegisterLbl"
-                           Content="Already Registered? Log In Here!"
+                           Content="Ro'yxatdan o'tganmisiz?"
                            Style="{DynamicResource Label}"
                            FontWeight="SemiBold"
                            Margin="5 0"
@@ -148,7 +148,7 @@
             <Grid>
                 <StackPanel>
                     <Button x:Name="LoginBtn"
-                        Content="Login"
+                        Content="Kirish"
                         Width="250"
                         Margin="0 5"
                         FontSize="18"
