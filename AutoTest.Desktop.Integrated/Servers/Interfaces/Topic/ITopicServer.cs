@@ -5,4 +5,5 @@ namespace AutoTest.Desktop.Integrated.Servers.Interfaces.Topic;
 public interface ITopicServer
 {
     Task<List<TopicDto>> GetAllAsync();
+    Task<bool> AddAsync(CreateTopicDto dto);
 }
