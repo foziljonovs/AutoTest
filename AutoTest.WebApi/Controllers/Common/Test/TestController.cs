@@ -66,6 +66,25 @@ public class TestController(ITestService service) : ControllerBase
         }
     }
 
+    [HttpGet("{userId:long}/user")]
+    public async Task<IActionResult> GetAllByUserIdAsync(long userId, CancellationToken cancellation = default)
+    {
+        try
+        {
+            var response = await _service.GetAllByUserIdAsync(userId, cancellation);
+            return Ok(response);
+        }
+        catch(StatusCodeException ex)
+        {
+            return StatusCode((int)ex.StatusCode, ex.Message);
+        }
+        catch(Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
+
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateTestDto dto, CancellationToken cancellation = default)
     {

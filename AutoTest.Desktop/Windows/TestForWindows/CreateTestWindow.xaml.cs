@@ -5,23 +5,13 @@ using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.Topic;
 using AutoTest.Desktop.Windows.TopicForWindows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AutoTest.Desktop.Windows.TestForWindows
 {
@@ -43,7 +33,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: Application.Current.MainWindow,
+                parentWindow: System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
                 corner: Corner.TopRight,
                 offsetX: 20,
                 offsetY: 20);
@@ -52,11 +42,12 @@ namespace AutoTest.Desktop.Windows.TestForWindows
                 notificationLifetime: TimeSpan.FromSeconds(3),
                 maximumNotificationCount: MaximumNotificationCount.FromCount(2));
 
-            cfg.Dispatcher = Application.Current.Dispatcher;
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
 
             cfg.DisplayOptions.Width = 200;
             cfg.DisplayOptions.TopMost = true;
         });
+
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
             => this.Close();
@@ -67,6 +58,18 @@ namespace AutoTest.Desktop.Windows.TestForWindows
             txtDesctiption.Clear();
             txtTopicFilter.Clear();
             LevelComboBox.SelectedItem = -1;
+
+            foreach(var topicId in selectedTopics.ToList())
+            {
+                var component = st_AllTopic.Children
+                    .OfType<MainTopicComponents>()
+                    .FirstOrDefault(x => x.GetId() == topicId);
+
+                if (component != null)
+                    component.SelectedState(false);
+
+                selectedTopics.Clear();
+            }
         }
 
         private async Task GetAllTopic()
