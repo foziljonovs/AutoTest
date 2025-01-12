@@ -52,7 +52,7 @@
                     <Button 
                         Click="Button_Click"
                         Grid.Row="1"
-                        Content="Main"
+                        Content="Asosiy"
                         Margin="3 0"
                         FontSize="14"
                         Background="#588157"
@@ -61,7 +61,7 @@
                     <Button 
                         Grid.Row="2"
                         x:Name="TestBtn"
-                        Content="Tests"
+                        Content="Testlaringiz"
                         Margin="3 0"                                                                                              
                         FontSize="14"           
                         Click="TestBtn_Click"
@@ -73,7 +73,7 @@
                 <Grid Grid.Row="1">
                     <Button 
                         x:Name="closeButton"
-                        Content="Close"
+                        Content="Chiqish"
                         Background="#588157"
                         Margin="3 0 3 5"
                         FontSize="14"

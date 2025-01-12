@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Label Content="Create Test"
+            <Label Content="Test yaratish"
                    FontSize="18"
                    Style="{DynamicResource Label}"
                    HorizontalAlignment="Left"
@@ -51,7 +51,7 @@
                 <StackPanel Grid.Row="0"
                             Margin="0 3">
                     <Label
-                        Content="Title"
+                        Content="Sarlavha"
                         VerticalAlignment="Center"
                         Margin="10 0 0 0"
                         FontSize="14"
@@ -75,7 +75,7 @@
                 <StackPanel Grid.Row="1"
                             Margin="0 3">
                     <Label
-                            Content="Description"
+                            Content="Tavsifi"
                             VerticalAlignment="Center"
                             Margin="10 0 0 0"
                             FontSize="14"
@@ -98,7 +98,7 @@
                     </Border>
                 </StackPanel>
                 <StackPanel Grid.Row="2">
-                    <Label Content="Level"
+                    <Label Content="Daraja"
                            Margin="10 0 0 0"
                            FontSize="14"
                            Style="{DynamicResource Label}"/>
@@ -137,7 +137,7 @@
 
                 <StackPanel Grid.Row="0"
                             Margin="0 3 0 0">
-                    <Label Content="Topics"
+                    <Label Content="Mavzular"
                            FontSize="14"
                            Style="{DynamicResource Label}"/>
 
@@ -221,7 +221,7 @@
             <Button
                 Grid.Column="1"
                 x:Name="CancelBtn"
-                Content="Cancel"
+                Content="Tozalash"
                 Height="30"
                 Margin="0 0 10 0"
                 VerticalAlignment="Top"
@@ -233,7 +233,7 @@
                 <StackPanel
                     Margin="0 0 10 5">
                     <Button x:Name="SaveBtn"
-                            Content="Save"
+                            Content="Saqlash"
                             Height="30"
                             Background="Green"
                             Click="SaveBtn_Click"
