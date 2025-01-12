@@ -4,6 +4,7 @@ using AutoTest.Desktop.Components.MainForComponents;
 using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.Topic;
+using AutoTest.Desktop.Windows.TopicForWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -183,6 +184,13 @@ namespace AutoTest.Desktop.Windows.TestForWindows
                 SaveBtn.Visibility = Visibility.Visible;
                 notifier.ShowWarning("Malumotlar to'liq emas!");
             }
+        }
+
+        private void CreateTopicBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CreateTopicWindow window = new CreateTopicWindow();
+            window.CreateTopicTask = GetAllTopic;
+            window.ShowDialog();
         }
     }
 }

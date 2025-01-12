@@ -12,6 +12,22 @@ public class TopicService : ITopicService
     {
         this._server = new TopicServer();
     }
+
+    public async Task<bool> AddAsync(CreateTopicDto dto)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+                return await _server.AddAsync(dto);
+            else
+                return false;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
     public async Task<List<TopicDto>> GetAllAsync()
     {
         try
