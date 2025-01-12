@@ -6,6 +6,7 @@ using AutoTest.Desktop.Integrated.Services.Topic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,6 +18,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace AutoTest.Desktop.Pages.MainForPage
 {
@@ -35,6 +40,24 @@ namespace AutoTest.Desktop.Pages.MainForPage
             this._topicService = new TopicService();
         }
 
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 20,
+                offsetY: 20);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(2));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+
+            cfg.DisplayOptions.Width = 200;
+            cfg.DisplayOptions.TopMost = true;
+        });
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             GetAllTest();
@@ -46,28 +69,37 @@ namespace AutoTest.Desktop.Pages.MainForPage
             st_tests.Children.Clear();
             TestLoader.Visibility = Visibility.Visible;
 
-            var tests = await Task.Run(async () => await _testService.GetAllAsync());
-            
-            int count = 1;
-
-            if(tests.Count > 0)
+            if(IsInternetAvailable())
             {
-                TestLoader.Visibility = Visibility.Collapsed;
-                TestEmptyData.Visibility = Visibility.Collapsed;
+                var tests = await Task.Run(async () => await _testService.GetAllAsync());
+            
+                int count = 1;
 
-                foreach(var test in tests)
+                if(tests.Count > 0)
                 {
-                    MainTestComponent component = new MainTestComponent();
-                    component.Tag = test;
-                    component.SetValues(test, count);
-                    st_tests.Children.Add(component);
-                    count++;
+                    TestLoader.Visibility = Visibility.Collapsed;
+                    TestEmptyData.Visibility = Visibility.Collapsed;
+
+                    foreach(var test in tests)
+                    {
+                        MainTestComponent component = new MainTestComponent();
+                        component.Tag = test;
+                        component.SetValues(test, count);
+                        st_tests.Children.Add(component);
+                        count++;
+                    }
+                }
+                else
+                {
+                    TestLoader.Visibility = Visibility.Collapsed;
+                    TestEmptyData.Visibility = Visibility.Visible;
                 }
             }
             else
             {
                 TestLoader.Visibility = Visibility.Collapsed;
                 TestEmptyData.Visibility = Visibility.Visible;
+                notifier.ShowWarning("Internetni tekshiring!");
             }
         }
 
@@ -75,29 +107,37 @@ namespace AutoTest.Desktop.Pages.MainForPage
         {
             st_topics.Children.Clear();
             TopicLoader.Visibility = Visibility.Visible;
-
-            var topics = await Task.Run(async () => await _topicService.GetAllAsync());
-
-            int allTopicCount = 0;
-
-            if(topics.Count > 0)
+            if(IsInternetAvailable())
             {
-                TopicLoader.Visibility = Visibility.Collapsed;
-                TopicEmptyData.Visibility = Visibility.Collapsed;
+                var topics = await Task.Run(async () => await _topicService.GetAllAsync());
 
-                foreach(var topic in topics)
+                int allTopicCount = 0;
+
+                if(topics.Count > 0)
                 {
-                    MainTopicComponents component = new MainTopicComponents();
-                    component.Tag = topic;
-                    component.SetValues(topic);
-                    st_topics.Children.Add(component);
-                    allTopicCount++;
+                    TopicLoader.Visibility = Visibility.Collapsed;
+                    TopicEmptyData.Visibility = Visibility.Collapsed;
+
+                    foreach(var topic in topics)
+                    {
+                        MainTopicComponents component = new MainTopicComponents();
+                        component.Tag = topic;
+                        component.SetValues(topic);
+                        st_topics.Children.Add(component);
+                        allTopicCount++;
+                    }
+                }
+                else
+                {
+                    TopicLoader.Visibility = Visibility.Collapsed;
+                    TopicEmptyData.Visibility = Visibility.Visible;
                 }
             }
             else
             {
                 TopicLoader.Visibility = Visibility.Collapsed;
                 TopicEmptyData.Visibility = Visibility.Visible;
+                notifier.ShowWarning("Internetni tekshiring!");
             }
         }
 
@@ -112,6 +152,22 @@ namespace AutoTest.Desktop.Pages.MainForPage
 
             if(selectedTopicId != component.GetId())
                 selectedTopicId = component.GetId();
+        }
+
+        private bool IsInternetAvailable()
+        {
+            try
+            {
+                using(Ping ping = new Ping())
+                {
+                    PingReply reply = ping.Send("www.google.com");
+                    return (reply.Status == IPStatus.Success);
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

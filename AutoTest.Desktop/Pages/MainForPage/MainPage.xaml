@@ -58,7 +58,7 @@
 
                     <Label x:Name="TestEmptyData" 
                            Visibility="Collapsed"
-                           Content="Test not found."
+                           Content="Testlar topilmadi!"
                            FontSize="16"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
@@ -84,17 +84,19 @@
                         x:Name="TopicLoader"
                         HorizontalAlignment="Center"
                         Visibility="Collapsed"/>
+                    <ScrollViewer
+                        Margin="0 10">
+                        <WrapPanel
+                                    x:Name="st_topics"
+                                    Margin="5 0"
+                                    Orientation="Horizontal">
 
-                    <WrapPanel
-                                x:Name="st_topics"
-                                Margin="5 0"
-                                Orientation="Horizontal">
-
-                    </WrapPanel>
+                        </WrapPanel>
+                    </ScrollViewer>
 
                     <Label 
                         x:Name="TopicEmptyData"
-                        Content="Topic not found."
+                        Content="Mavzular topilmadi!"
                         FontSize="16"
                         Visibility="Collapsed"
                         HorizontalAlignment="Center"

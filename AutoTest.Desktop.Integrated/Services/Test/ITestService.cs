@@ -10,4 +10,5 @@ public interface ITestService
     Task<bool> UpdateAsync(long id, UpdateTestDto dto);
     Task<bool> DeleteAsync(long id);
     Task<List<TestDto>> CompletedTaskAsync();
+    Task<List<TestDto>> GetAllByUserIdAsync(long userId);
 }

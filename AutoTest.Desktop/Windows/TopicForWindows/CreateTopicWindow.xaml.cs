@@ -24,7 +24,7 @@ namespace AutoTest.Desktop.Windows.TopicForWindows
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: Application.Current.MainWindow,
+                parentWindow: System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
                 corner: Corner.TopRight,
                 offsetX: 20,
                 offsetY: 20);
@@ -33,11 +33,12 @@ namespace AutoTest.Desktop.Windows.TopicForWindows
                 notificationLifetime: TimeSpan.FromSeconds(3),
                 maximumNotificationCount: MaximumNotificationCount.FromCount(2));
 
-            cfg.Dispatcher = Application.Current.Dispatcher;
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
 
-            cfg.DisplayOptions.Width = 200;
+            cfg.DisplayOptions.Width = 200; 
             cfg.DisplayOptions.TopMost = true;
         });
+
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
             => this.Close();

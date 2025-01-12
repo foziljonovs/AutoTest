@@ -82,6 +82,24 @@ public class TestService(
         }
     }
 
+    public async Task<IEnumerable<TestDto>> GetAllByUserIdAsync(long userId, CancellationToken cancellation = default)
+    {
+        try
+        {
+            var tests = await _unitOfWork.Test.GetAllFullInformationAsync();
+
+            if (!tests.Any())
+                throw new StatusCodeException(HttpStatusCode.NotFound, "No tests found");
+
+            var results = tests.Where(x => x.User.Id == userId).ToList();
+            return _mapper.Map<IEnumerable<TestDto>>(results);
+        }
+        catch(Exception ex)
+        {
+            throw new Exception($"An error occured while getting all tests by user id. {ex}");
+        }
+    }
+
     public async Task<IEnumerable<TestDto>> GetAllCompletedAsync(CancellationToken cancellation = default)
     {
         try

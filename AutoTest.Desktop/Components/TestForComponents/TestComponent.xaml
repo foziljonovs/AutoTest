@@ -16,7 +16,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.5*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="0.6*"/>
@@ -37,7 +37,7 @@
                 x:Name="tbTitle"
                 Grid.Column="1"
                 Text="What is C#?"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Foreground="Black"
                 FontSize="13"
