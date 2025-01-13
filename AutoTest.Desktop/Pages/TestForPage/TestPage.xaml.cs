@@ -61,6 +61,7 @@ namespace AutoTest.Desktop.Pages.TestForPage
                 {
                     TestComponent component = new TestComponent();
                     component.Tag = test;
+                    component.TestDeleted = GetAllTest;
                     component.SetValues(test, count);
                     st_tests.Children.Add(component);
                     count++;

@@ -10,7 +10,8 @@
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         Width="600"
-        Height="350">
+        Height="350"
+        Loaded="Window_Loaded">
     <Grid Background="#dad7cd">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -30,7 +31,8 @@
                     Style="{DynamicResource WindowCloseBtnStyle}"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
-                    Margin="0 0 10 0"/>
+                    Margin="0 0 10 0"
+                    Click="CloseBtn_Click"/>
         </Grid>
 
         <Grid Grid.Row="1">

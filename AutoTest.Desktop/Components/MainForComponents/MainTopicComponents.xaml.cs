@@ -28,11 +28,12 @@ namespace AutoTest.Desktop.Components.MainForComponents
             InitializeComponent();
         }
         private long Id { get; set; }
-
+        public TopicDto topic { get; set; }
         public void SetValues(TopicDto dto)
         {
             Id = dto.Id;
             tbTopic.Text = dto.Name;
+            Tag = dto;
         }
 
         public long GetId() => Id;
@@ -45,11 +46,15 @@ namespace AutoTest.Desktop.Components.MainForComponents
             {
                 window.AddTopic(this);
             }
+            else if(parentWindow is UpdateTestWindow updateWindow)
+            {
+                updateWindow.AddTopic(this, topic);
+            }
             else
             {
                 var page = FindParentPage(this);
 
-                if(page is MainPage mainPage)
+                if (page is MainPage mainPage)
                 {
                     mainPage.AddTopic(this);
                 }
