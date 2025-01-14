@@ -223,6 +223,7 @@
                 Margin="0 0 10 0"
                 VerticalAlignment="Top"
                 Background="Tomato"
+                Click="CancelBtn_Click"
                 Style="{DynamicResource mainButton}"/>
             <Grid
                 Grid.Column="2">
@@ -232,6 +233,7 @@
                             Content="Saqlash"
                             Height="30"
                             Background="#2196F3"
+                            Click="SaveBtn_Click"
                             Style="{DynamicResource mainButton}"/>
                 </StackPanel>
 
