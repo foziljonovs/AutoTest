@@ -33,10 +33,10 @@ namespace AutoTest.Desktop.Windows.TestForWindows
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
-                corner: Corner.TopRight,
-                offsetX: 20,
-                offsetY: 20);
+            parentWindow: System.Windows.Application.Current.MainWindow,
+            corner: Corner.TopRight,
+            offsetX: 50,
+            offsetY: 20);
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                 notificationLifetime: TimeSpan.FromSeconds(3),
@@ -48,7 +48,23 @@ namespace AutoTest.Desktop.Windows.TestForWindows
             cfg.DisplayOptions.TopMost = true;
         });
 
+        Notifier notifierThis = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+            parentWindow: System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
+            corner: Corner.TopRight,
+            offsetX: 50,
+            offsetY: 20);
 
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(2));
+
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
+
+            cfg.DisplayOptions.Width = 200;
+            cfg.DisplayOptions.TopMost = true;
+        });
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
             => this.Close();
 
@@ -148,7 +164,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
                 {
                     BtnLoader.Visibility = Visibility.Collapsed;
                     SaveBtn.Visibility = Visibility.Visible;
-                    notifier.ShowWarning("Level tanlanmagan!");
+                    notifierThis.ShowWarning("Level tanlanmagan!");
                     return;
                 }
 
@@ -163,7 +179,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
                 {
                     BtnLoader.Visibility = Visibility.Collapsed;
                     SaveBtn.Visibility = Visibility.Visible;
-                    notifier.ShowWarning("Topic tanlanmagan!");
+                    notifierThis.ShowWarning("Topic tanlanmagan!");
                     return;
                 }
 
@@ -178,14 +194,14 @@ namespace AutoTest.Desktop.Windows.TestForWindows
                 {
                     BtnLoader.Visibility = Visibility.Collapsed;
                     SaveBtn.Visibility = Visibility.Visible;
-                    notifier.ShowError("Test yaratishda xatolik yuzberdi!");
+                    notifierThis.ShowError("Test yaratishda xatolik yuzberdi!");
                 }
             }
             else
             {
                 BtnLoader.Visibility = Visibility.Collapsed;
                 SaveBtn.Visibility = Visibility.Visible;
-                notifier.ShowWarning("Malumotlar to'liq emas!");
+                notifierThis.ShowWarning("Malumotlar to'liq emas!");
             }
         }
 

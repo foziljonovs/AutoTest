@@ -24,10 +24,10 @@ namespace AutoTest.Desktop.Windows.TopicForWindows
         Notifier notifier = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
-                parentWindow: System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
-                corner: Corner.TopRight,
-                offsetX: 20,
-                offsetY: 20);
+            parentWindow: System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
+            corner: Corner.TopRight,
+            offsetX: 50,
+            offsetY: 20);
 
             cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
                 notificationLifetime: TimeSpan.FromSeconds(3),
@@ -35,10 +35,9 @@ namespace AutoTest.Desktop.Windows.TopicForWindows
 
             cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
 
-            cfg.DisplayOptions.Width = 200; 
+            cfg.DisplayOptions.Width = 200;
             cfg.DisplayOptions.TopMost = true;
         });
-
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
             => this.Close();
