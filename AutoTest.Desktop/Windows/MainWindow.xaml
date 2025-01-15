@@ -55,7 +55,7 @@
                         Content="Asosiy"
                         Margin="3 0"
                         FontSize="14"
-                        Background="#588157"
+                        Background="MediumSeaGreen"
                         Style="{DynamicResource mainButton}"/>
 
                     <Button 
@@ -65,7 +65,7 @@
                         Margin="3 0"                                                                                              
                         FontSize="14"           
                         Click="TestBtn_Click"
-                        Background="#588157"
+                        Background="MediumSeaGreen"
                         Style="{DynamicResource mainButton}"/>
 
                 </Grid>
@@ -74,7 +74,7 @@
                     <Button 
                         x:Name="closeButton"
                         Content="Chiqish"
-                        Background="#588157"
+                        Background="MediumSeaGreen"
                         Margin="3 0 3 5"
                         FontSize="14"
                         VerticalAlignment="Bottom"

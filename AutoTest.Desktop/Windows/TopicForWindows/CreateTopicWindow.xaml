@@ -9,7 +9,7 @@
         Title="CreateTopicWindow" 
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Background="#dad7cd"    
+        Background="White"    
         Height="300"
         Width="400">
     <Grid>

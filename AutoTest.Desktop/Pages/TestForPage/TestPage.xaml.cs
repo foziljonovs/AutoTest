@@ -78,6 +78,7 @@ namespace AutoTest.Desktop.Pages.TestForPage
         {
             CreateTestWindow window = new CreateTestWindow();
             window.ShowDialog();
+            GetAllTest();
         }
     }
 }

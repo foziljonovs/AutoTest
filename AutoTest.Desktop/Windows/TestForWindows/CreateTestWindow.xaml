@@ -14,7 +14,7 @@
         Width="600"
         Height="350"
         Loaded="Window_Loaded">
-    <Grid Background="#dad7cd">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
