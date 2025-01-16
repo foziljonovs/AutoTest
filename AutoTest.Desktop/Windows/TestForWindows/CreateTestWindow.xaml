@@ -10,7 +10,6 @@
         Title="CreateTestWindow"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
-        Background="Transparent"
         Width="600"
         Height="350"
         Loaded="Window_Loaded">
