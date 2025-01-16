@@ -34,6 +34,7 @@ namespace AutoTest.Desktop.Components.MainForComponents
             Id = dto.Id;
             tbTopic.Text = dto.Name;
             Tag = dto;
+            topic = dto;
         }
 
         public long GetId() => Id;

@@ -60,6 +60,7 @@ namespace AutoTest.Desktop.Components.TestForComponents
             UpdateTestWindow window = new UpdateTestWindow();
             window.SelectTest(Test);
             window.ShowDialog();
+            TestDeleted?.Invoke();
         }
 
         private async void DeleteBtn_Click(object sender, RoutedEventArgs e)

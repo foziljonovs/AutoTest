@@ -80,7 +80,7 @@
                     Background="Gold">
                         <materialDesign:PackIcon
                         Kind="Edit"
-                        Foreground="Black"
+                        Foreground="White"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         Width="20"
@@ -114,7 +114,7 @@
                     Background="MediumSeaGreen">
                         <materialDesign:PackIcon
                         Kind="Add"
-                        Foreground="Black"
+                        Foreground="White"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Width="20"
@@ -148,7 +148,7 @@
                     Background="Tomato">
                         <materialDesign:PackIcon
                         Kind="Delete"
-                        Foreground="Black"
+                        Foreground="White"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Width="20"
