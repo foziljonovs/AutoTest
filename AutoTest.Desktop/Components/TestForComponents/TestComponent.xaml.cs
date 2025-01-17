@@ -87,5 +87,12 @@ namespace AutoTest.Desktop.Components.TestForComponents
                 notifier.ShowWarning("Test tanlanmagan qayta urinib ko'ring.");
             }
         }
+
+        private void ViewTestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            TestWindow window = new TestWindow();
+            window.SetValues(Test);
+            window.ShowDialog();
+        }
     }
 }

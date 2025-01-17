@@ -20,7 +20,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="0.6*"/>
-                <ColumnDefinition Width="75"/>
+                <ColumnDefinition Width="105"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock
@@ -74,13 +74,19 @@
                 FontWeight="SemiBold"/>
 
             <Grid Grid.Column="5">
-                <Button x:Name="EditBtn"
+                <Button x:Name="ViewTestBtn"
                         Height="30"
                         Width="30"
                         Margin="5 0 0 0"
-                        Click="EditBtn_Click"
-                        Style="{DynamicResource mainEditButton}"
+                        Click="ViewTestBtn_Click"
+                        Style="{DynamicResource mainViewButton}"
                         HorizontalAlignment="Left"/>
+
+                <Button x:Name="EditBtn"
+                        Height="30"
+                        Width="30"
+                        Click="EditBtn_Click"
+                        Style="{DynamicResource mainEditButton}"/>
 
                 <Button x:Name="DeleteBtn"
                         Height="30"
