@@ -51,6 +51,7 @@
                         FontFamily="Jetbrains Mono"
                         FontWeight="SemiBold"
                         FontSize="18"   
+                        MaxLength="13"
                         VerticalContentAlignment="Center"
                         Foreground="Black"
                         Background="Transparent"
