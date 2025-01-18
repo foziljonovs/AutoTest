@@ -30,6 +30,7 @@
                     Height="30"
                     Width="30"
                     HorizontalAlignment="Right"
+                    Click="CloseBtn_Click"
                     Margin="0 0 10 0"/>
         </Grid>
 

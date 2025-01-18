@@ -145,11 +145,12 @@
                                 Margin="5 10 5 0"
                                 Background="Tomato"/>
 
-                        <Button x:Name="ViewTestsBtn"
+                        <Button x:Name="ViewQuestionsBtn"
                                 Grid.Column="2"
-                                Content="Testlar"
+                                Content="Savollar"
                                 Style="{DynamicResource mainButton}"
                                 Margin="10 10 0 0"
+                                Click="ViewQuestionsBtn_Click"
                                 Background="#2196F3"/>
                     </Grid>
                 </Grid>
