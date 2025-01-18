@@ -76,5 +76,11 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
             => this.Close();
+
+        private void AddQuestionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CreateQuestionWindow window = new CreateQuestionWindow();
+            window.ShowDialog();
+        }
     }
 }
