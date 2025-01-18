@@ -1,6 +1,7 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.BLL.DTOs.Tests.Topic;
 using AutoTest.Desktop.Components.MainForComponents;
+using AutoTest.Desktop.Windows.QuestionForWIndows;
 using AutoTest.Domain.Entities.Tests;
 using System;
 using System.Collections.Generic;
@@ -70,6 +71,13 @@ namespace AutoTest.Desktop.Windows.TestForWindows
                 TopicLoader.Visibility = Visibility.Collapsed;
                 EmptyDataSelectTopic.Visibility = Visibility.Visible;
             }
+        }
+
+        private void ViewQuestionsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            QuestionViewWindow window = new QuestionViewWindow();
+            window.SelectTestId(Test.Id);
+            window.ShowDialog();
         }
     }
 }
