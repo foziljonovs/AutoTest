@@ -63,7 +63,8 @@
                     Style="{DynamicResource mainButton}"
                     Background="MediumSeaGreen"
                     HorizontalAlignment="Right"
-                    Margin="0 0 20 0"/>
+                    Margin="0 0 20 0"
+                    Click="AddQuestionBtn_Click"/>
         </Grid>
     </Grid>
 </Window>

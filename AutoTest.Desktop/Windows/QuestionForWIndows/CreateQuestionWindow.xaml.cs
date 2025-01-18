@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoTest.Desktop.Pages.OptionForPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,12 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
         public CreateQuestionWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            CreateOptionPage page = new CreateOptionPage();
+            OptionPageNavigator.Content = page;
         }
     }
 }
