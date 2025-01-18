@@ -56,7 +56,8 @@
                 </Border>
             </Grid>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1"
+                  Margin="10 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.5*"/>
                     <ColumnDefinition Width="*"/>
@@ -67,7 +68,6 @@
                 <Label Content="Turi"
                        FontSize="14"
                        Style="{DynamicResource Label}"
-                       Margin="10 0 0 0"
                        VerticalAlignment="Center"/>
 
                 <RadioButton Grid.Column="1"
