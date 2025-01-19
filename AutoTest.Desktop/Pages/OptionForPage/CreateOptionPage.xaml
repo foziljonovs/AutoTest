@@ -38,6 +38,15 @@
                          FontSize="14"
                          FontFamily="Jetbrains Mono"
                          FontWeight="SemiBold"/>
+
+            <Button x:Name="AddOptionBtn"
+                    Content="Javobni qo'shish"
+                    Style="{DynamicResource mainButton}"
+                    Background="#2196F3"
+                    Width="100"
+                    Height="30"
+                    Margin="0 5"
+                    Click="AddOptionBtn_Click"/>
         </StackPanel>
 
         <Grid Grid.Column="1">

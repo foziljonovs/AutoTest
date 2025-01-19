@@ -27,7 +27,8 @@
             <Button x:Name="CloseBtn"
                     Style="{DynamicResource WindowCloseBtnStyle}"
                     HorizontalAlignment="Right"
-                    Margin="0 0 10 0"/>
+                    Margin="0 0 10 0"
+                    Click="CloseBtn_Click"/>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -100,14 +101,8 @@
 
             <StackPanel Grid.Row="2"
                         Margin="10 0 10 5">
-                <Button x:Name="CreateOptionBtn"
-                        HorizontalAlignment="Right"
-                        Style="{DynamicResource mainAddButton}"
-                        Height="25"
-                        Width="30"/>
-
                 <Frame x:Name="OptionPageNavigator"
-                       Height="130"
+                       Height="160"
                        NavigationUIVisibility="Hidden"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"/>
@@ -121,7 +116,8 @@
                         Width="80"
                         Style="{DynamicResource mainButton}"
                         Background="MediumSeaGreen"
-                        HorizontalAlignment="Right"/>
+                        HorizontalAlignment="Right"
+                        Click="CreateQuestionBtn_Click"/>
             </Grid>
         </Grid>
     </Grid>

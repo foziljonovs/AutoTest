@@ -80,6 +80,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
         private void AddQuestionBtn_Click(object sender, RoutedEventArgs e)
         {
             CreateQuestionWindow window = new CreateQuestionWindow();
+            window.SelectTestId(TestId);
             window.ShowDialog();
         }
     }
