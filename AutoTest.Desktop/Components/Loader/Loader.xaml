@@ -7,7 +7,7 @@
              mc:Ignorable="d">
     <Grid>
         <Image
-            Source="/Assets/Loader1.gif"
+            Source="/Assets/animat.gif"
             Width="30"
             Height="30"
             RenderTransformOrigin="0.5, 0.5"
