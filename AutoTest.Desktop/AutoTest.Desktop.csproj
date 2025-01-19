@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\animat.gif" />
     <None Remove="Assets\Loader1.gif" />
     <None Remove="Assets\loginBackground.jpg" />
   </ItemGroup>
@@ -27,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\animat.gif" />
     <Resource Include="Assets\Loader1.gif" />
     <Resource Include="Assets\loginBackground.jpg" />
   </ItemGroup>
