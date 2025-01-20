@@ -15,7 +15,7 @@ public class QuestionService(
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
-    public async Task<bool> AddAsync(CreateQuestionDto dto, CancellationToken cancellation = default)
+    public async Task<long> AddAsync(CreateQuestionDto dto, CancellationToken cancellation = default)
     {
         try
         {
@@ -26,8 +26,8 @@ public class QuestionService(
             var question = _mapper.Map<CT.Question>(dto);
             question.CreatedDate = DateTime.UtcNow.AddHours(5);
 
-            await _unitOfWork.Question.Add(question);
-            return true;
+            var res = await _unitOfWork.Question.AddAsync(question);
+            return res;
         }
         catch(Exception ex)
         {

@@ -15,7 +15,7 @@ public class OptionService(
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly IMapper _mapper = mapper;
-    public async Task<bool> AddAsync(CreateOptionDto dto, CancellationToken cancellation = default)
+    public async Task<long> AddAsync(CreateOptionDto dto, CancellationToken cancellation = default)
     {
         try
         {
@@ -26,8 +26,8 @@ public class OptionService(
             var option = _mapper.Map<Ct.Option>(dto);
             option.CreatedDate = DateTime.UtcNow.AddHours(5);
 
-            await _unitOfWork.Option.Add(option);
-            return true;
+            var res = await _unitOfWork.Option.AddAsync(option);
+            return res;
         }
         catch(Exception ex)
         {

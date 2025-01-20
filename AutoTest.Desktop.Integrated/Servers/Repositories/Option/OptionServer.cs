@@ -10,7 +10,7 @@ namespace AutoTest.Desktop.Integrated.Servers.Repositories.Option;
 
 public class OptionServer : IOptionServer
 {
-    public async Task<bool> AddAsync(CreateOptionDto dto)
+    public async Task<long> AddAsync(CreateOptionDto dto)
     {
         try
         {
@@ -28,18 +28,18 @@ public class OptionServer : IOptionServer
                     request.Content = content;
                     var response = await client.SendAsync(request);
 
-                    var result = response.Content.ReadAsStringAsync();
+                    var result = await response.Content.ReadAsStringAsync();
 
                     if (response.IsSuccessStatusCode)
-                        return true;
+                        return JsonConvert.DeserializeObject<long>(result);
                     else
-                        return false;
+                        return -1;
                 }
             }
         }
         catch (Exception ex)
         {
-            return false;
+            return -1;
         }
     }
 

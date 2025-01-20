@@ -5,6 +5,6 @@ namespace AutoTest.Desktop.Integrated.Servers.Interfaces.Question;
 public interface IQuestionServer
 {
     Task<List<QuestionDto>> GetAllAsync();
-    Task<bool> AddAsync(CreateQuestionDto dto);
+    Task<long> AddAsync(CreateQuestionDto dto);
     Task<List<QuestionDto>> GetQuestionsByTestAsync(long testId);
 }

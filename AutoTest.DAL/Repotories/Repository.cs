@@ -21,6 +21,13 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEnti
         return res > 0;
     }
 
+    public async Task<long> AddAsync(TEntity entity)
+    {
+        await _dbSet.AddAsync(entity);
+        await _context.SaveChangesAsync();
+        return entity.Id;
+    }
+
     public async Task<bool> AddRange(IEnumerable<TEntity> entities)
     {
         await _dbSet.AddRangeAsync(entities);

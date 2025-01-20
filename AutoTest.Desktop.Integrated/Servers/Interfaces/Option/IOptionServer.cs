@@ -5,5 +5,5 @@ namespace AutoTest.Desktop.Integrated.Servers.Interfaces.Option;
 public interface IOptionServer
 {
     Task<List<OptionDto>> GetAllAsync();
-    Task<bool> AddAsync(CreateOptionDto dto);
+    Task<long> AddAsync(CreateOptionDto dto);
 }
