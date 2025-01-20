@@ -11,7 +11,7 @@ public class QuestionService : IQuestionService
     {
         this._server = new QuestionServer();
     }
-    public async Task<bool> AddAsync(CreateQuestionDto dto)
+    public async Task<long> AddAsync(CreateQuestionDto dto)
     {
         try
         {
@@ -22,12 +22,12 @@ public class QuestionService : IQuestionService
             }
             else
             {
-                return false;
+                return -1;
             }
         }
         catch (Exception ex)
         {
-            return false;
+            return -1;
         }
     }
 

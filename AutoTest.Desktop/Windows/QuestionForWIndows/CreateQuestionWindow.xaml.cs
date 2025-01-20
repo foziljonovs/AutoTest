@@ -1,4 +1,6 @@
-﻿using AutoTest.BLL.DTOs.Tests.Question;
+﻿using AutoTest.BLL.DTOs.Tests.Option;
+using AutoTest.BLL.DTOs.Tests.Question;
+using AutoTest.Desktop.Integrated.Services.Option;
 using AutoTest.Desktop.Integrated.Services.Question;
 using AutoTest.Desktop.Pages.OptionForPage;
 using System;
@@ -28,10 +30,12 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
     {
         private long TestId { get; set; }
         private readonly IQuestionService _service;
+        private readonly IOptionService _optionService;
         public CreateQuestionWindow()
         {
             InitializeComponent();
             this._service = new QuestionService();
+            this._optionService = new OptionService();
         }
 
         Notifier notifier = new Notifier(cfg =>
@@ -88,7 +92,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
         {
             CreateQuestionDto dto = new CreateQuestionDto();
 
-            if(!string.IsNullOrEmpty(txtProblem.Text))
+            if (!string.IsNullOrEmpty(txtProblem.Text))
             {
                 dto.Problem = txtProblem.Text;
                 dto.TestId = TestId;
@@ -111,16 +115,47 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                     return;
                 }
 
-                var result = await _service.AddAsync(dto);
-
-                if(result)
+                var optionPage = OptionPageNavigator.Content;
+                if (optionPage is CreateOptionPage page)
                 {
-                    notifier.ShowSuccess("Savol muvaffaqiyatli yaratildi.");
-                    this.Close();
+                    var options = page.GetOptions();
+
+                    if (options is null)
+                        notifierThis.ShowWarning("Javoblar yo'q!");
+
+                    var result = await _service.AddAsync(dto);
+
+                    if (result > 0)
+                    {
+                        foreach(var option in options)
+                        {
+                            var optionDto = new CreateOptionDto
+                            {
+                                Text = option.Text,
+                                IsCorrect = option.IsCorrect,
+                                QuestionId = result
+                            };
+
+                            var optionResult = await _optionService.AddAsync(optionDto);
+                            if(optionResult > 0)
+                            {
+                                notifier.ShowSuccess("Savol muvaffaqiyatli yaratildi.");
+                                this.Close();
+                            }
+                            else
+                            {
+                                notifierThis.ShowError("Savol yaratishda xatolik yuz berdi!");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        notifierThis.ShowError("Savol yaratishda xatolik yuz berdi!");
+                    }
                 }
                 else
                 {
-                    notifierThis.ShowError("Savol yaratishda xatolik yuz berdi!");
+                    notifierThis.ShowWarning("Hatolik yuz berdi, qayta urining.");
                 }
             }
             else

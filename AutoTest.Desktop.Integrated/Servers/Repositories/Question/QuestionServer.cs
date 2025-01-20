@@ -9,7 +9,7 @@ namespace AutoTest.Desktop.Integrated.Servers.Repositories.Question;
 
 public class QuestionServer : IQuestionServer
 {
-    public async Task<bool> AddAsync(CreateQuestionDto dto)
+    public async Task<long> AddAsync(CreateQuestionDto dto)
     {
         try
         {
@@ -32,15 +32,15 @@ public class QuestionServer : IQuestionServer
                     var result = await response.Content.ReadAsStringAsync();
 
                     if (response.IsSuccessStatusCode)
-                        return true;
+                        return JsonConvert.DeserializeObject<long>(result);
                     else
-                        return false;
+                        return -1;
                 }
             }
         }
         catch(Exception ex)
         {
-            return false;
+            return -1;
         }
     }
 

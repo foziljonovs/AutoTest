@@ -26,7 +26,7 @@ namespace AutoTest.Desktop.Pages.OptionForPage
     /// </summary>
     public partial class CreateOptionPage : Page
     {
-        private readonly List<OptionDto> options;
+        private readonly List<OptionDto> options = new List<OptionDto>();
         public CreateOptionPage()
         {
             InitializeComponent();
