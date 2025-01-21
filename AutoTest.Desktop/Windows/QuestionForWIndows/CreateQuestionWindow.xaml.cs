@@ -31,6 +31,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
         private long TestId { get; set; }
         private readonly IQuestionService _service;
         private readonly IOptionService _optionService;
+        public Func<Task> CreateQuestionDelegate { get; set; }
         public CreateQuestionWindow()
         {
             InitializeComponent();
@@ -137,16 +138,16 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                             };
 
                             var optionResult = await _optionService.AddAsync(optionDto);
-                            if(optionResult > 0)
-                            {
-                                notifier.ShowSuccess("Savol muvaffaqiyatli yaratildi.");
-                                this.Close();
-                            }
-                            else
+                            if(optionResult < 0)
                             {
                                 notifierThis.ShowError("Savol yaratishda xatolik yuz berdi!");
+                                return;
                             }
                         }
+
+                        notifier.ShowSuccess("Savol muvaffaqiyatli yaratildi!");
+                        CreateQuestionDelegate?.Invoke();
+                        this.Close();
                     }
                     else
                     {
