@@ -82,6 +82,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
             CreateQuestionWindow window = new CreateQuestionWindow();
             window.SelectTestId(TestId);
             window.ShowDialog();
+            GetAllQuestion();
         }
     }
 }

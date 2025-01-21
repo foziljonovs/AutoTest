@@ -58,8 +58,14 @@ namespace AutoTest.Desktop.Pages.OptionForPage
                 return new List<OptionDto>();
         }
 
+        private void Clear()
+        {
+            txtName.Clear();
+            rbIsCorrect.IsChecked = false;
+        }
         private void AddOptionBtn_Click(object sender, RoutedEventArgs e)
         {
+            EmptyData.Visibility = Visibility.Collapsed;
             OptionDto option = new OptionDto();
 
             if(!string.IsNullOrEmpty(txtName.Text))
@@ -75,6 +81,7 @@ namespace AutoTest.Desktop.Pages.OptionForPage
                 component.SetValues(option);
                 stOptions.Children.Add(component);
                 options.Add(option);
+                Clear();
             }
             else
             {
