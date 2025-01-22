@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using QuestPDF.Infrastructure;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 
@@ -9,6 +10,13 @@ namespace AutoTest.Desktop
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            // Set the QuestPDF license type
+            QuestPDF.Settings.License = LicenseType.Community;
+        }
     }
 
 }
