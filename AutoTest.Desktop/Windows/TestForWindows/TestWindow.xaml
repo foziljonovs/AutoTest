@@ -136,7 +136,8 @@
                                 Content="PDF olish"
                                 Style="{DynamicResource mainButton}"
                                 Margin="0 10 10 0"
-                                Background="MediumSeaGreen"/>
+                                Background="MediumSeaGreen"
+                                Click="UploadTestBtn_Click"/>
 
                         <Button x:Name="GenerateTestBtn"
                                 Grid.Column="1"
