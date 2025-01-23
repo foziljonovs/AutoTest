@@ -1,6 +1,7 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.BLL.DTOs.Tests.Topic;
 using AutoTest.Desktop.Components.MainForComponents;
+using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.PDF;
 using AutoTest.Desktop.Windows.QuestionForWIndows;
 using AutoTest.Domain.Entities.Tests;
@@ -30,10 +31,12 @@ namespace AutoTest.Desktop.Windows.TestForWindows
     /// </summary>
     public partial class TestWindow : Window
     {
+        private readonly ITestService _service;
         public TestDto Test { get; set; }
         public TestWindow()
         {
             InitializeComponent();
+            this._service = new TestService();
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -77,6 +80,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
 
         public void SetValues(TestDto test)
         {
+            TestLoader.Visibility = Visibility.Collapsed;
             this.Test = test;
             tbTitle.Text = test.Title;
             tbDescription.Text = test.Description;
@@ -115,11 +119,36 @@ namespace AutoTest.Desktop.Windows.TestForWindows
             }
         }
 
-        private void ViewQuestionsBtn_Click(object sender, RoutedEventArgs e)
+        private async void ViewQuestionsBtn_Click(object sender, RoutedEventArgs e)
         {
             QuestionViewWindow window = new QuestionViewWindow();
             window.SelectTestId(Test.Id);
             window.ShowDialog();
+            await GetByIdAsync();
+        }
+
+        private async Task GetByIdAsync()
+        {
+            try
+            {
+                TestLoader.Visibility = Visibility.Visible;
+
+                var test = await Task.Run(async () => await _service.GetByIdAsync(Test.Id));
+                if(test != null)
+                    SetValues(test);
+                else
+                {
+                    notifier.ShowWarning("Istimos asosiy o'tib qayta kiring!");
+                    TestLoader.Visibility = Visibility.Collapsed;
+                    EmptyData.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                notifier.ShowWarning("Testni yuklashda xatolik yuz berdi!");
+                TestLoader.Visibility = Visibility.Collapsed;
+                EmptyData.Visibility = Visibility.Visible;
+            }
         }
 
         public string SanitizeFileName(string fileName)

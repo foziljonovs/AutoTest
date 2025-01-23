@@ -7,6 +7,7 @@ namespace AutoTest.Desktop.PDF;
 public class TestReportDocument : IDocument
 {
     private readonly TestDto _test;
+    private readonly string[] characters = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
     public TestReportDocument(TestDto test)
     {
         this._test = test;
@@ -17,62 +18,100 @@ public class TestReportDocument : IDocument
 
     public void Compose(IDocumentContainer container)
     {
+        int QuestionNumber = 1;
+
         container
             .Page(page =>
             {
                 page.Margin(20);
 
                 page.Header()
-                    .Text($"{_test.Title}")
-                    .FontSize(18)
-                    .Bold()
-                    .AlignCenter();
+                    .ShowOnce()
+                    .Element(header =>
+                    {
+                        header
+                            .Text($"{_test.Title}")
+                            .FontSize(24)
+                            .FontColor("#1d3557")
+                            .Bold()
+                            .AlignCenter();
+                    });
 
                 page.Content()
                     .PaddingVertical(10)
                     .Column(column =>
                     {
                         column
+                             .Item()
+                             .Text("AutoTest orqali yaratilgan")
+                             .FontSize(9)
+                             .FontColor("#888888")
+                             .AlignCenter();
+
+                        column
                             .Item()
-                            .Text($"Daraja: {_test.Level.ToString()}\tYaratuvchi: {_test.User.Firstname + _test.User.Lastname}")
-                            .FontSize(12);
+                            .ShowOnce()
+                            .Text($"Yaratuvchi - {_test.User.Firstname} {_test.User.Lastname}\nAsosiy mavzu - {_test.Topics.First()?.Name ?? "Tanlanmagan"}\nDaraja - {_test.Level.ToString()}")
+                            .FontSize(9)
+                            .FontColor("#888888")
+                            .AlignRight();
 
                         column
                             .Item()
                             .PaddingVertical(5);
 
-                        foreach(var question in _test.Question)
+                        foreach (var question in _test.Question)
                         {
                             column
                                 .Item()
-                                .Text($"{question.Problem}")
-                                .FontSize(14)
-                                .SemiBold();
-
-                            column
-                                .Item()
-                                .Column(optionsColumn =>
+                                .Element(container =>
                                 {
-                                    foreach(var option in question.Options)
-                                    {
-                                        optionsColumn
-                                            .Item()
-                                            .Text($"{option.Text}")
-                                            .FontSize(12);
-                                    }
+                                    container
+                                        .Column(questionColumn =>
+                                        {
+                                            questionColumn
+                                                .Item()
+                                                .Text($"{QuestionNumber}) {question.Problem}")
+                                                .FontSize(14)
+                                                .SemiBold();
+
+                                            questionColumn
+                                                .Item()
+                                                .PaddingVertical(5);
+
+                                            questionColumn
+                                                .Item()
+                                                .Column(optionsColumn =>
+                                                {
+                                                    for (int i = 0; i < question.Options.Count; i++)
+                                                    {
+                                                        var option = question.Options[i];
+                                                        optionsColumn
+                                                            .Item()
+                                                            .Text($"    {characters[i]}) {option.Text}")
+                                                            .FontSize(11);
+                                                    }
+                                                });
+                                        });
                                 });
 
                             column
                                 .Item()
                                 .PaddingVertical(10);
+
+                            QuestionNumber++;
                         }
                     });
 
                 page
                     .Footer()
-                    .AlignCenter()
-                    .Text("AutoTest PDF Test")
-                    .FontSize(10);  
+                        .AlignCenter()
+                        .Text(x =>
+                        {
+                            x.CurrentPageNumber();
+                            x.Span(" / ");
+                            x.TotalPages();
+                        });
             });
     }
 }
