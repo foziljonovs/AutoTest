@@ -22,6 +22,7 @@ public class TestRepository : Repository<Test>, ITest
             .Include(x => x.User)
             .Include(x => x.Topics)
             .Include(x => x.Question)
+                .ThenInclude(x => x.Options)
             .ToListAsync();
     }
 }
