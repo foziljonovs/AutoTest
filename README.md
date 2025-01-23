@@ -14,7 +14,7 @@
 Quyida AutoTest orqali yaratilgan birinchi testni ko‘rishingiz mumkin.
 
 PDF shaklida quyidagi havola orqali yuklab olishingiz mumkin:
-[Test (PDF)](path/to/your/pdf/TestReport.pdf)
+[Test (PDF)](https://github.com/foziljonovs/AutoTest/blob/master/Test_Birinchi%20test.pdf)
 
 ---
 
