@@ -53,7 +53,7 @@ public class TestReportDocument : IDocument
                             .ShowOnce()
                             .Text($"Yaratuvchi - {_test.User.Firstname} {_test.User.Lastname}\nAsosiy mavzu - {_test.Topics.First()?.Name ?? "Tanlanmagan"}\nDaraja - {_test.Level.ToString()}")
                             .FontSize(9)
-                            .FontColor("#888888")
+                            .FontColor("#888888") 
                             .AlignRight();
 
                         column

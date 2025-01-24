@@ -123,7 +123,7 @@ public class TestService(
     {
         try
         {
-            var test = await _unitOfWork.Test.GetById(id);
+            var test = await _unitOfWork.Test.GetByIdAsync(id);
 
             if (test is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
