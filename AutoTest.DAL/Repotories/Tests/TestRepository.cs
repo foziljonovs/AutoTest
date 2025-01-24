@@ -25,4 +25,14 @@ public class TestRepository : Repository<Test>, ITest
                 .ThenInclude(x => x.Options)
             .ToListAsync();
     }
+
+    public async Task<Test> GetByIdAsync(long id)
+    {
+        return await _tests
+            .Include(x => x.User)
+            .Include(x => x.Topics)
+            .Include(x => x.Question)
+                .ThenInclude(x => x.Options)
+            .FirstOrDefaultAsync(x => x.Id == id);
+    }
 }

@@ -114,7 +114,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0">
-                            <TextBlock Text="Testlar soni: "
+                            <TextBlock Text="Savollar soni: "
                                        FontSize="18"
                                        FontFamily="Jetbrains Mono"/>
 
