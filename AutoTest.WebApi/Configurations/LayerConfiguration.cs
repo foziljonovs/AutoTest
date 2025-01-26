@@ -1,9 +1,11 @@
 ﻿using AutoTest.BLL.Interfaces.Auth;
+using AutoTest.BLL.Interfaces.OpenAI;
 using AutoTest.BLL.Interfaces.Tests.Option;
 using AutoTest.BLL.Interfaces.Tests.Question;
 using AutoTest.BLL.Interfaces.Tests.Test;
 using AutoTest.BLL.Interfaces.Tests.Topic;
 using AutoTest.BLL.Services.Auth;
+using AutoTest.BLL.Services.OpenAI;
 using AutoTest.BLL.Services.Tests.Option;
 using AutoTest.BLL.Services.Tests.Question;
 using AutoTest.BLL.Services.Tests.Test;
@@ -43,6 +45,8 @@ public static class LayerConfiguration
         services.AddScoped<ITopicService, TopicService>();
         services.AddScoped<IQuestionService, QuestionService>();
         services.AddScoped<IOptionService, OptionService>();
+
+        services.AddHttpClient<IOpenAIService, OpenAIService>();
 
         return services;
     }
