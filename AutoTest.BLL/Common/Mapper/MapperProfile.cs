@@ -44,6 +44,8 @@ public class MapperProfile : Profile
             .ForMember(dest => dest.User, opt => opt.Ignore())
             .ForMember(dest => dest.Topics, opt => opt.Ignore());
 
+        CreateMap<TestDto, CreateTestDto>();
+
         CreateMap<UpdateTestDto, Test>()
             .ForMember(dest => dest.User, opt => opt.Ignore())
             .ForMember(dest => dest.Topics, opt => opt.Ignore());

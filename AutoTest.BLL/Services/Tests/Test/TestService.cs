@@ -47,6 +47,36 @@ public class TestService(
         }
     }
 
+    public async Task<long> AddTestAsync(CreateTestDto dto, CancellationToken cancellation = default)
+    {
+        try
+        {
+            var existsUser = await _unitOfWork.User.GetById(dto.UserId);
+            if (existsUser is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
+
+            var test = _mapper.Map<CT.Test>(dto);
+            foreach (var topicId in dto.Topics)
+            {
+                var topic = await _unitOfWork.Topic.GetById(topicId);
+
+                if (topic is not null)
+                    test.Topics.Add(topic);
+                else
+                    break;
+            }
+
+            test.CreatedDate = DateTime.UtcNow.AddHours(5);
+            var result = await _unitOfWork.Test.AddAsync(test);
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"An error occured while creating the test. {ex}");
+        }
+    }
+
     public async Task<bool> DeleteAsync(long id, CancellationToken cancellation = default)
     {
         try
