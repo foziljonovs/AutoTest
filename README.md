@@ -97,7 +97,7 @@ AutoTest loyihasining **WebApi** va **Desktop** qismlarini **birgalikda** ishga 
    - **Parol**
 
 📌 **Misol:**  
-![Ro‘yxatdan o‘tish](https://your-image-link.com/register-example.png)
+![Ro‘yxatdan o‘tish]([https://your-image-link.com/register-example.png](https://github.com/foziljonovs/AutoTest/blob/master/Examples/Ro'yxatdan%20o'tish.png))
 
 ---
 
@@ -106,7 +106,7 @@ AutoTest loyihasining **WebApi** va **Desktop** qismlarini **birgalikda** ishga 
 ✅ "Testlaringiz" bo‘limiga o‘tib **"Yaratish"** tugmasini bosing.
 
 📌 **Misol:**  
-![Test yaratish](https://your-image-link.com/create-test-example.png)
+![Test yaratish]([https://your-image-link.com/create-test-example.png](https://github.com/foziljonovs/AutoTest/blob/master/Examples/Testlar%20o'ynasi.png))
 
 ---
 
@@ -115,7 +115,7 @@ AutoTest loyihasining **WebApi** va **Desktop** qismlarini **birgalikda** ishga 
 📌 "Savollar" bo‘limiga o‘tib test uchun **savol va javoblarni** kiriting.
 
 📌 **Misol:**  
-![Savollar qo‘shish](https://your-image-link.com/add-questions-example.png)
+![Savollar qo‘shish]([https://your-image-link.com/add-questions-example.png](https://github.com/foziljonovs/AutoTest/blob/master/Examples/Testga%20savol%20qo'shish%20va%20PDF%20olish.png))
 
 ---
 
@@ -124,7 +124,7 @@ AutoTest loyihasining **WebApi** va **Desktop** qismlarini **birgalikda** ishga 
 📌 "Test ma'lumotlari" bo‘limiga o‘tib **"PDF olish"** tugmasini bosing.
 
 📌 **Misol:**  
-![PDF yaratish](https://your-image-link.com/download-pdf-example.png)
+![PDF yaratish]([https://your-image-link.com/download-pdf-example.png](https://github.com/foziljonovs/AutoTest/blob/master/Examples/Testga%20savol%20qo'shish%20va%20PDF%20olish.png))
 
 ---
 
@@ -133,7 +133,7 @@ AutoTest loyihasining **WebApi** va **Desktop** qismlarini **birgalikda** ishga 
 📌 **Kompyuteringizning "Downloads" yoki "Desktop" bo‘limidan PDF faylni toping.** Agar fayl mavjud bo‘lmasa, yana bir bor **"PDF olish"** tugmasini bosing.
 
 📌 **Misol:**  
-![PDF joylashuvi](https://your-image-link.com/check-pdf-example.png)
+![PDF joylashuvi]([https://your-image-link.com/check-pdf-example.png](https://github.com/foziljonovs/AutoTest/blob/master/Examples/Screenshot%202025-02-05%20141142.png))
 
 ---
 
