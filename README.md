@@ -137,6 +137,15 @@ AutoTest loyihasining **WebApi** va **Desktop** qismlarini **birgalikda** ishga 
 
 ---
 
-## 📩 Aloqa Uchun
+## 🔄 **Loyiha Holati**
 
-Agar loyiha haqida savollaringiz bo‘lsa yoki takliflaringiz bo‘lsa, iltimos, [Telegram](https://t.me/foziljonovs) orqali bog‘laning.
+🛠 **AutoTest** loyihasi hozirda **birinchi versiya ishlab chiqish bosqichida**. Asosiy funksiyalar ishlab chiqilgan, lekin hali to‘liq sinovdan o‘tmagan. Kelajakda qo‘shimcha imkoniyatlar, optimizatsiya va xatolarni tuzatish rejalashtirilgan.
+
+📌 **Rejalashtirilgan Funksiyalar:**
+- 🔹 AI generatsiya qo'shish - hozirda bu qism ustida ishlamoqdamiz
+- 🔹 Foydalanuvchi interfeysini yaxshilash
+- 🔹 Test tahlillarini qo‘shish
+- 🔹 Savollarning yanada aniq generatsiyasini ta’minlash
+- 🔹 Hisobotlarni yanada kengaytirish
+
+✅ Agar loyiha haqida fikr-mulohaza bildirmoqchi bo‘lsangiz yoki xatolik topsangiz, iltimos, [Telegram](https://t.me/foziljonovs) orqali bog‘laning.
