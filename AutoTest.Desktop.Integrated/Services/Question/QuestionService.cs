@@ -31,6 +31,26 @@ public class QuestionService : IQuestionService
         }
     }
 
+    public async Task<bool> DeleteAsync(long id)
+    {
+        try
+        {
+            if(IsInternetAvailable())
+            {
+                var result = await _server.DeleteAsync(id);
+                return result;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
     public async Task<List<QuestionDto>> GetAllAsync()
     {
         try
@@ -68,6 +88,26 @@ public class QuestionService : IQuestionService
         catch (Exception ex)
         {
             return new List<QuestionDto>();
+        }
+    }
+
+    public async Task<bool> UpdateAsync(long id, UpdateQuestionDto dto)
+    {
+        try
+        {
+            if(IsInternetAvailable())
+            {
+                var result = await _server.UpdateAsync(id, dto);
+                return result;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch(Exception ex)
+        {
+            return false;
         }
     }
 

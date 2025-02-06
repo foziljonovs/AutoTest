@@ -63,6 +63,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                     QuestionComponent component = new QuestionComponent();
                     component.Tag = question;
                     component.SetValues(question, count);
+                    component.IsDeleted = GetAllQuestion;
                     stQuestions.Children.Add(component);
                     count++;
                 }

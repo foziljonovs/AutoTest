@@ -44,6 +44,29 @@ public class QuestionServer : IQuestionServer
         }
     }
 
+    public async Task<bool> DeleteAsync(long id)
+    {
+        try
+        {
+            HttpClient client = new HttpClient();
+            var token = IdentitySingelton.GetInstance().Token;
+
+            client.BaseAddress = new Uri($"{AuthApi.BASE_URL}/api/questions/{id}");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            var result = await client.DeleteAsync(client.BaseAddress);
+
+            if (result.IsSuccessStatusCode)
+                return true;
+            else
+                return false;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
     public async Task<List<QuestionDto>> GetAllAsync()
     {
         try
@@ -87,5 +110,10 @@ public class QuestionServer : IQuestionServer
         {
             return new List<QuestionDto>();
         }
+    }
+
+    public Task<bool> UpdateAsync(long id, UpdateQuestionDto dto)
+    {
+        throw new NotImplementedException();
     }
 }
