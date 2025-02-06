@@ -14,7 +14,9 @@ using AutoTest.DAL.Data;
 using AutoTest.DAL.Interfaces;
 using AutoTest.DAL.Interfaces.Tests;
 using AutoTest.DAL.Repotories;
+using Codeblaze.SemanticKernel.Connectors.Ollama;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SemanticKernel;
 
 namespace AutoTest.WebApi.Configurations;
 
@@ -47,6 +49,23 @@ public static class LayerConfiguration
         services.AddScoped<IOptionService, OptionService>();
 
         services.AddHttpClient<IOpenAIService, OpenAIService>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddDeepSeek(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        var builder = Kernel.CreateBuilder().AddOllamaChatCompletion(
+            configuration["Kernel:Model"],
+            configuration["Kernel:localhost"]);
+
+        services.AddSingleton<HttpClient>();
+
+        var kernel = builder.Build();
+
+        services.AddSingleton(kernel);
 
         return services;
     }

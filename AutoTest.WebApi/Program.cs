@@ -1,6 +1,5 @@
 using AutoTest.BLL.Common.Mapper;
 using AutoTest.WebApi.Configurations;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +17,9 @@ builder.Services
     .AddEndpointsApiExplorer()
     .AddCorsConfigure()
     .AddSwaggerConfigure()
-    .AddJwtConfigure(builder.Configuration)
-    .AddOpenApi();
+    .AddJwtConfigure(builder.Configuration);
+
+builder.Services.AddDeepSeek(builder.Configuration);
     
 var app = builder.Build();
 
