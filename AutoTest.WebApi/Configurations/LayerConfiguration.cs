@@ -17,6 +17,7 @@ using AutoTest.DAL.Repotories;
 using Codeblaze.SemanticKernel.Connectors.Ollama;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SemanticKernel;
+using Microsoft.SemanticKernel.ChatCompletion;
 
 namespace AutoTest.WebApi.Configurations;
 
@@ -48,7 +49,7 @@ public static class LayerConfiguration
         services.AddScoped<IQuestionService, QuestionService>();
         services.AddScoped<IOptionService, OptionService>();
 
-        services.AddHttpClient<IOpenAIService, OpenAIService>();
+        services.AddScoped<IOpenAIService, OpenAIService>();
 
         return services;
     }
@@ -57,15 +58,16 @@ public static class LayerConfiguration
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        var builder = Kernel.CreateBuilder().AddOllamaChatCompletion(
-            configuration["Kernel:Model"],
-            configuration["Kernel:localhost"]);
-
-        services.AddSingleton<HttpClient>();
+        var builder = Kernel.CreateBuilder()
+            .AddOllamaChatCompletion(
+                configuration["Kernel:Model"],
+                configuration["Kernel:localhost"]);
 
         var kernel = builder.Build();
 
         services.AddSingleton(kernel);
+        services.AddSingleton<IChatCompletionService>(sp =>
+            sp.GetRequiredService<Kernel>().GetRequiredService<IChatCompletionService>());
 
         return services;
     }

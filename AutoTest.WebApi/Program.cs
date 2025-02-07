@@ -9,6 +9,7 @@ builder.Services.AddControllers()
         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
     });
 
+builder.Services.AddHttpClient();
 
 builder.Services
     .AddDbConfigure(builder.Configuration)
