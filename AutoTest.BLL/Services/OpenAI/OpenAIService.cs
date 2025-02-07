@@ -14,6 +14,7 @@ public class OpenAIService : IOpenAIService
 {
     private readonly ITestService _testService;
     private readonly IQuestionService _questionService;
+    private readonly IChatCompletionService _chatCompleteService;
     private readonly Kernel _kernel;
     private readonly IMapper _mapper;
 
@@ -21,12 +22,14 @@ public class OpenAIService : IOpenAIService
         ITestService testService,
         IQuestionService questionService,
         Kernel kernel,
+        IChatCompletionService chatCompleteService,
         IMapper mapper)
     {
         _testService = testService;
         _questionService = questionService;
         _mapper = mapper;
         _kernel = kernel;
+        _chatCompleteService = chatCompleteService;
     }
 
     public async Task<long> CompleteAsync(GenerateTestDto dto)
@@ -81,27 +84,25 @@ public class OpenAIService : IOpenAIService
             throw new ArgumentException("The generated test content is empty.", nameof(content));
         }
 
-        var chatCompletion = _kernel.Services.GetRequiredService<IChatCompletionService>();
         var chatMessages = new ChatHistory
         {
             new ChatMessageContent(AuthorRole.System, "Convert the generated test into a structured TestDto object."),
             new ChatMessageContent(AuthorRole.User, $"Convert the following content into a structured object: {content}. Include Title, Description, Level, Status, and a list of questions. Each question should be mapped into a QuestionDto with Problem, Type, and Options (with IsCorrect flag). Exclude Id, CreatedDate, and UpdatedDate.")
         };
 
-        var response = await chatCompletion.GetChatMessageContentAsync(chatMessages);
+        var response = await _chatCompleteService.GetChatMessageContentAsync(chatMessages);
         return _mapper.Map<TestDto>(response?.Content);
     }
 
     public async Task<string> GenerateAsync(GenerateTestDto dto)
     {
-        var chatCompletion = _kernel.Services.GetRequiredService<IChatCompletionService>();
         var chatMessages = new ChatHistory
         {
             new ChatMessageContent(AuthorRole.System, "Generate a test."),
             new ChatMessageContent(AuthorRole.User, $"Generate a test on {dto.Title} with {dto.QuestionCount} questions of {dto.Level} level.")
         };
 
-        var response = await chatCompletion.GetChatMessageContentAsync(chatMessages);
+        var response = await _chatCompleteService.GetChatMessageContentAsync(chatMessages);
         return response?.Content ?? string.Empty;
     }
 }

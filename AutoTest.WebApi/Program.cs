@@ -9,8 +9,6 @@ builder.Services.AddControllers()
         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
     });
 
-builder.Services.AddHttpClient();
-
 builder.Services
     .AddDbConfigure(builder.Configuration)
     .AddServiceConfigure()
@@ -20,6 +18,7 @@ builder.Services
     .AddSwaggerConfigure()
     .AddJwtConfigure(builder.Configuration);
 
+builder.Services.AddHttpClient();
 builder.Services.AddDeepSeek(builder.Configuration);
     
 var app = builder.Build();
