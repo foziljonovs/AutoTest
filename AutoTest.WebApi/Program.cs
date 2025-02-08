@@ -19,7 +19,7 @@ builder.Services
     .AddJwtConfigure(builder.Configuration);
 
 builder.Services.AddHttpClient();
-builder.Services.AddDeepSeek(builder.Configuration);
+builder.Services.AddAIConfigure(builder.Configuration);
     
 var app = builder.Build();
 
