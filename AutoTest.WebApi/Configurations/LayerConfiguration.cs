@@ -12,12 +12,9 @@ using AutoTest.BLL.Services.Tests.Test;
 using AutoTest.BLL.Services.Tests.Topic;
 using AutoTest.DAL.Data;
 using AutoTest.DAL.Interfaces;
-using AutoTest.DAL.Interfaces.Tests;
 using AutoTest.DAL.Repotories;
-using Codeblaze.SemanticKernel.Connectors.Ollama;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.ChatCompletion;
+using Microsoft.Extensions.AI;
 
 namespace AutoTest.WebApi.Configurations;
 
@@ -54,20 +51,19 @@ public static class LayerConfiguration
         return services;
     }
 
-    public static IServiceCollection AddDeepSeek(
+    public static IServiceCollection AddAIConfigure(
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        var builder = Kernel.CreateBuilder()
-            .AddOllamaChatCompletion(
-                configuration["Kernel:Model"],
-                configuration["Kernel:localhost"]);
+        var model = configuration["Ollama:Model"];
+        var host = configuration["Ollama:localhost"];
 
-        var kernel = builder.Build();
+        IChatClient client = new OllamaChatClient(host, modelId:model)
+            .AsBuilder()
+            .UseFunctionInvocation()
+            .Build();
 
-        services.AddSingleton(kernel);
-        services.AddSingleton<IChatCompletionService>(sp =>
-            sp.GetRequiredService<Kernel>().GetRequiredService<IChatCompletionService>());
+        services.AddSingleton(client);
 
         return services;
     }
