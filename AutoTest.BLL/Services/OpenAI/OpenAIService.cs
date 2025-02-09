@@ -4,11 +4,9 @@ using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.BLL.Interfaces.OpenAI;
 using AutoTest.BLL.Interfaces.Tests.Question;
 using AutoTest.BLL.Interfaces.Tests.Test;
+using AutoTest.Domain.Enums;
 using Microsoft.Extensions.AI;
-using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.ChatCompletion;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 
 namespace AutoTest.BLL.Services.OpenAI;
 
@@ -33,10 +31,12 @@ public class OpenAIService : IOpenAIService
 
         _chatOptions = new ChatOptions
         {
+            MaxOutputTokens = 1000,
+            Temperature = 0.6f,
+            StopSequences = ["```"],
             Tools =
             [
-                AIFunctionFactory.Create((Func<GenerateTestDto, Task<string>>)GenerateAsync),
-                AIFunctionFactory.Create((Func<string, TestDto, long, Task<TestDto>>)ConvertToTest)
+                AIFunctionFactory.Create((Func<TestDto, long, int, Task<TestDto>>)GenerateAsync)
             ]
         };
     }
@@ -53,21 +53,16 @@ public class OpenAIService : IOpenAIService
                 throw new ArgumentNullException(nameof(dto), "The test data is empty.");
             }
 
-            var generatedTest = await GenerateAsync(dto);
-            if (string.IsNullOrEmpty(generatedTest))
-            {
-                throw new Exception("The generated test is empty.");
-            }
-
             var test = new TestDto
             {
                 Title = dto.Title,
                 Description = dto.Description,
                 Level = dto.Level,
+                Status = TestStatus.InProcess,
                 UserId = dto.UserId
             };
 
-            var convertedTest = await ConvertToTest(generatedTest, test, dto.UserId);
+            var convertedTest = await GenerateAsync(test, dto.UserId, dto.QuestionCount);
             if (convertedTest == null)
             {
                 throw new Exception("The converted test is empty.");
@@ -104,109 +99,58 @@ public class OpenAIService : IOpenAIService
     /// <summary>
     /// AI yordamida testni TestDto formatiga o‘tkazish
     /// </summary>
-    public async Task<TestDto> ConvertToTest(string content, TestDto dto, long userId)
+    public async Task<TestDto> GenerateAsync(TestDto dto, long userId, int count)
     {
         try
         {
-            if (string.IsNullOrEmpty(content))
+            var chatMessages = new List<ChatMessage>
             {
-                throw new ArgumentException("The generated test content is empty.", nameof(content));
-            }
-
-            var chatMessages = new ChatHistory
-            {
-                new ChatMessageContent(AuthorRole.System, "Convert the generated test into a structured TestDto object."),
-                new ChatMessageContent(AuthorRole.User,
-                    "Convert the following test content into a structured JSON object. " +
-                    "The JSON object must strictly follow this format:\n" +
-                    "{\n" +
-                    "  \"title\": \"Test title\",\n" +
-                    "  \"description\": \"Test description\",\n" +
-                    "  \"level\": \"Test level\",\n" +
-                    "  \"status\": \"Active\",\n" +
-                    "  \"questions\": [\n" +
-                    "    {\n" +
-                    "      \"problem\": \"Question problem\",\n" +
-                    "      \"type\": \"MultipleChoice\",\n" +
-                    "      \"options\": [\n" +
-                    "        { \"text\": \"A Text\", \"isCorrect\": false\true },\n" +
-                    "        { \"text\": \"B Text\", \"isCorrect\": false\true }\n" +
-                    "      ]\n" +
-                    "    }\n" +
-                    "  ]\n" +
-                    "} \n" +
-                    "Return only valid JSON, without any extra explanations."
-                )
+                new ChatMessage(ChatRole.System, $"Generate a test on {dto.Title} {dto.Description} with {count} questions of {dto.Level} level."),
+                new ChatMessage(ChatRole.System, "Return only valid JSON response without explanations."),
+                new ChatMessage(ChatRole.System, @"{
+                    ""title"": ""Sample Test"",
+                    ""description"": ""Test description"",
+                    ""level"": 1,
+                    ""status"": 1,
+                    ""question"": [
+                        { ""problem"": ""What is C#?"", ""type"": ""multiple_choice"", ""options"": [
+                            { ""text"": ""A programming language"", ""isCorrect"": true },
+                            { ""text"": ""A database"", ""isCorrect"": false }
+                        ] }
+                    ]
+                }"),
+                new ChatMessage(ChatRole.System, "Provide only valid JSON output, without any additional text, explanations, or metadata.")
             };
 
-            var response = await _client.CompleteAsync(content, _chatOptions, cancellationToken: default);
+            var response = await _client.CompleteAsync(chatMessages, _chatOptions, cancellationToken: default);
 
-            if (response?.Choices == null || response.Choices.Count == 0 || response.Choices[0].Contents == null)
+            var generatedContent = response.Choices[0].ToString().Trim();
+
+            int startIndex = generatedContent.IndexOf('{');
+            int endIndex = generatedContent.LastIndexOf('}');
+
+            if (startIndex == -1 || endIndex == -1 || startIndex >= endIndex)
             {
-                throw new Exception("AI service did not return a valid response.");
-            }
-
-            var convertToResponse = response.Choices[0].Contents.ToString().Trim();
-
-            if (!convertToResponse.StartsWith("{") || !convertToResponse.EndsWith("}"))
-            {
-                Console.WriteLine("AI Response: " + convertToResponse);
                 throw new Exception("AI did not return a valid JSON format.");
             }
 
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-                ReadCommentHandling = JsonCommentHandling.Skip
-            };
+            generatedContent = generatedContent.Substring(startIndex, endIndex - startIndex + 1);
 
-            var testDto = JsonSerializer.Deserialize<TestDto>(convertToResponse, options);
 
-            if (testDto == null)
-            {
-                throw new Exception("Deserialized object is null.");
-            }
+            if (string.IsNullOrWhiteSpace(generatedContent) || !generatedContent.StartsWith("{") || !generatedContent.EndsWith("}"))
+                throw new Exception("AI response is not a valid JSON format.");
 
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            var testDto = JsonSerializer.Deserialize<TestDto>(generatedContent, options);
+            if (testDto?.Question == null || !testDto.Question.Any())
+                throw new Exception("Deserialized object is invalid or does not contain questions.");
+
+            testDto.Question.ForEach(q => q.Id = 0);
             return testDto;
         }
         catch (Exception ex)
         {
-            throw new Exception(ex.Message);
-        }
-    }
-
-    /// <summary>
-    /// AI yordamida yangi test generatsiya qilish
-    /// </summary>
-    public async Task<string> GenerateAsync(GenerateTestDto dto)
-    {
-        try
-        {
-            var message = $"Generate a test on {dto.Title} with {dto.QuestionCount} questions of {dto.Level} level.";
-            var response = await _client.CompleteAsync(
-                message,
-                _chatOptions,
-                cancellationToken: default);
-
-            if (response?.Choices == null || response.Choices.Count == 0)
-            {
-                throw new Exception("AI service did not return a valid response.");
-            }
-
-            var contentList = response.Choices[0].Contents;
-
-            if (contentList == null || contentList.Count == 0)
-            {
-                throw new Exception("AI response contains no content.");
-            }
-
-            var generatedContent = contentList[0].ToString();
-
-            return generatedContent;
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"Error while generating test: {ex.Message}");
+            throw new Exception("Error while converting test: " + ex.Message, ex);
         }
     }
 }
