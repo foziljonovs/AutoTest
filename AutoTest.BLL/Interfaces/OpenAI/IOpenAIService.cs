@@ -6,6 +6,5 @@ namespace AutoTest.BLL.Interfaces.OpenAI;
 public interface IOpenAIService
 {
     Task<long> CompleteAsync(GenerateTestDto dto);
-    Task<string> GenerateAsync(GenerateTestDto dto);
-    Task<TestDto> ConvertToTest(string content, TestDto dto, long userId);
+    Task<TestDto> GenerateAsync(TestDto dto, long userId, int count);
 }
