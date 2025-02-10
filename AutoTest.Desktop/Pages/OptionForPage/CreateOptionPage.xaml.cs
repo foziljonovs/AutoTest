@@ -1,5 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Option;
 using AutoTest.Desktop.Components.OptionForComponents;
+using AutoTest.Domain.Entities.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,26 @@ namespace AutoTest.Desktop.Pages.OptionForPage
             txtName.Clear();
             rbIsCorrect.IsChecked = false;
         }
+
+        public void AddOptions(List<OptionDto> questionOptions)
+        {
+            if (questionOptions.Any())
+            {
+                foreach (var option in questionOptions)
+                {
+                    options.Add(option);
+
+                    CreateOptionComponent component = new CreateOptionComponent();
+                    component.SetValues(option);
+                    stOptions.Children.Add(component);
+                }
+            }
+            else
+            {
+                notifierThis.ShowWarning("Javoblarni olishda muammo yuz berdi!");
+            }
+        }
+
         private void AddOptionBtn_Click(object sender, RoutedEventArgs e)
         {
             EmptyData.Visibility = Visibility.Collapsed;
