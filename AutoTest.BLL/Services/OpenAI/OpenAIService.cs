@@ -118,8 +118,7 @@ public class OpenAIService : IOpenAIService
                             { ""text"": ""A database"", ""isCorrect"": false }
                         ] }
                     ]
-                }"),
-                new ChatMessage(ChatRole.System, "Provide only valid JSON output, without any additional text, explanations, or metadata.")
+                }")
             };
 
             var response = await _client.CompleteAsync(chatMessages, _chatOptions, cancellationToken: default);

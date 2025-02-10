@@ -52,19 +52,17 @@ public class QuestionService(
             throw new Exception($"An error occured while deleting the question. {ex}");
         }
     }
-    public Task<IEnumerable<QuestionDto>> GetAllAsync(CancellationToken cancellation = default)
+    public async Task<IEnumerable<QuestionDto>> GetAllAsync(CancellationToken cancellation = default)
     {
         try
         {
-            var questions = _unitOfWork.Question.GetAll();
+            var questions = await _unitOfWork.Question.GetAllFullInformationAsync();
 
-            if(!questions.Any())
-            {
+            if (!questions.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No questions found");
-            }
 
             var questionsDto = _mapper.Map<IEnumerable<QuestionDto>>(questions);
-            return Task.FromResult(questionsDto);
+            return questionsDto;
         }
         catch (Exception ex)
         {

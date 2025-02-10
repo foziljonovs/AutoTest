@@ -60,7 +60,8 @@
                 <Button x:Name="EditBtn"
                         Height="30"
                         Width="30"
-                        Style="{DynamicResource mainEditButton}"/>
+                        Style="{DynamicResource mainEditButton}"
+                        Click="EditBtn_Click"/>
 
                 <Button x:Name="DeleteBtn"
                         Height="30"

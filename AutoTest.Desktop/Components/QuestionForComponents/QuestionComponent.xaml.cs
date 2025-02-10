@@ -1,5 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Question;
 using AutoTest.Desktop.Integrated.Services.Question;
+using AutoTest.Desktop.Windows.QuestionForWIndows;
 using System.Windows;
 using System.Windows.Controls;
 using ToastNotifications;
@@ -82,6 +83,13 @@ namespace AutoTest.Desktop.Components.QuestionForComponents
             {
                 notifierThis.ShowError("Savolni o'chirishda xatolik yuz berdi!");
             }
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateQuestionWindow window = new UpdateQuestionWindow();
+            window.GetQuestion(Question);
+            window.ShowDialog();
         }
     }
 }
