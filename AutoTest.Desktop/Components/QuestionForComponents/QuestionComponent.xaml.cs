@@ -1,6 +1,9 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Question;
 using AutoTest.Desktop.Integrated.Services.Question;
 using AutoTest.Desktop.Windows.QuestionForWIndows;
+using MaterialDesignThemes.Wpf;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
 using System.Windows;
 using System.Windows.Controls;
 using ToastNotifications;
@@ -60,6 +63,15 @@ namespace AutoTest.Desktop.Components.QuestionForComponents
                 if(this.QuestionId > 0)
                 {
                     var message = MessageBox.Show("Savolni o'chirishni istaysizmi?", "Tasdiqlash", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    //var message = MessageBoxManager.GetMessageBoxStandard(
+                    //   "AutoTest",
+                    //   "Savolni o'chirishni istaysizmi?",
+                    //   ButtonEnum.YesNo,
+                    //   Icon.Question
+                    //);
+
+                    //var messageResult = await message.ShowAsync();
+
                     if(message == MessageBoxResult.Yes)
                     {
                         var result = await _service.DeleteAsync(QuestionId);

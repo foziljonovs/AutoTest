@@ -1,4 +1,7 @@
-﻿using QuestPDF.Infrastructure;
+﻿using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
+using Avalonia.Platform;
+using QuestPDF.Infrastructure;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -17,6 +20,7 @@ namespace AutoTest.Desktop
             // Set the QuestPDF license type
             QuestPDF.Settings.License = LicenseType.Community;
         }
+
     }
 
 }
