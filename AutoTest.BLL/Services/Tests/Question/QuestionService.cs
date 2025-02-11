@@ -56,7 +56,7 @@ public class QuestionService(
     {
         try
         {
-            var questions = await _unitOfWork.Question.GetAllFullInformationAsync();
+            var questions = await _unitOfWork.Question.GetAllFullInformation().ToListAsync();
 
             if (!questions.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No questions found");
@@ -94,9 +94,9 @@ public class QuestionService(
             if (existsTest is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
-            var questions = await _unitOfWork.Question.GetAll()
+            var questions = _unitOfWork.Question.GetAllFullInformation()
                 .Where(x => x.TestId == testId)
-                .ToListAsync(cancellation);
+                .ToList();
 
             if(!questions.Any())
             {
