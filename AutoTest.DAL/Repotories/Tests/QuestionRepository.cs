@@ -15,11 +15,10 @@ public class QuestionRepository : Repository<Question>, IQuestion
         _questions = context.Set<Question>();
     }
 
-    public async Task<List<Question>> GetAllFullInformationAsync()
+    public IQueryable<Question> GetAllFullInformation()
     {
-        return await _questions
+        return _questions
             .Include(x => x.Test)
-            .Include(x => x.Options)
-            .ToListAsync();
+            .Include(x => x.Options);
     }
 }
