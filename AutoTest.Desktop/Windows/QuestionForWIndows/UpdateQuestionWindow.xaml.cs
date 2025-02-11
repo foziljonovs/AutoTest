@@ -1,5 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Question;
 using AutoTest.Desktop.Pages.OptionForPage;
+using AutoTest.Domain.Enums;
 using System.Windows;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
@@ -61,6 +62,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
             {
                 Question = dto;
                 PageNavigator();
+                Get(dto.Problem, dto.Type);
             }
             else
             {
@@ -74,6 +76,25 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
             CreateOptionPage page = new CreateOptionPage();
             page.AddOptions(Question.Options);
             OptionPageNavigator.Content = page;
+        }
+
+        private void Get(string problem, QuestionType type)
+        {
+            if (!string.IsNullOrEmpty(problem))
+            {
+                txtProblem.Text = problem;
+
+                var questionType = type switch
+                {
+                    QuestionType.Multiple => rbMultiple.IsChecked = true,
+                    QuestionType.FIllInTheBlank => rbFillInTheBlank.IsChecked = true,
+                    QuestionType.TrueFalse => rbTrueOrFalse.IsChecked = true,
+                    _ => false
+                };
+
+                if (questionType == false)
+                    notifierThis.ShowWarning("Savol turi tanlanmagan!");
+            }
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
