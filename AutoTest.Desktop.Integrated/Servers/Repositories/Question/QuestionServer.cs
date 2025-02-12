@@ -3,6 +3,7 @@ using AutoTest.Desktop.Integrated.Api.Auth;
 using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Question;
 using Newtonsoft.Json;
+using System.Security.AccessControl;
 using System.Text;
 
 namespace AutoTest.Desktop.Integrated.Servers.Repositories.Question;
@@ -112,8 +113,30 @@ public class QuestionServer : IQuestionServer
         }
     }
 
-    public Task<bool> UpdateAsync(long id, UpdateQuestionDto dto)
+    public async Task<bool> UpdateAsync(long id, UpdateQuestionDto dto)
     {
-        throw new NotImplementedException();
+        try
+        {
+            HttpClient client = new HttpClient();
+            var token = IdentitySingelton.GetInstance().Token;
+
+            var url = $"{AuthApi.BASE_URL}/api/questions/{id}";
+            var request = new HttpRequestMessage(HttpMethod.Put, url);
+            request.Headers.Add("Authorization", $"Bearer {token}");
+
+            var json = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
+            request.Content = json;
+
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+                return true;
+            else
+                return false;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
     }
 }

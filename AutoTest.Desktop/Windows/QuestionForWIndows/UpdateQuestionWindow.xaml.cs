@@ -1,4 +1,7 @@
-﻿using AutoTest.BLL.DTOs.Tests.Question;
+﻿using AutoTest.BLL.DTOs.Tests.Option;
+using AutoTest.BLL.DTOs.Tests.Question;
+using AutoTest.Desktop.Integrated.Services.Option;
+using AutoTest.Desktop.Integrated.Services.Question;
 using AutoTest.Desktop.Pages.OptionForPage;
 using AutoTest.Domain.Enums;
 using System.Windows;
@@ -14,9 +17,13 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
     /// </summary>
     public partial class UpdateQuestionWindow : Window
     {
+        private readonly IQuestionService _service;
+        private readonly IOptionService _optionService;
         public UpdateQuestionWindow()
         {
             InitializeComponent();
+            this._service = new QuestionService();
+            this._optionService = new OptionService();
         }
         public QuestionDto Question { get; set; }
 
@@ -99,5 +106,96 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
             => this.Close();
+
+        private async void SaveQuestionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                UpdateQuestionDto dto = new UpdateQuestionDto();
+                if(!string.IsNullOrEmpty(txtProblem.Text))
+                {
+                    dto.Problem = txtProblem.Text;
+                    dto.TestId = Question.TestId;
+
+                    if (rbMultiple.IsChecked is true)
+                        dto.Type = QuestionType.Multiple;
+                    else if (rbTrueOrFalse.IsChecked is true)
+                        dto.Type = QuestionType.TrueFalse;
+                    else if (rbFillInTheBlank.IsChecked is true)
+                        dto.Type = QuestionType.FIllInTheBlank;
+                    else
+                    {
+                        notifierThis.ShowWarning("Savol turini tanlanmagan!");
+                        return;
+                    }
+
+                    var currentPage = OptionPageNavigator.Content;
+                    if(currentPage is CreateOptionPage page)
+                    {
+                        var options = page.GetOptions();
+                        if(!options.Any())
+                        {
+                            notifierThis.ShowWarning("Savolga javoblar yozilmagan!");
+                            return;
+                        }
+
+                        var result = await _service.UpdateAsync(Question.Id, dto);
+
+                        if (result)
+                        {
+                            bool optionRes = false;
+                            foreach (var option in options)
+                            {
+                                if (Question.Options.Any(x => x.Id == 0))
+                                {
+                                    var optionDto = new CreateOptionDto
+                                    {
+                                        Text = option.Text,
+                                        IsCorrect = option.IsCorrect,
+                                        QuestionId = Question.Id
+                                    };
+
+                                    var optionResult = await _optionService.AddAsync(optionDto);
+                                    if (optionResult < 0)
+                                    {
+                                        notifierThis.ShowWarning("Savolni saqlashda xatolik yuz berdi!");
+                                        return;
+                                    }
+                                }
+                                else
+                                {
+                                    var optionDto = new UpdateOptionDto
+                                    {
+                                        Text = option.Text,
+                                        IsCorrect = option.IsCorrect,
+                                        QuestionId = Question.Id
+                                    };
+
+                                    //optionRes = await _optionService.UpdateAsync(option.Id, optionDto);
+                                }
+                            }
+
+                            if (optionRes)
+                            {
+                                notifier.ShowSuccess("Savol muvaffaqiyatli o'zgartirildi!");
+                                this.Close();
+                            }
+                            else
+                                notifierThis.ShowError("Savolni saqlashda xatolik yuz berdi!");
+                        }
+                        else
+                            notifierThis.ShowError("Savolni saqlashda xatolik yuz berdi!");
+                    }
+                    else
+                        notifierThis.ShowWarning("Xatolik yuz berdi, qayta urining.");
+                }
+                else
+                    notifierThis.ShowWarning("Savol kiritilmagan!");
+            }
+            catch(Exception ex)
+            {
+                notifierThis.ShowError("Xatolik yuz berdi!");
+            }
+        }
     }
 }
