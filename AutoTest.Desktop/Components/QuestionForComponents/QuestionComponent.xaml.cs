@@ -1,9 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Question;
 using AutoTest.Desktop.Integrated.Services.Question;
 using AutoTest.Desktop.Windows.QuestionForWIndows;
-using MaterialDesignThemes.Wpf;
-using MsBox.Avalonia;
-using MsBox.Avalonia.Enums;
 using System.Windows;
 using System.Windows.Controls;
 using ToastNotifications;
@@ -102,6 +99,7 @@ namespace AutoTest.Desktop.Components.QuestionForComponents
             UpdateQuestionWindow window = new UpdateQuestionWindow();
             window.GetQuestion(Question);
             window.ShowDialog();
+            IsDeleted?.Invoke();
         }
     }
 }

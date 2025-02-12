@@ -109,13 +109,14 @@
 
             <Grid Grid.Row="3"
                   Margin="0 0 10 5">
-                <Button x:Name="CreateQuestionBtn"
+                <Button x:Name="SaveQuestionBtn"
                         Content="Saqlash"
                         Height="30"
                         Width="80"
                         Style="{DynamicResource mainButton}"
                         Background="#2196F3"
-                        HorizontalAlignment="Right"/>
+                        HorizontalAlignment="Right"
+                        Click="SaveQuestionBtn_Click"/>
             </Grid>
         </Grid>
     </Grid>
