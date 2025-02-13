@@ -48,7 +48,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
         Notifier notifierThis = new Notifier(cfg =>
         {
             cfg.PositionProvider = new WindowPositionProvider(
-            parentWindow: System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
+            parentWindow: Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
             corner: Corner.TopRight,
             offsetX: 50,
             offsetY: 20);
@@ -57,7 +57,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                 notificationLifetime: TimeSpan.FromSeconds(3),
                 maximumNotificationCount: MaximumNotificationCount.FromCount(2));
 
-            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
+            cfg.Dispatcher = Application.Current.Dispatcher;
 
             cfg.DisplayOptions.Width = 200;
             cfg.DisplayOptions.TopMost = true;
@@ -146,13 +146,14 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                             bool optionRes = false;
                             foreach (var option in options)
                             {
-                                if (Question.Options.Any(x => x.Id == 0))
+                                if (option.IsChange is false)
                                 {
                                     var optionDto = new CreateOptionDto
                                     {
                                         Text = option.Text,
                                         IsCorrect = option.IsCorrect,
-                                        QuestionId = Question.Id
+                                        QuestionId = Question.Id,
+                                        IsChange = option.IsChange,
                                     };
 
                                     var optionResult = await _optionService.AddAsync(optionDto);
@@ -168,7 +169,8 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                                     {
                                         Text = option.Text,
                                         IsCorrect = option.IsCorrect,
-                                        QuestionId = Question.Id
+                                        QuestionId = Question.Id,
+                                        IsChange = option.IsChange
                                     };
 
                                     //optionRes = await _optionService.UpdateAsync(option.Id, optionDto);

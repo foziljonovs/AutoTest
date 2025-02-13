@@ -15,4 +15,6 @@ public class OptionDto
     public long QuestionId { get; set; }
     [JsonPropertyName("question")]
     public Et.Question Question { get; set; }
+    [JsonPropertyName("is_change")]
+    public bool IsChange { get; set; }
 }

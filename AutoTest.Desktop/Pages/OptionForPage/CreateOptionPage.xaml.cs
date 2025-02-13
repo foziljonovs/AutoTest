@@ -80,6 +80,7 @@ namespace AutoTest.Desktop.Pages.OptionForPage
             if(!string.IsNullOrEmpty(txtName.Text))
             {
                 option.Text = txtName.Text;
+                option.IsChange = false;
 
                 if(rbIsCorrect.IsChecked == true)
                     option.IsCorrect = true;
