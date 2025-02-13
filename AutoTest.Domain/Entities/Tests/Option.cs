@@ -11,5 +11,7 @@ public class Option : BaseEntity
     public bool IsCorrect { get; set; }
     [Column("question_id")]
     public required long QuestionId { get; set; }
+    [Column("is_change")]
+    public bool IsChange { get; set; }
     public Question Question { get; set; }
 }

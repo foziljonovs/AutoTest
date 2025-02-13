@@ -25,6 +25,7 @@ public class OptionService(
 
             var option = _mapper.Map<Ct.Option>(dto);
             option.CreatedDate = DateTime.UtcNow.AddHours(5);
+            option.IsChange = true;
 
             var res = await _unitOfWork.Option.AddAsync(option);
             return res;
@@ -98,6 +99,7 @@ public class OptionService(
 
             _mapper.Map(dto, option);
             option.UpdatedDate = DateTime.UtcNow.AddHours(5);
+            option.IsChange = true;
 
             var result = await _unitOfWork.Option.Update(option);
             return result;

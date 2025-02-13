@@ -11,4 +11,6 @@ public class UpdateOptionDto
     public bool IsCorrect { get; set; }
     [JsonPropertyName("question_id")]
     public long QuestionId { get; set; }
+    [JsonPropertyName("is_change")]
+    public bool IsChange { get; set; }
 }
