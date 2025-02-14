@@ -47,8 +47,13 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
 
         Notifier notifierThis = new Notifier(cfg =>
         {
+            var parentWindow = System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+
+            if (parentWindow is null)
+                parentWindow = Application.Current.MainWindow;
+
             cfg.PositionProvider = new WindowPositionProvider(
-            parentWindow: Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
+            parentWindow: parentWindow,
             corner: Corner.TopRight,
             offsetX: 50,
             offsetY: 20);
@@ -57,12 +62,11 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                 notificationLifetime: TimeSpan.FromSeconds(3),
                 maximumNotificationCount: MaximumNotificationCount.FromCount(2));
 
-            cfg.Dispatcher = Application.Current.Dispatcher;
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
 
             cfg.DisplayOptions.Width = 200;
             cfg.DisplayOptions.TopMost = true;
         });
-
         public void GetQuestion(QuestionDto dto)
         {
             if(dto is not null)
