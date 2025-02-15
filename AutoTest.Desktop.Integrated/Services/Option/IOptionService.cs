@@ -5,4 +5,5 @@ namespace AutoTest.Desktop.Integrated.Services.Option;
 public interface IOptionService
 {
     Task<long> AddAsync(CreateOptionDto dto);
+    Task<bool> UpdateAsync(long id, UpdateOptionDto dto);
 }

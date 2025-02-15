@@ -6,4 +6,5 @@ public interface IOptionServer
 {
     Task<List<OptionDto>> GetAllAsync();
     Task<long> AddAsync(CreateOptionDto dto);
+    Task<bool> UpdateAsync(long id, UpdateOptionDto dto);
 }
