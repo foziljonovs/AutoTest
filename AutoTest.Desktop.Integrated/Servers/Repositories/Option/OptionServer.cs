@@ -2,7 +2,6 @@
 using AutoTest.Desktop.Integrated.Api.Auth;
 using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Option;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -46,5 +45,31 @@ public class OptionServer : IOptionServer
     public Task<List<OptionDto>> GetAllAsync()
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<bool> UpdateAsync(long id, UpdateOptionDto dto)
+    {
+        try
+        {
+            HttpClient client = new HttpClient();
+            var token = IdentitySingelton.GetInstance().Token;
+
+            var url = $"{AuthApi.BASE_URL}/api/options/{id}";
+            var request = new HttpRequestMessage(HttpMethod.Put, url);
+            request.Headers.Add("Authorization", $"Bearer {token}");
+
+            var json = new StringContent(JsonConvert.SerializeObject(dto), Encoding.UTF8, "application/json");
+            request.Content = json;
+
+            var response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+                return true;
+            else
+                return false;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
     }
 }

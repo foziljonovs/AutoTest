@@ -31,6 +31,26 @@ public class OptionService : IOptionService
         }
     }
 
+    public async Task<bool> UpdateAsync(long id, UpdateOptionDto dto)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+            {
+                var res = await _server.UpdateAsync(id, dto);
+                return res;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
     private bool IsInternetAvailable()
     {
         try

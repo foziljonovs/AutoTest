@@ -177,7 +177,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                                         IsChange = option.IsChange
                                     };
 
-                                    //optionRes = await _optionService.UpdateAsync(option.Id, optionDto);
+                                    optionRes = await _optionService.UpdateAsync(option.Id, optionDto);
                                 }
                             }
 
