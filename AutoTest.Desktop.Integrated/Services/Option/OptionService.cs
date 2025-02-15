@@ -31,6 +31,39 @@ public class OptionService : IOptionService
         }
     }
 
+    public async Task<bool> DeleteAsync(long id)
+    {
+        try
+        {
+            var res = await _server.DeleteAsync(id);
+            return res;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
+    public async Task<List<OptionDto>> GetAllAsync()
+    {
+        if(IsInternetAvailable())
+        {
+            try
+            {
+                var res = await _server.GetAllAsync();
+                return res;
+            }
+            catch(Exception ex)
+            {
+                return new List<OptionDto>();
+            }
+        }
+        else
+        {
+            return new List<OptionDto>();
+        }
+    }
+
     public async Task<bool> UpdateAsync(long id, UpdateOptionDto dto)
     {
         try
