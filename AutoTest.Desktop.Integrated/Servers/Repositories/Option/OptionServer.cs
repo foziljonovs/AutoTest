@@ -42,9 +42,50 @@ public class OptionServer : IOptionServer
         }
     }
 
-    public Task<List<OptionDto>> GetAllAsync()
+    public async Task<bool> DeleteAsync(long id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            HttpClient client = new HttpClient();
+            var token = IdentitySingelton.GetInstance().Token;
+
+            client.BaseAddress = new Uri($"{AuthApi.BASE_URL}/api/options/{id}");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            var response = await client.DeleteAsync(client.BaseAddress);
+
+            if (response.IsSuccessStatusCode)
+                return true;
+            else
+                return false;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
+    public async Task<List<OptionDto>> GetAllAsync()
+    {
+        try
+        {
+            HttpClient client = new HttpClient();
+            var token = IdentitySingelton.GetInstance().Token;
+
+            client.BaseAddress = new Uri($"{AuthApi.BASE_URL}/api/options");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            HttpResponseMessage message = await client.GetAsync(client.BaseAddress);
+
+            var response = await message.Content.ReadAsStringAsync();
+
+            List<OptionDto> options = JsonConvert.DeserializeObject<List<OptionDto>>(response)!;
+            return options;
+        }
+        catch(Exception ex)
+        {
+            return new List<OptionDto>();
+        }
     }
 
     public async Task<bool> UpdateAsync(long id, UpdateOptionDto dto)

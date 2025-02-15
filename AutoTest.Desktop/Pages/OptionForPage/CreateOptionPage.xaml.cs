@@ -1,5 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Option;
 using AutoTest.Desktop.Components.OptionForComponents;
+using AutoTest.Desktop.Integrated.Services.Option;
 using System.Windows;
 using System.Windows.Controls;
 using ToastNotifications;
@@ -14,10 +15,13 @@ namespace AutoTest.Desktop.Pages.OptionForPage
     /// </summary>
     public partial class CreateOptionPage : Page
     {
+        private readonly IOptionService _service;
         private readonly List<OptionDto> options = new List<OptionDto>();
+        private long questionId { get; set; }
         public CreateOptionPage()
         {
             InitializeComponent();
+            this._service = new OptionService();
         }
 
         Notifier notifierThis = new Notifier(cfg =>
@@ -46,6 +50,24 @@ namespace AutoTest.Desktop.Pages.OptionForPage
                 return new List<OptionDto>();
         }
 
+        private async Task GetAllByQuestion()
+        {
+            if(questionId > 0)
+            {
+                var questionOptions = await _service.GetAllAsync(); //GetByQuestionIdAsync metodini yozib ishlatish va qayta yuklash kerak
+
+                if (questionOptions.Any())
+                {
+                    options.Clear();
+                    options.AddRange(questionOptions);
+                }
+                else
+                {
+                    notifierThis.ShowWarning("Iltimos sahifani qayta oching!");
+                }
+            }
+        }
+
         private void Clear()
         {
             txtName.Clear();
@@ -56,6 +78,7 @@ namespace AutoTest.Desktop.Pages.OptionForPage
         {
             if (questionOptions.Any())
             {
+                questionId = questionOptions.Select(x => x.Id).FirstOrDefault();
                 EmptyData.Visibility = Visibility.Collapsed;
                 foreach (var option in questionOptions)
                 {
@@ -63,6 +86,7 @@ namespace AutoTest.Desktop.Pages.OptionForPage
 
                     CreateOptionComponent component = new CreateOptionComponent();
                     component.SetValues(option);
+                    component.IsDeleted = GetAllByQuestion;
                     stOptions.Children.Add(component);
                 }
             }
