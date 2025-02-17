@@ -68,6 +68,16 @@
                         Background="MediumSeaGreen"
                         Style="{DynamicResource mainButton}"/>
 
+                    <Button 
+                        Grid.Row="3"
+                        x:Name="ProfileBtn"
+                        Content="Profilingiz"
+                        Margin="3 0"                                                                                              
+                        FontSize="14"
+                        Click="ProfileBtn_Click"
+                        Background="MediumSeaGreen"
+                        Style="{DynamicResource mainButton}"/>
+
                 </Grid>
 
                 <Grid Grid.Row="1">
