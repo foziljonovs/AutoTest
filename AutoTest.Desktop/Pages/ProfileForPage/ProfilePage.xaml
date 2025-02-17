@@ -24,7 +24,147 @@
                    Style="{DynamicResource Label}"/>
         </Grid>
         <Grid Grid.Row="1">
-            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="65"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0"
+                        CornerRadius="5"
+                        HorizontalAlignment="Center"
+                        Background="Tomato">
+                    <StackPanel>
+                        <Label x:Name="YourTestCount"
+                               Content="17"
+                               FontSize="25"
+                               Foreground="White"
+                               Style="{DynamicResource Label}"
+                               HorizontalAlignment="Center"/>
+
+                        <Label Content="Testlaringiz soni"
+                               FontSize="14"
+                               Margin="5 0 5 10"
+                               Foreground="White"/>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1"
+                        CornerRadius="5"
+                        HorizontalAlignment="Center"
+                        Background="#2196F3">
+                    <StackPanel>
+                        <Label x:Name="YourQuestionCount"
+                               Content="132"
+                               FontSize="25"
+                               Foreground="Wheat"
+                               Style="{DynamicResource Label}"
+                               HorizontalAlignment="Center"/>
+
+                        <Label Content="Savollaringiz soni"
+                               FontSize="13"
+                               Margin="5 0 5 10"
+                               Foreground="White"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Margin="5">
+                <Border 
+                    CornerRadius="5"
+                    BorderThickness="1"
+                    BorderBrush="MediumSeaGreen">
+                    <StackPanel>
+                        <Grid Margin="0 5 0 3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.7*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                       Content="FISH: "
+                                       FontSize="13"
+                                       FontWeight="SemiBold"/>
+
+                                <Label Grid.Column="1"
+                                       HorizontalAlignment="Left"
+                                       Content="Abdulvosid Foziljonov"
+                                       FontSize="13"/>
+                            </Grid>
+                            <Rectangle Height="1"
+                                        Fill="#588157"
+                                        VerticalAlignment="Bottom"
+                                        Margin="5 0"/>
+                        </Grid>
+                        <Grid Margin="0 5 0 3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.7*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                       Content="Telefon: "
+                                       FontSize="13"
+                                       FontWeight="SemiBold"/>
+
+                                <Label Grid.Column="1"
+                                       HorizontalAlignment="Left"
+                                       Content="+998945666964"
+                                       FontSize="13"/>          
+                            </Grid>
+                            <Rectangle Height="1"
+                                        Fill="#588157"
+                                        VerticalAlignment="Bottom"
+                                        Margin="5 0"/>
+                        </Grid>
+                        <Grid Margin="0 5 0 3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.7*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                       Content="Parol: "
+                                       FontSize="13"
+                                       FontWeight="SemiBold"/>
+
+                                <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Grid.Column="0"
+                                            Margin="0 5 10 5"
+                                            CornerRadius="5"
+                                            Background="MediumSeaGreen">
+                                        <Label Content="Tekshirish"
+                                               FontSize="13"
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"/>
+                                    </Border>
+                                    <Border Grid.Column="1"
+                                            Margin="0 5 10 5"
+                                            CornerRadius="5"
+                                            Background="#2196F3">
+                                        <Label Content="O'zgartirish"
+                                               FontSize="13"
+                                               HorizontalAlignment="Center"
+                                               Foreground="White"/>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                            <Rectangle Height="1"
+                                        Fill="#588157"
+                                        VerticalAlignment="Bottom"
+                                        Margin="5 0"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

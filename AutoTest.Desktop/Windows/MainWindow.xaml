@@ -61,7 +61,7 @@
                     <Button 
                         Grid.Row="2"
                         x:Name="TestBtn"
-                        Content="Testlaringiz"
+                        Content="Testlar"
                         Margin="3 0"                                                                                              
                         FontSize="14"           
                         Click="TestBtn_Click"
@@ -71,7 +71,7 @@
                     <Button 
                         Grid.Row="3"
                         x:Name="ProfileBtn"
-                        Content="Profilingiz"
+                        Content="Profil"
                         Margin="3 0"                                                                                              
                         FontSize="14"
                         Click="ProfileBtn_Click"
