@@ -1,4 +1,5 @@
 ﻿using AutoTest.Desktop.Pages.MainForPage;
+using AutoTest.Desktop.Pages.ProfileForPage;
 using AutoTest.Desktop.Pages.TestForPage;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,12 @@ namespace AutoTest.Desktop.Windows
         private void TestBtn_Click(object sender, RoutedEventArgs e)
         {
             TestPage page = new TestPage();
+            PageNavigator.Content = page;
+        }
+
+        private void ProfileBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ProfilePage page = new ProfilePage();
             PageNavigator.Content = page;
         }
     }
