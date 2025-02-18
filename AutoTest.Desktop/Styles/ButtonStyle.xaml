@@ -68,6 +68,214 @@
         </Setter>
     </Style>
 
+    <Style x:Key="HomeButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="B"
+                        CornerRadius="5"
+                        BorderThickness="1"
+                        BorderBrush="MediumSeaGreen"
+                        Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon
+                                x:Name="Icon"
+                                Kind="Home"
+                                Foreground="MediumSeaGreen"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Width="25"
+                                Height="25"/>
+                            <Label Grid.Column="1"
+                                   x:Name="Lbl"
+                                   FontFamily="Jetbrains Mono"
+                                   Content="Asosiy"
+                                   FontWeight="SemiBold"
+                                   Foreground="MediumSeaGreen"
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#E0F2F1"/>
+                            <Setter TargetName="B" Property="BorderBrush" Value="#588157"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="MediumSeaGreen"/>
+                            <Setter TargetName="Icon" Property="Foreground" Value="White"/>
+                            <Setter TargetName="Lbl" Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TestButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                        x:Name="B"
+                        CornerRadius="5"
+                        BorderThickness="1"
+                        BorderBrush="MediumSeaGreen"
+                        Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon
+                                x:Name="Icon"
+                                Kind="ClipboardText"
+                                Foreground="MediumSeaGreen"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Width="25"
+                                Height="25"/>
+                            <Label Grid.Column="1"
+                                   x:Name="Lbl"
+                                   FontFamily="Jetbrains Mono"
+                                   Content="Testlar"
+                                   FontWeight="SemiBold"
+                                   Foreground="MediumSeaGreen"
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#E0F2F1"/>
+                            <Setter TargetName="B" Property="BorderBrush" Value="#588157"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="MediumSeaGreen"/>
+                            <Setter TargetName="Icon" Property="Foreground" Value="White"/>
+                            <Setter TargetName="Lbl" Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="ProfileButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                    x:Name="B"
+                    CornerRadius="5"
+                    BorderThickness="1"
+                    BorderBrush="MediumSeaGreen"
+                    Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon
+                                x:Name="Icon"
+                                Kind="Man"
+                                Foreground="MediumSeaGreen"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Width="25"
+                                Height="25"/>
+                            <Label Grid.Column="1"
+                                   x:Name="Lbl"
+                                   FontFamily="Jetbrains Mono"
+                                   Content="Profil"
+                                   FontWeight="SemiBold"
+                                   Foreground="MediumSeaGreen"
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#E0F2F1"/>
+                            <Setter TargetName="B" Property="BorderBrush" Value="#588157"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="MediumSeaGreen"/>
+                            <Setter TargetName="Icon" Property="Foreground" Value="White"/>
+                            <Setter TargetName="Lbl" Property="Foreground" Value="White"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MainCLoseButton" TargetType="{x:Type Button}">
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border
+                    x:Name="B"
+                    CornerRadius="5"
+                    BorderThickness="1"
+                    BorderBrush="MediumSeaGreen"
+                    Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <materialDesign:PackIcon
+                                x:Name="Icon"
+                                Kind="ExitToApp"
+                                Foreground="MediumSeaGreen"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Width="25"
+                                Height="25"/>
+                            <Label Grid.Column="1"
+                                   x:Name="Lbl"
+                                   FontFamily="Jetbrains Mono"
+                                   Content="Chiqish"
+                                   FontWeight="SemiBold"
+                                   Foreground="MediumSeaGreen"
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Left"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="B" Property="Background" Value="#E0F2F1"/>
+                            <Setter TargetName="B" Property="BorderBrush" Value="#588157"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
     <Style x:Key="mainEditButton" TargetType="{x:Type Button}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
