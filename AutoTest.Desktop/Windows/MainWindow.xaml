@@ -50,39 +50,48 @@
                         VerticalAlignment="Center"/>
 
                     <Button x:Name="HomeBtn"
-                        Click="Button_Click"
-                        Grid.Row="1"
-                        Margin="3 0"
-                        Background="White"
-                        Style="{DynamicResource HomeButton}"/>
+                            Click="Button_Click"
+                            Width="180"
+                            MouseEnter="ButtonMouseEnter"
+                            MouseLeave="ButtonMouseLeave"
+                            Grid.Row="1"
+                            Background="White"
+                            Style="{DynamicResource HomeButton}"/>
 
                     <Button 
-                        Grid.Row="2"
-                        x:Name="TestBtn"
-                        Margin="3 0"        
-                        Background="White"
-                        Click="TestBtn_Click"
-                        Style="{DynamicResource TestButton}"/>
+                            Grid.Row="2"
+                            x:Name="TestBtn"        
+                            Width="180"
+                            MouseEnter="ButtonMouseEnter"
+                            MouseLeave="ButtonMouseLeave"
+                            Background="White"
+                            Click="TestBtn_Click"
+                            Style="{DynamicResource TestButton}"/>
 
                     <Button 
-                        Grid.Row="3"
-                        x:Name="ProfileBtn"
-                        Margin="3 0" 
-                        Click="ProfileBtn_Click"
-                        Background="White"
-                        Style="{DynamicResource ProfileButton}"/>
+                            Grid.Row="3"
+                            x:Name="ProfileBtn"
+                            Width="180"
+                            MouseEnter="ButtonMouseEnter"
+                            MouseLeave="ButtonMouseLeave"
+                            Click="ProfileBtn_Click"
+                            Background="White"
+                            Style="{DynamicResource ProfileButton}"/>
 
                 </Grid>
 
                 <Grid Grid.Row="1">
                     <Button 
-                        x:Name="closeButton"
-                        Content="Chiqish"
-                        Background="White"
-                        Margin="3 0 3 5"
-                        VerticalAlignment="Bottom"
-                        Style="{DynamicResource MainCLoseButton}" 
-                        Click="closeButton_Click">
+                            x:Name="closeButton"
+                            Content="Chiqish"
+                            Background="White"
+                            Width="180"
+                            MouseEnter="ButtonMouseEnter"
+                            MouseLeave="ButtonMouseLeave"
+                            Margin="0 5"
+                            VerticalAlignment="Bottom"
+                            Style="{DynamicResource MainCLoseButton}" 
+                            Click="closeButton_Click">
                         
                     </Button>
                 </Grid>
