@@ -11,5 +11,6 @@ public interface ITestService
     Task<bool> DeleteAsync(long id, CancellationToken cancellation = default);
     Task<IEnumerable<TestDto>> GetAllCompletedAsync(CancellationToken cancellation = default); 
     Task<IEnumerable<TestDto>> GetAllByUserIdAsync(long userId, CancellationToken cancellation = default);
+    Task<IEnumerable<TestDto>> GetAllByTopicIdAsync(long topicId, CancellationToken cancellation = default);    
     Task<long> AddTestAsync(CreateTestDto dto, CancellationToken cancellation = default);
 }
