@@ -1,8 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Test;
 using AutoTest.Desktop.Integrated.Servers.Repositories.Test;
-using System.Net.NetworkInformation;
-using System.Runtime.CompilerServices;
 
 namespace AutoTest.Desktop.Integrated.Services.Test;
 
@@ -69,6 +67,24 @@ public class TestService : ITestService
                 return new List<TestDto>();
         }
         catch(Exception ex)
+        {
+            return new List<TestDto>();
+        }
+    }
+
+    public async Task<List<TestDto>> GetAllByTopicIdAsync(long topicId)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+            {
+                var tests = await _server.GetAllByTopicIdAsync(topicId);
+                return tests;
+            }
+            else
+                return new List<TestDto>();
+        }
+        catch (Exception ex)
         {
             return new List<TestDto>();
         }

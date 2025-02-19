@@ -11,4 +11,5 @@ public interface ITestServer
     Task<bool> DeleteAsync(long id);
     Task<List<TestDto>> CompletedTaskAsync();
     Task<List<TestDto>> GetAllByUserIdAsync(long userId);
+    Task<List<TestDto>> GetAllByTopicIdAsync(long topicId);
 }
