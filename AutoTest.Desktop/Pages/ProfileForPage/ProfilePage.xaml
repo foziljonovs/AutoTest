@@ -114,6 +114,7 @@
                                        FontWeight="SemiBold"/>
 
                                 <Label Grid.Column="1"
+                                       x:Name="UserPhoneNumberLbl"
                                        HorizontalAlignment="Left"
                                        Content="+998945666964"
                                        FontSize="13"/>          
