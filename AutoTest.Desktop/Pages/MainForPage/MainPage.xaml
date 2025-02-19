@@ -17,7 +17,7 @@
 
         <Grid Grid.Row="0">
             <Label Name="MainLbl"
-                   Content="Xush kelibsiz ... "
+                   Content="Xush kelibsiz"
                    FontSize="20"
                    Foreground="Black"
                    HorizontalAlignment="Left"
