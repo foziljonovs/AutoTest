@@ -69,7 +69,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
         });
         public void GetQuestion(QuestionDto dto)
         {
-            if(dto is not null)
+            if (dto is not null)
             {
                 Question = dto;
                 PageNavigator();
@@ -116,7 +116,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
             try
             {
                 UpdateQuestionDto dto = new UpdateQuestionDto();
-                if(!string.IsNullOrEmpty(txtProblem.Text))
+                if (!string.IsNullOrEmpty(txtProblem.Text))
                 {
                     dto.Problem = txtProblem.Text;
                     dto.TestId = Question.TestId;
@@ -134,10 +134,10 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                     }
 
                     var currentPage = OptionPageNavigator.Content;
-                    if(currentPage is CreateOptionPage page)
+                    if (currentPage is CreateOptionPage page)
                     {
                         var options = page.GetOptions();
-                        if(!options.Any())
+                        if (!options.Any())
                         {
                             notifierThis.ShowWarning("Savolga javoblar yozilmagan!");
                             return;
@@ -198,7 +198,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                 else
                     notifierThis.ShowWarning("Savol kiritilmagan!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 notifierThis.ShowError("Xatolik yuz berdi!");
             }

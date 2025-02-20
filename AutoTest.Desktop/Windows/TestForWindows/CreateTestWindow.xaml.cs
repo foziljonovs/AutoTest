@@ -11,7 +11,6 @@ using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace AutoTest.Desktop.Windows.TestForWindows
 {
@@ -75,7 +74,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
             txtTopicFilter.Clear();
             LevelComboBox.SelectedItem = -1;
 
-            foreach(var topicId in selectedTopics.ToList())
+            foreach (var topicId in selectedTopics.ToList())
             {
                 var component = st_AllTopic.Children
                     .OfType<MainTopicComponents>()
@@ -171,7 +170,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
                 dto.Status = Domain.Enums.TestStatus.InProcess;
                 dto.UserId = IdentitySingelton.GetInstance().Id;
 
-                if(selectedTopics.Count > 0)
+                if (selectedTopics.Count > 0)
                 {
                     dto.Topics = selectedTopics;
                 }
@@ -185,7 +184,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
 
                 var result = await _testService.AddAsync(dto);
 
-                if(result)
+                if (result)
                 {
                     notifier.ShowSuccess("Test muvaffaqiyatli yaratildi.");
                     this.Close();

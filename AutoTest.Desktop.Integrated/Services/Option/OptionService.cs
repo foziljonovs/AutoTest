@@ -15,7 +15,7 @@ public class OptionService : IOptionService
     {
         try
         {
-            if(IsInternetAvailable())
+            if (IsInternetAvailable())
             {
                 var res = await _server.AddAsync(dto);
                 return res;
@@ -38,7 +38,7 @@ public class OptionService : IOptionService
             var res = await _server.DeleteAsync(id);
             return res;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }
@@ -46,14 +46,14 @@ public class OptionService : IOptionService
 
     public async Task<List<OptionDto>> GetAllAsync()
     {
-        if(IsInternetAvailable())
+        if (IsInternetAvailable())
         {
             try
             {
                 var res = await _server.GetAllAsync();
                 return res;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new List<OptionDto>();
             }
@@ -78,7 +78,7 @@ public class OptionService : IOptionService
                 return false;
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }

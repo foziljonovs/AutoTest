@@ -23,7 +23,7 @@ public class UserService(
         try
         {
             var user = await _unitOfWork.User.GetById(id);
-            if (user is null) 
+            if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
 
             if (!PasswordHelper.Verify(dto.CurrentPassword, user.Password, user.Salt))
@@ -68,7 +68,7 @@ public class UserService(
 
             return _mapper.Map<IEnumerable<UserDto>>(users);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }
@@ -80,12 +80,12 @@ public class UserService(
         {
             var user = await _unitOfWork.User.GetById(id);
 
-            if(user is null)
+            if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
 
             return _mapper.Map<UserDto>(user);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new StatusCodeException(HttpStatusCode.InternalServerError, $"An errror occured while getting a user by id. {ex.Message}");
         }
@@ -97,7 +97,7 @@ public class UserService(
         {
             var user = await _unitOfWork.User.GetAll().FirstOrDefaultAsync(x => x.PhoneNumber == dto.PhoneNumber);
 
-            if(user is null)
+            if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Phone number or password wrong!");
 
             var hasherResult = PasswordHelper.Verify(dto.Password, user.Password, user.Salt);
@@ -106,7 +106,7 @@ public class UserService(
 
             return _service.GenerateToken(user);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new StatusCodeException(HttpStatusCode.InternalServerError, $"An error occured while logging in. {ex.Message}");
         }
@@ -117,7 +117,7 @@ public class UserService(
         try
         {
             var user = await _unitOfWork.User.GetAll().FirstOrDefaultAsync(x => x.PhoneNumber == dto.PhoneNumber);
-            if(user is not null)
+            if (user is not null)
                 throw new StatusCodeException(HttpStatusCode.BadRequest, "User already exists!");
 
             var hasher = PasswordHelper.Hash(dto.Password);
@@ -131,7 +131,7 @@ public class UserService(
 
             return result;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new StatusCodeException(HttpStatusCode.InternalServerError, $"An error occured while registering a user. {ex.Message}");
         }
@@ -142,7 +142,7 @@ public class UserService(
         try
         {
             var user = await _unitOfWork.User.GetById(id);
-            if(user is null)
+            if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
 
             var mapped = _mapper.Map(dto, user);
@@ -152,7 +152,7 @@ public class UserService(
             var result = await _unitOfWork.User.Update(mapped);
             return result;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new StatusCodeException(HttpStatusCode.InternalServerError, $"An error occured while updating a user. {ex.Message}");
         }
@@ -163,7 +163,7 @@ public class UserService(
         try
         {
             var user = await _unitOfWork.User.GetById(id);
-            if(user is null)
+            if (user is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
 
             if (!PasswordHelper.Verify(password, user.Password, user.Salt))
@@ -171,7 +171,7 @@ public class UserService(
 
             return true;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new StatusCodeException(HttpStatusCode.InternalServerError, $"An error occured while verifying a password. {ex.Message}");
         }

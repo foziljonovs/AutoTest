@@ -15,7 +15,7 @@ public class UserService : IUserService
     {
         try
         {
-            if(IsInternetAvailable())
+            if (IsInternetAvailable())
             {
                 var response = await _server.GetAllAsync();
                 return response;
@@ -25,7 +25,7 @@ public class UserService : IUserService
                 return new List<UserDto>();
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<UserDto>();
         }

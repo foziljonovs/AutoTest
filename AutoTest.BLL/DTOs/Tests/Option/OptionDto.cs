@@ -1,5 +1,5 @@
-﻿using Et = AutoTest.Domain.Entities.Tests;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using Et = AutoTest.Domain.Entities.Tests;
 
 namespace AutoTest.BLL.DTOs.Tests.Option;
 

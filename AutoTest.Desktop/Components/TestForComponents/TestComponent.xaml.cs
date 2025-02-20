@@ -16,8 +16,8 @@ namespace AutoTest.Desktop.Components.TestForComponents
     public partial class TestComponent : UserControl
     {
         private readonly ITestService _testService;
-        public Func<Task> TestDeleted {  get; set; }
-        private TestDto Test { get ; set; }
+        public Func<Task> TestDeleted { get; set; }
+        private TestDto Test { get; set; }
         public TestComponent()
         {
             InitializeComponent();

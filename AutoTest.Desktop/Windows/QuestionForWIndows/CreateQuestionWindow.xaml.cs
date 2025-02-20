@@ -72,7 +72,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
             => this.Close();
 
-        public void SelectTestId(long  testId)
+        public void SelectTestId(long testId)
         {
             this.TestId = testId;
         }
@@ -116,7 +116,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
 
                     if (result > 0)
                     {
-                        foreach(var option in options)
+                        foreach (var option in options)
                         {
                             var optionDto = new CreateOptionDto
                             {
@@ -126,7 +126,7 @@ namespace AutoTest.Desktop.Windows.QuestionForWIndows
                             };
 
                             var optionResult = await _optionService.AddAsync(optionDto);
-                            if(optionResult < 0)
+                            if (optionResult < 0)
                             {
                                 notifierThis.ShowError("Savol yaratishda xatolik yuz berdi!");
                                 return;

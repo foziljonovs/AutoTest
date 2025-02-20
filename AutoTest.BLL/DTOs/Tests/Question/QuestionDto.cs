@@ -1,8 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Option;
 using AutoTest.BLL.DTOs.Tests.Test;
-using AutoTest.Domain.Entities.Tests;
 using AutoTest.Domain.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace AutoTest.BLL.DTOs.Tests.Question;

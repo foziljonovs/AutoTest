@@ -15,7 +15,7 @@ public class UnitOfWork(AppDbContext dbContext) : IUnitOfWork, IDisposable
     public ITest Test { get; set; } = new TestRepository(dbContext);
     public ITopic Topic { get; set; } = new TopicRepository(dbContext);
     public IQuestion Question { get; set; } = new QuestionRepository(dbContext);
-    public IOption Option { get; set; }  = new OptionRepository(dbContext);
+    public IOption Option { get; set; } = new OptionRepository(dbContext);
     public ITestFile TestFile { get; set; } = new TestFileRepository(dbContext);
 
     public void Dispose()

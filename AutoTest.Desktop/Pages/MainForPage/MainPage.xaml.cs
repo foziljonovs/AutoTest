@@ -1,23 +1,9 @@
 ﻿using AutoTest.Desktop.Components.MainForComponents;
-using AutoTest.Desktop.Integrated.Servers.Interfaces.Test;
-using AutoTest.Desktop.Integrated.Servers.Repositories.Test;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.Topic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
@@ -32,7 +18,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
     {
         private readonly ITestService _testService;
         private readonly ITopicService _topicService;
-        private long selectedTopicId {  get; set; }
+        private long selectedTopicId { get; set; }
         public MainPage()
         {
             InitializeComponent();
@@ -69,18 +55,18 @@ namespace AutoTest.Desktop.Pages.MainForPage
             st_tests.Children.Clear();
             TestLoader.Visibility = Visibility.Visible;
 
-            if(IsInternetAvailable())
+            if (IsInternetAvailable())
             {
                 var tests = await Task.Run(async () => await _testService.GetAllAsync());
-            
+
                 int count = 1;
 
-                if(tests.Count > 0)
+                if (tests.Count > 0)
                 {
                     TestLoader.Visibility = Visibility.Collapsed;
                     TestEmptyData.Visibility = Visibility.Collapsed;
 
-                    foreach(var test in tests)
+                    foreach (var test in tests)
                     {
                         MainTestComponent component = new MainTestComponent();
                         component.Tag = test;
@@ -107,18 +93,18 @@ namespace AutoTest.Desktop.Pages.MainForPage
         {
             st_topics.Children.Clear();
             TopicLoader.Visibility = Visibility.Visible;
-            if(IsInternetAvailable())
+            if (IsInternetAvailable())
             {
                 var topics = await Task.Run(async () => await _topicService.GetAllAsync());
 
                 int allTopicCount = 0;
 
-                if(topics.Count > 0)
+                if (topics.Count > 0)
                 {
                     TopicLoader.Visibility = Visibility.Collapsed;
                     TopicEmptyData.Visibility = Visibility.Collapsed;
 
-                    foreach(var topic in topics)
+                    foreach (var topic in topics)
                     {
                         MainTopicComponents component = new MainTopicComponents();
                         component.Tag = topic;
@@ -150,7 +136,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
             component.st_border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B6B6B6"));
             selectedComponent = component;
 
-            if(selectedTopicId != component.GetId())
+            if (selectedTopicId != component.GetId())
                 selectedTopicId = component.GetId();
         }
 
@@ -165,7 +151,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
                 //    return (reply.Status == IPStatus.Success);
                 //}
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }

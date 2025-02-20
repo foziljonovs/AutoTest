@@ -90,7 +90,7 @@ public class OpenAIService : IOpenAIService
 
             return testId;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception(ex.Message);
         }

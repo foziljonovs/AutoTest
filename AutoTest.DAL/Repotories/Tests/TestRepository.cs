@@ -2,7 +2,6 @@
 using AutoTest.DAL.Interfaces.Tests;
 using AutoTest.Domain.Entities.Tests;
 using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Query.Internal;
 
 namespace AutoTest.DAL.Repotories.Tests;
 

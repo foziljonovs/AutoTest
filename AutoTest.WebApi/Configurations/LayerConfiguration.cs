@@ -58,7 +58,7 @@ public static class LayerConfiguration
         var model = configuration["Ollama:Model"];
         var host = configuration["Ollama:localhost"];
 
-        IChatClient client = new OllamaChatClient(host, modelId:model)
+        IChatClient client = new OllamaChatClient(host, modelId: model)
             .AsBuilder()
             .UseFunctionInvocation()
             .Build();

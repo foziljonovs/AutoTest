@@ -3,20 +3,9 @@ using AutoTest.Desktop.Components.TestForComponents;
 using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Windows.TestForWindows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoTest.Desktop.Pages.TestForPage
 {
@@ -52,12 +41,12 @@ namespace AutoTest.Desktop.Pages.TestForPage
         private void ShowTests(List<TestDto> tests)
         {
             int count = 1;
-            if(tests.Any())
+            if (tests.Any())
             {
                 TestLoader.Visibility = Visibility.Collapsed;
                 TestEmptyData.Visibility = Visibility.Collapsed;
 
-                foreach(var test in tests)
+                foreach (var test in tests)
                 {
                     TestComponent component = new TestComponent();
                     component.Tag = test;

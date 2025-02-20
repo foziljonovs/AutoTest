@@ -79,12 +79,12 @@ namespace AutoTest.Desktop.Windows.TestForWindows
 
         private void ShowTopics(List<TopicDto> topics)
         {
-            if(topics.Any())
+            if (topics.Any())
             {
                 AllTopicLoader.Visibility = Visibility.Collapsed;
                 TopicEmptyData.Visibility = Visibility.Collapsed;
 
-                foreach(var topic in topics)
+                foreach (var topic in topics)
                 {
                     MainTopicComponents component = new MainTopicComponents();
                     component.Tag = topic;
@@ -129,11 +129,11 @@ namespace AutoTest.Desktop.Windows.TestForWindows
 
         private void ChosesTopics()
         {
-            if(selectedTopics.Any())
+            if (selectedTopics.Any())
             {
-                foreach(var child in st_AllTopic.Children)
+                foreach (var child in st_AllTopic.Children)
                 {
-                    if(child is MainTopicComponents component)
+                    if (child is MainTopicComponents component)
                     {
                         if (selectedTopics.Any(x => x.Id == component.GetId()))
                             component.SelectedState(true);
@@ -160,7 +160,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
             BtnLoader.Visibility = Visibility.Visible;
             UpdateTestDto dto = new UpdateTestDto();
 
-            if(!string.IsNullOrEmpty(txtTitle.Text) &&
+            if (!string.IsNullOrEmpty(txtTitle.Text) &&
                 !string.IsNullOrEmpty(txtDesctiption.Text))
             {
                 dto.Title = txtTitle.Text;
@@ -192,7 +192,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
 
                 var result = await _testService.UpdateAsync(test.Id, dto);
 
-                if(result)
+                if (result)
                 {
                     notifier.ShowSuccess($"Test muvaffaqiyatli yangilandi.");
                     this.Close();

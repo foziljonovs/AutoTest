@@ -1,4 +1,4 @@
-﻿   using AutoTest.BLL.DTOs.Tests.Test;
+﻿using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.Desktop.Integrated.Api.Auth;
 using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Test;
@@ -17,10 +17,10 @@ public class TestServer : ITestServer
             var userId = TokenHandler.ParseToken(token).Id;
             dto.UserId = userId;
 
-            using(var client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 client.Timeout = TimeSpan.FromSeconds(30);
-                using(var request = new HttpRequestMessage(HttpMethod.Post, AuthApi.BASE_URL + "/api/tests"))
+                using (var request = new HttpRequestMessage(HttpMethod.Post, AuthApi.BASE_URL + "/api/tests"))
                 {
                     request.Headers.Add("Authorization", $"Bearer {token}");
 
@@ -63,7 +63,7 @@ public class TestServer : ITestServer
 
             return tests;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<TestDto>();
         }
@@ -83,10 +83,10 @@ public class TestServer : ITestServer
 
             if (result.IsSuccessStatusCode)
                 return true;
-            else 
+            else
                 return false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }
@@ -109,30 +109,7 @@ public class TestServer : ITestServer
 
             return tests;
         }
-        catch(Exception ex)
-        {
-            return new List<TestDto>();
-        }
-    }
-
-    public async Task<List<TestDto>> GetAllByTopicIdAsync(long topicId)
-    {
-        try
-        {
-            HttpClient client = new HttpClient();
-            var token = IdentitySingelton.GetInstance().Token;
-
-            client.BaseAddress = new Uri($"{AuthApi.BASE_URL}/api/tests/{topicId}/topic");
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            HttpResponseMessage message = await client.GetAsync(client.BaseAddress);
-
-            string response = await message.Content.ReadAsStringAsync();
-
-            List<TestDto> tests = JsonConvert.DeserializeObject<List<TestDto>>(response)!;
-
-            return tests;
-        }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<TestDto>();
         }
@@ -155,7 +132,7 @@ public class TestServer : ITestServer
 
             return tests;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<TestDto>();
         }

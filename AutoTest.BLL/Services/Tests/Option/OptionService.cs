@@ -20,7 +20,7 @@ public class OptionService(
         try
         {
             var existsQuestion = await _unitOfWork.Question.GetById(dto.QuestionId);
-            if(existsQuestion is null)
+            if (existsQuestion is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Question not found");
 
             var option = _mapper.Map<Ct.Option>(dto);
@@ -30,7 +30,7 @@ public class OptionService(
             var res = await _unitOfWork.Option.AddAsync(option);
             return res;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while created the option. {ex}");
         }
@@ -47,7 +47,7 @@ public class OptionService(
             var result = await _unitOfWork.Option.Delete(option);
             return result;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while deleting the option. {ex}");
         }
@@ -58,12 +58,12 @@ public class OptionService(
         try
         {
             var options = await _unitOfWork.Option.GetAll().ToListAsync(cancellation);
-            if(!options.Any())
+            if (!options.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Options not found");
 
             return _mapper.Map<IEnumerable<OptionDto>>(options);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while getting the options. {ex}");
         }
@@ -79,7 +79,7 @@ public class OptionService(
 
             return _mapper.Map<OptionDto>(option);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while getting the option. {ex}");
         }
@@ -90,7 +90,7 @@ public class OptionService(
         try
         {
             var existsQuestion = await _unitOfWork.Question.GetById(dto.QuestionId);
-            if(existsQuestion is null)
+            if (existsQuestion is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Question not found");
 
             var option = await _unitOfWork.Option.GetById(id);
@@ -104,7 +104,7 @@ public class OptionService(
             var result = await _unitOfWork.Option.Update(option);
             return result;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while updating the option. {ex}");
         }

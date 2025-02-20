@@ -69,7 +69,7 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             var id = IdentitySingelton.GetInstance().Id;
 
             var user = await _userService.GetByIdAsync(id);
-            if(user is not null)
+            if (user is not null)
                 return user;
             else
                 return null;

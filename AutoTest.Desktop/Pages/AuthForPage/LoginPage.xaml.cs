@@ -4,7 +4,6 @@ using AutoTest.Desktop.Integrated.Servers.Repositories.Auth;
 using AutoTest.Desktop.Integrated.Services.Auth;
 using AutoTest.Desktop.Windows;
 using AutoTest.Desktop.Windows.Auth;
-using System.Net.NetworkInformation;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -81,19 +80,19 @@ namespace AutoTest.Desktop.Pages.AuthForPage
 
             try
             {
-                if(IsInternetAvailable())
+                if (IsInternetAvailable())
                 {
-                    if(!string.IsNullOrEmpty(PhoneNumberTxt.Text) ||
+                    if (!string.IsNullOrEmpty(PhoneNumberTxt.Text) ||
                         !string.IsNullOrEmpty(PasswordTxt.Text))
                     {
                         LoginDto login = new LoginDto();
 
                         login.PhoneNumber = PhoneNumberTxt.Text;
                         login.Password = PasswordPwd.Password.ToString();
-                            
+
                         (bool result, string token) res = await _authService.LoginAsync(login);
 
-                        if(res.result)
+                        if (res.result)
                         {
                             TokenHandler.ParseToken(res.token);
                             SetIdentityToken(res.token);
@@ -126,7 +125,7 @@ namespace AutoTest.Desktop.Pages.AuthForPage
                     LoginBtn.Visibility = Visibility.Visible;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 notifier.ShowError("Xatolik yuz berdi!");
                 Loader.Visibility = Visibility.Collapsed;
@@ -145,7 +144,7 @@ namespace AutoTest.Desktop.Pages.AuthForPage
                 //    return reply.Status == IPStatus.Success;
                 //}
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;

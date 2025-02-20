@@ -1,5 +1,4 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Question;
-using System.Diagnostics;
 
 namespace AutoTest.BLL.Interfaces.Tests.Question;
 

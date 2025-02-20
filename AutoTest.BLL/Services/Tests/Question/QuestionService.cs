@@ -20,7 +20,7 @@ public class QuestionService(
         try
         {
             var existsTest = await _unitOfWork.Test.GetById(dto.TestId);
-            if(existsTest is null)
+            if (existsTest is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
             var question = _mapper.Map<CT.Question>(dto);
@@ -29,7 +29,7 @@ public class QuestionService(
             var res = await _unitOfWork.Question.AddAsync(question);
             return res;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while created the question. {ex}");
         }
@@ -75,12 +75,12 @@ public class QuestionService(
         try
         {
             var question = await _unitOfWork.Question.GetById(id);
-            if(question is null)
+            if (question is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Question not found");
 
             return _mapper.Map<QuestionDto>(question);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while getting the question. {ex}");
         }
@@ -98,7 +98,7 @@ public class QuestionService(
                 .Where(x => x.TestId == testId)
                 .ToList();
 
-            if(!questions.Any())
+            if (!questions.Any())
             {
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No questions found");
             }
@@ -116,7 +116,7 @@ public class QuestionService(
         try
         {
             var existsTest = await _unitOfWork.Test.GetById(dto.TestId);
-            if (existsTest is null)                
+            if (existsTest is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
             var question = await _unitOfWork.Question.GetById(id);
@@ -130,7 +130,7 @@ public class QuestionService(
             var result = await _unitOfWork.Question.Update(question);
             return result;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while updating the question. {ex}");
         }
