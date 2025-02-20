@@ -89,6 +89,41 @@ namespace AutoTest.Desktop.Pages.MainForPage
             }
         }
 
+        private async Task GetAllByTopicAsync()
+        {
+            st_tests.Children.Clear();
+            TestLoader.Visibility = Visibility.Visible;
+            if (IsInternetAvailable())
+            {
+                var tests = await Task.Run(async () => await _testService.GetAllByTopicIdAsync(selectedTopicId));
+                int count = 1;
+                if (tests.Count > 0 || !tests.Any())
+                {
+                    TestLoader.Visibility = Visibility.Collapsed;
+                    TestEmptyData.Visibility = Visibility.Collapsed;
+                    foreach (var test in tests)
+                    {
+                        MainTestComponent component = new MainTestComponent();
+                        component.Tag = test;
+                        component.SetValues(test, count);
+                        st_tests.Children.Add(component);
+                        count++;
+                    }
+                }
+                else
+                {
+                    notifier.ShowWarning("Bu mavzuga testlar topilmadi!");
+                    TestLoader.Visibility = Visibility.Collapsed;
+                    TestEmptyData.Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                TestLoader.Visibility = Visibility.Collapsed;
+                TestEmptyData.Visibility = Visibility.Visible;
+                notifier.ShowWarning("Internetni tekshiring!");
+            }
+        }
         private async Task GetAllTopic()
         {
             st_topics.Children.Clear();
@@ -128,7 +163,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
         }
 
         private MainTopicComponents selectedComponent = null!;
-        public void AddTopic(MainTopicComponents component)
+        public async void AddTopic(MainTopicComponents component)
         {
             if (selectedComponent != null)
                 selectedComponent.st_border.Background = Brushes.White;
@@ -137,7 +172,10 @@ namespace AutoTest.Desktop.Pages.MainForPage
             selectedComponent = component;
 
             if (selectedTopicId != component.GetId())
+            {
                 selectedTopicId = component.GetId();
+                await GetAllByTopicAsync();
+            }
         }
 
         private bool IsInternetAvailable()

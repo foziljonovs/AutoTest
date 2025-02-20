@@ -72,6 +72,21 @@ public class TestService : ITestService
         }
     }
 
+    public async Task<List<TestDto>> GetAllByTopicIdAsync(long topicId)
+    {
+        try
+        {
+            if(IsInternetAvailable())
+                return await _server.GetAllByTopicIdAsync(topicId);
+            else
+                return new List<TestDto>();
+        }
+        catch(Exception ex)
+        {
+            return new List<TestDto>();
+        }
+    }
+
     public async Task<List<TestDto>> GetAllByUserIdAsync(long userId)
     {
         try

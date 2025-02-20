@@ -27,7 +27,7 @@ namespace AutoTest.Desktop.Components.MainForComponents
             topic = dto;
         }
 
-        public long GetId() => Id;
+        public long GetId() => this.topic.Id;
 
         private void st_border_MouseDown(object sender, MouseButtonEventArgs e)
         {
