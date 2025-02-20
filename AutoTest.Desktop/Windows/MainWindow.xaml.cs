@@ -4,7 +4,6 @@ using AutoTest.Desktop.Pages.TestForPage;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
 
 namespace AutoTest.Desktop.Windows
@@ -49,7 +48,7 @@ namespace AutoTest.Desktop.Windows
         private void ButtonMouseEnter(object sender, MouseEventArgs e)
         {
             var button = sender as Button;
-            
+
             var heightAnimation = new DoubleAnimation()
             {
                 To = 50,
@@ -62,7 +61,7 @@ namespace AutoTest.Desktop.Windows
         private void ButtonMouseLeave(object sender, MouseEventArgs e)
         {
             var button = sender as Button;
-            
+
             var heightAnimation = new DoubleAnimation()
             {
                 To = 40,

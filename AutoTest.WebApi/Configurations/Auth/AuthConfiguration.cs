@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text;
 
@@ -61,7 +60,7 @@ public static class AuthConfiguration
                     new string[] {}
                 }
             });
-            
+
         });
 
         return services;

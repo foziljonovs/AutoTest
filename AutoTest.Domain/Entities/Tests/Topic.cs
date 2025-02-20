@@ -8,7 +8,7 @@ public class Topic : BaseEntity
     [Column("name"), MaxLength(100)]
     public required string Name { get; set; }
 
-    [Column("description"), MaxLength(500)] 
+    [Column("description"), MaxLength(500)]
     public string? Description { get; set; }
     public List<Test> Tests { get; set; }
 }

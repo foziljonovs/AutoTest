@@ -3,7 +3,6 @@ using AutoTest.Desktop.Integrated.Api.Auth;
 using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Question;
 using Newtonsoft.Json;
-using System.Security.AccessControl;
 using System.Text;
 
 namespace AutoTest.Desktop.Integrated.Servers.Repositories.Question;
@@ -16,7 +15,7 @@ public class QuestionServer : IQuestionServer
         {
             var token = IdentitySingelton.GetInstance().Token;
 
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 client.Timeout = TimeSpan.FromSeconds(30);
 
@@ -39,7 +38,7 @@ public class QuestionServer : IQuestionServer
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return -1;
         }
@@ -62,7 +61,7 @@ public class QuestionServer : IQuestionServer
             else
                 return false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }
@@ -85,7 +84,7 @@ public class QuestionServer : IQuestionServer
 
             return questions;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<QuestionDto>();
         }
@@ -107,7 +106,7 @@ public class QuestionServer : IQuestionServer
             List<QuestionDto> questions = JsonConvert.DeserializeObject<List<QuestionDto>>(response)!;
             return questions;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<QuestionDto>();
         }
@@ -134,7 +133,7 @@ public class QuestionServer : IQuestionServer
             else
                 return false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }

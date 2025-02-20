@@ -24,7 +24,7 @@ public class UserServer : IUserServer
 
             return users;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<UserDto>();
         }
@@ -46,7 +46,7 @@ public class UserServer : IUserServer
 
             return user;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new UserDto();
         }

@@ -25,7 +25,7 @@ public class TopicService(
             await _unitOfWork.Topic.Add(topic);
             return true;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while created the topic. {ex}");
         }
@@ -53,7 +53,7 @@ public class TopicService(
         {
             var topics = await _unitOfWork.Topic.GetAll().ToListAsync(cancellation);
 
-            if(!topics.Any())
+            if (!topics.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No topics found");
 
             return _mapper.Map<IEnumerable<TopicDto>>(topics);
@@ -94,7 +94,7 @@ public class TopicService(
             var result = await _unitOfWork.Topic.Update(existsTopic);
             return result;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while updated the topic. {ex}");
         }

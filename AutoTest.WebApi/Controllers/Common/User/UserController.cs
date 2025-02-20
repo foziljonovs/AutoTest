@@ -2,7 +2,6 @@
 using AutoTest.BLL.DTOs.User;
 using AutoTest.BLL.Interfaces.Auth;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace AutoTest.WebApi.Controllers.Common.User;
 
@@ -20,7 +19,7 @@ public class UserController(IUserService service) : ControllerBase
             var response = await _service.GetAllAsync(cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
+        catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
@@ -56,11 +55,11 @@ public class UserController(IUserService service) : ControllerBase
             var response = await _service.VerifyPasswordAsync(id, password, cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
+        catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
@@ -74,7 +73,7 @@ public class UserController(IUserService service) : ControllerBase
             var response = await _service.RegisterAsync(request, cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
+        catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
@@ -92,11 +91,11 @@ public class UserController(IUserService service) : ControllerBase
             var response = await _service.ChangePasswordAsync(id, request, cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
+        catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
@@ -110,11 +109,11 @@ public class UserController(IUserService service) : ControllerBase
             var response = await _service.UpdateAsync(id, request, cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
+        catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
@@ -128,12 +127,12 @@ public class UserController(IUserService service) : ControllerBase
             var response = await _service.DeleteAsync(id, cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
-{
+        catch (StatusCodeException ex)
+        {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
-        catch(Exception ex)
-    {
+        catch (Exception ex)
+        {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }

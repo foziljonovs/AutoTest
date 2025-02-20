@@ -1,5 +1,4 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Test;
-using AutoTest.Domain.Entities.Users;
 
 namespace AutoTest.BLL.Interfaces.OpenAI;
 

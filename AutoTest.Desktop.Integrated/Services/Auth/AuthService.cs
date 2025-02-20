@@ -16,7 +16,7 @@ public class AuthService : IAuthService
         {
             var res = await _server.LoginAsync(dto, cancellation);
 
-            if(res.result)
+            if (res.result)
             {
                 return (true, res.token);
             }

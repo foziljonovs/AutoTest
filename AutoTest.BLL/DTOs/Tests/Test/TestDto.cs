@@ -1,6 +1,6 @@
-﻿using AutoTest.Domain.Entities.Files;
+﻿using AutoTest.BLL.DTOs.User;
+using AutoTest.Domain.Entities.Files;
 using AutoTest.Domain.Enums;
-using AutoTest.BLL.DTOs.User;
 using Et = AutoTest.Domain.Entities.Tests;
 
 namespace AutoTest.BLL.DTOs.Tests.Test;
@@ -16,5 +16,5 @@ public class TestDto
     public UserDto User { get; set; }
     public List<Et.Question> Question { get; set; }
     public List<Et.Topic> Topics { get; set; }
-    public List<TestFile> Files { get; set; } 
+    public List<TestFile> Files { get; set; }
 }

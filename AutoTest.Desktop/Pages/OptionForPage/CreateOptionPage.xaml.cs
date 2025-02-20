@@ -52,7 +52,7 @@ namespace AutoTest.Desktop.Pages.OptionForPage
 
         private async Task GetAllByQuestion()
         {
-            if(questionId > 0)
+            if (questionId > 0)
             {
                 var questionOptions = await _service.GetAllAsync(); //GetByQuestionIdAsync metodini yozib ishlatish va qayta yuklash kerak
 
@@ -101,12 +101,12 @@ namespace AutoTest.Desktop.Pages.OptionForPage
             EmptyData.Visibility = Visibility.Collapsed;
             OptionDto option = new OptionDto();
 
-            if(!string.IsNullOrEmpty(txtName.Text))
+            if (!string.IsNullOrEmpty(txtName.Text))
             {
                 option.Text = txtName.Text;
                 option.IsChange = false;
 
-                if(rbIsCorrect.IsChecked == true)
+                if (rbIsCorrect.IsChecked == true)
                     option.IsCorrect = true;
                 else
                     option.IsCorrect = false;

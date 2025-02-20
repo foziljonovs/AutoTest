@@ -14,7 +14,7 @@ public class OptionServer : IOptionServer
         try
         {
             var token = IdentitySingelton.GetInstance().Token;
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 client.Timeout = TimeSpan.FromSeconds(30);
                 using (var request = new HttpRequestMessage(HttpMethod.Post, AuthApi.BASE_URL + "/api/options"))
@@ -59,7 +59,7 @@ public class OptionServer : IOptionServer
             else
                 return false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }
@@ -82,7 +82,7 @@ public class OptionServer : IOptionServer
             List<OptionDto> options = JsonConvert.DeserializeObject<List<OptionDto>>(response)!;
             return options;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<OptionDto>();
         }
@@ -108,7 +108,7 @@ public class OptionServer : IOptionServer
             else
                 return false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }

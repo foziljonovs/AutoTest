@@ -1,9 +1,4 @@
-﻿using Avalonia.Controls;
-using Avalonia.Markup.Xaml;
-using Avalonia.Platform;
-using QuestPDF.Infrastructure;
-using System.Configuration;
-using System.Data;
+﻿using QuestPDF.Infrastructure;
 using System.Windows;
 
 namespace AutoTest.Desktop

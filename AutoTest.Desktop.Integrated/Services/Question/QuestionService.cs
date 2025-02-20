@@ -15,7 +15,7 @@ public class QuestionService : IQuestionService
     {
         try
         {
-            if(IsInternetAvailable())
+            if (IsInternetAvailable())
             {
                 var result = await _server.AddAsync(dto);
                 return result;
@@ -35,7 +35,7 @@ public class QuestionService : IQuestionService
     {
         try
         {
-            if(IsInternetAvailable())
+            if (IsInternetAvailable())
             {
                 var result = await _server.DeleteAsync(id);
                 return result;
@@ -45,7 +45,7 @@ public class QuestionService : IQuestionService
                 return false;
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }
@@ -55,7 +55,7 @@ public class QuestionService : IQuestionService
     {
         try
         {
-            if(IsInternetAvailable())
+            if (IsInternetAvailable())
             {
                 var result = await _server.GetAllAsync();
                 return result;
@@ -75,7 +75,7 @@ public class QuestionService : IQuestionService
     {
         try
         {
-            if(IsInternetAvailable())
+            if (IsInternetAvailable())
             {
                 var questions = await _server.GetQuestionsByTestAsync(testId);
                 return questions;
@@ -95,7 +95,7 @@ public class QuestionService : IQuestionService
     {
         try
         {
-            if(IsInternetAvailable())
+            if (IsInternetAvailable())
             {
                 var result = await _server.UpdateAsync(id, dto);
                 return result;
@@ -105,7 +105,7 @@ public class QuestionService : IQuestionService
                 return false;
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }

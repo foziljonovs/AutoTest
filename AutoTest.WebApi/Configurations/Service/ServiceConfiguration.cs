@@ -10,11 +10,8 @@ using AutoTest.BLL.Services.Tests.Test;
 using AutoTest.BLL.Services.Tests.Topic;
 using AutoTest.DAL.Data;
 using AutoTest.DAL.Interfaces;
-using AutoTest.DAL.Interfaces.Users;
 using AutoTest.DAL.Repotories;
-using AutoTest.DAL.Repotories.Users;
 using Microsoft.EntityFrameworkCore;
-using System.Net.NetworkInformation;
 
 namespace AutoTest.WebApi.Configurations.Service;
 

@@ -57,7 +57,7 @@ namespace AutoTest.Desktop.Components.QuestionForComponents
         {
             try
             {
-                if(this.QuestionId > 0)
+                if (this.QuestionId > 0)
                 {
                     var message = MessageBox.Show("Savolni o'chirishni istaysizmi?", "Tasdiqlash", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     //var message = MessageBoxManager.GetMessageBoxStandard(
@@ -69,7 +69,7 @@ namespace AutoTest.Desktop.Components.QuestionForComponents
 
                     //var messageResult = await message.ShowAsync();
 
-                    if(message == MessageBoxResult.Yes)
+                    if (message == MessageBoxResult.Yes)
                     {
                         var result = await _service.DeleteAsync(QuestionId);
                         if (result)
@@ -88,7 +88,7 @@ namespace AutoTest.Desktop.Components.QuestionForComponents
                     notifierThis.ShowWarning("Savolni o'chirishga xatolik, qayta urinib ko'ring.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 notifierThis.ShowError("Savolni o'chirishda xatolik yuz berdi!");
             }

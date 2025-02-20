@@ -2,26 +2,14 @@
 using AutoTest.Desktop.Integrated.Servers.Repositories.Auth;
 using AutoTest.Desktop.Integrated.Services.Auth;
 using AutoTest.Desktop.Windows.Auth;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
 using ToastNotifications.Position;
-using WPF.Notifier;
 
 namespace AutoTest.Desktop.Pages.AuthForPage
 {
@@ -61,9 +49,9 @@ namespace AutoTest.Desktop.Pages.AuthForPage
                 RegisterBtn.Visibility = Visibility.Collapsed;
                 Loader.Visibility = Visibility.Visible;
 
-                if(IsInternetAvailable())
+                if (IsInternetAvailable())
                 {
-                    if(!string.IsNullOrEmpty(FullnameTxt.Text) ||
+                    if (!string.IsNullOrEmpty(FullnameTxt.Text) ||
                         !string.IsNullOrEmpty(PasswordTxt.Text) ||
                         !string.IsNullOrEmpty(UsernameTxt.Text))
                     {
@@ -76,10 +64,10 @@ namespace AutoTest.Desktop.Pages.AuthForPage
                         register.Password = PasswordTxt.Text;
 
                         var res = await _authService.RegisterAsync(register);
-                        if(res)
+                        if (res)
                         {
                             notifier.ShowSuccess("Siz muvaffaqiyatli ro'yxatdan o'tdingiz!");
-                            if(Application.Current.MainWindow is LoginWindow window)
+                            if (Application.Current.MainWindow is LoginWindow window)
                             {
                                 window.LoginPageNavigator.Content = new LoginPage();
                             }
@@ -105,7 +93,7 @@ namespace AutoTest.Desktop.Pages.AuthForPage
                     RegisterBtn.Visibility = Visibility.Visible;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 notifier.ShowError($"Xatolik yuz berdi!");
                 Loader.Visibility = Visibility.Collapsed;
@@ -117,13 +105,13 @@ namespace AutoTest.Desktop.Pages.AuthForPage
         {
             try
             {
-                using(Ping ping = new Ping())
+                using (Ping ping = new Ping())
                 {
                     PingReply reply = ping.Send("www.google.com");
                     return reply.Status == IPStatus.Success;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }

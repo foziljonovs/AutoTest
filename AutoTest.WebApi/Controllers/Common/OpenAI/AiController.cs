@@ -1,6 +1,5 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.BLL.Interfaces.OpenAI;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoTest.WebApi.Controllers.Common.OpenAI;
@@ -19,7 +18,7 @@ public class AiController(IOpenAIService service) : ControllerBase
             var testId = await _service.CompleteAsync(dto);
             return Ok(testId);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }

@@ -20,11 +20,11 @@ public class TestController(ITestService service) : ControllerBase
             var response = await _service.GetAllAsync(cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
+        catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
@@ -74,24 +74,6 @@ public class TestController(ITestService service) : ControllerBase
             var response = await _service.GetAllByUserIdAsync(userId, cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
-        {
-            return StatusCode((int)ex.StatusCode, ex.Message);
-        }
-        catch(Exception ex)
-        {
-            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
-        }
-    }
-
-    [HttpGet("{topicId:long}/topic")]
-    public async Task<IActionResult> GetAllByTopicIdAsync(long topicId, CancellationToken cancellation = default)
-    {
-        try
-        {
-            var response = await _service.GetAllByTopicIdAsync(topicId, cancellation);
-            return Ok(response);
-        }
         catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
@@ -101,6 +83,7 @@ public class TestController(ITestService service) : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }
+
 
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateTestDto dto, CancellationToken cancellation = default)

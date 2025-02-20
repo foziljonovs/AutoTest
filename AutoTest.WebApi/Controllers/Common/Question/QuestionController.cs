@@ -2,9 +2,7 @@
 using AutoTest.BLL.DTOs.Tests.Question;
 using AutoTest.BLL.Interfaces.Tests.Question;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 
 namespace AutoTest.WebApi.Controllers.Common.Question;
 
@@ -22,11 +20,11 @@ public class QuestionController(IQuestionService service) : ControllerBase
             var response = await _service.GetAllAsync(cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
+        catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
@@ -76,7 +74,7 @@ public class QuestionController(IQuestionService service) : ControllerBase
             var response = await _service.AddAsync(request, cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
+        catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }

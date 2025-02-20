@@ -1,5 +1,4 @@
-﻿using AutoTest.BLL.DTOs.Tests.Question;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace AutoTest.BLL.DTOs.Tests.Option;
 

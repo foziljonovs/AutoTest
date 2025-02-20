@@ -2,7 +2,6 @@
 using AutoTest.BLL.DTOs.Tests.Option;
 using AutoTest.BLL.Interfaces.Tests.Option;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoTest.WebApi.Controllers.Common.Option;
@@ -21,11 +20,11 @@ public class OptionController(IOptionService service) : ControllerBase
             var response = await _service.GetAllAsync(cancellation);
             return Ok(response);
         }
-        catch(StatusCodeException ex)
+        catch (StatusCodeException ex)
         {
             return StatusCode((int)ex.StatusCode, ex.Message);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }

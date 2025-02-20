@@ -2,9 +2,6 @@
 using AutoTest.Desktop.Integrated.Api.Auth;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Auth;
 using Newtonsoft.Json;
-using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json.Serialization;
 
 namespace AutoTest.Desktop.Integrated.Servers.Repositories.Auth;
 

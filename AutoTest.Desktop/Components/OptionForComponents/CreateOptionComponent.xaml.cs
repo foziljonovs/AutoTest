@@ -1,19 +1,7 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Option;
 using AutoTest.Desktop.Integrated.Services.Option;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
@@ -28,7 +16,7 @@ namespace AutoTest.Desktop.Components.OptionForComponents
     {
         private readonly IOptionService _service;
         private long optionId { get; set; }
-        public Func<Task> IsDeleted {  get; set; }
+        public Func<Task> IsDeleted { get; set; }
         public CreateOptionComponent()
         {
             InitializeComponent();
@@ -58,7 +46,7 @@ namespace AutoTest.Desktop.Components.OptionForComponents
             optionId = dto.Id;
             tbText.Text = dto.Text;
 
-            if(dto.IsCorrect)
+            if (dto.IsCorrect)
             {
                 CancelIcon.Visibility = Visibility.Collapsed;
                 CheckIcon.Visibility = Visibility.Visible;
@@ -73,11 +61,11 @@ namespace AutoTest.Desktop.Components.OptionForComponents
                 {
                     var message = MessageBox.Show("Javob o'chirilsinmi?", "Tasdiqlash", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                    if(message is MessageBoxResult.Yes)
+                    if (message is MessageBoxResult.Yes)
                     {
                         var result = await _service.DeleteAsync(optionId);
 
-                        if(result)
+                        if (result)
                         {
                             IsDeleted?.Invoke();
                             notifierThis.ShowSuccess("Javob o'chirildi.");
@@ -95,7 +83,7 @@ namespace AutoTest.Desktop.Components.OptionForComponents
                 else
                     notifierThis.ShowWarning("O'chirishga urinish muvaffaqiyatsiz bo'ldi!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 notifierThis.ShowError("Xatolik yuz berdi!");
             }

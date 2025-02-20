@@ -6,19 +6,7 @@ using AutoTest.Desktop.PDF;
 using AutoTest.Desktop.Windows.QuestionForWIndows;
 using AutoTest.Domain.Entities.Tests;
 using QuestPDF.Fluent;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
@@ -92,12 +80,12 @@ namespace AutoTest.Desktop.Windows.TestForWindows
 
         private void SelectTopics(List<Topic> topics)
         {
-            if(topics.Any())
+            if (topics.Any())
             {
                 TopicLoader.Visibility = Visibility.Collapsed;
                 EmptyDataSelectTopic.Visibility = Visibility.Collapsed;
 
-                foreach(var topic in topics)
+                foreach (var topic in topics)
                 {
                     var dto = new TopicDto
                     {
@@ -134,7 +122,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows
                 TestLoader.Visibility = Visibility.Visible;
 
                 var test = await Task.Run(async () => await _service.GetByIdAsync(Test.Id));
-                if(test != null)
+                if (test != null)
                     SetValues(test);
                 else
                 {

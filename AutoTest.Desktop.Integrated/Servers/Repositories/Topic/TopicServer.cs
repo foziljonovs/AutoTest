@@ -14,11 +14,11 @@ public class TopicServer : ITopicServer
         try
         {
             var token = IdentitySingelton.GetInstance().Token;
-            
-            using(HttpClient client = new HttpClient())
+
+            using (HttpClient client = new HttpClient())
             {
                 client.Timeout = TimeSpan.FromSeconds(30);
-                using(var request = new HttpRequestMessage(HttpMethod.Post, AuthApi.BASE_URL + "/api/topics"))
+                using (var request = new HttpRequestMessage(HttpMethod.Post, AuthApi.BASE_URL + "/api/topics"))
                 {
                     request.Headers.Add("Authorization", $"Bearer {token}");
 
@@ -37,7 +37,7 @@ public class TopicServer : ITopicServer
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }

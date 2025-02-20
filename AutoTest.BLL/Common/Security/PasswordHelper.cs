@@ -1,6 +1,4 @@
-﻿using System.Net.NetworkInformation;
-
-namespace AutoTest.BLL.Common.Security;
+﻿namespace AutoTest.BLL.Common.Security;
 
 public class PasswordHelper
 {

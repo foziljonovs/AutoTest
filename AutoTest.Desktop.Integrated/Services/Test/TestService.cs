@@ -21,7 +21,7 @@ public class TestService : ITestService
             else
                 return false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }
@@ -51,7 +51,7 @@ public class TestService : ITestService
             else
                 return false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }
@@ -61,26 +61,8 @@ public class TestService : ITestService
     {
         try
         {
-            if(IsInternetAvailable())
-                return await _server.GetAllAsync();
-            else
-                return new List<TestDto>();
-        }
-        catch(Exception ex)
-        {
-            return new List<TestDto>();
-        }
-    }
-
-    public async Task<List<TestDto>> GetAllByTopicIdAsync(long topicId)
-    {
-        try
-        {
             if (IsInternetAvailable())
-            {
-                var tests = await _server.GetAllByTopicIdAsync(topicId);
-                return tests;
-            }
+                return await _server.GetAllAsync();
             else
                 return new List<TestDto>();
         }
@@ -99,7 +81,7 @@ public class TestService : ITestService
             else
                 return new List<TestDto>();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<TestDto>();
         }
@@ -114,7 +96,7 @@ public class TestService : ITestService
             else
                 return new TestDto();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new TestDto();
         }
@@ -129,7 +111,7 @@ public class TestService : ITestService
             else
                 return false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }
@@ -146,7 +128,7 @@ public class TestService : ITestService
             //    return (reply.Status == IPStatus.Success);
             //}
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return false;
         }

@@ -20,7 +20,7 @@ builder.Services
 
 builder.Services.AddHttpClient();
 builder.Services.AddAIConfigure(builder.Configuration);
-    
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

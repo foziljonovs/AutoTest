@@ -1,7 +1,6 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Topic;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Topic;
 using AutoTest.Desktop.Integrated.Servers.Repositories.Topic;
-using System.Net.NetworkInformation;
 
 namespace AutoTest.Desktop.Integrated.Services.Topic;
 
@@ -37,7 +36,7 @@ public class TopicService : ITopicService
             else
                 return new List<TopicDto>();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             return new List<TopicDto>();
         }

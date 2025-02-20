@@ -21,12 +21,12 @@ public class TestService(
         try
         {
             var existsUser = await _unitOfWork.User.GetById(dto.UserId);
-            if(existsUser is null)
+            if (existsUser is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
 
             var test = _mapper.Map<CT.Test>(dto);
 
-            foreach(var topicId in dto.Topics)
+            foreach (var topicId in dto.Topics)
             {
                 var topic = await _unitOfWork.Topic.GetById(topicId);
 
@@ -83,13 +83,13 @@ public class TestService(
         {
             var test = await _unitOfWork.Test.GetById(id);
 
-            if(test is null)
+            if (test is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
             await _unitOfWork.Test.Delete(test);
             return true;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while deleting the test. {ex}");
         }
@@ -101,7 +101,7 @@ public class TestService(
         {
             var tests = await _unitOfWork.Test.GetAllFullInformationAsync();
 
-            if(!tests.Any())
+            if (!tests.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No tests found");
 
             return _mapper.Map<IEnumerable<TestDto>>(tests);
@@ -109,28 +109,6 @@ public class TestService(
         catch (Exception ex)
         {
             throw new Exception($"An error occured while getting all tests. {ex}");
-        }
-    }
-
-    public async Task<IEnumerable<TestDto>> GetAllByTopicIdAsync(long topicId, CancellationToken cancellation = default)
-    {
-        try
-        {
-            var tests = await _unitOfWork.Test.GetAllFullInformationAsync();
-
-            if(!tests.Any())
-                throw new StatusCodeException(HttpStatusCode.NotFound, "No tests found");
-
-            var results = tests.Where(x => x.Topics.Any(y => y.Id == topicId)).ToList();
-
-            if (!results.Any())
-                throw new StatusCodeException(HttpStatusCode.NoContent, "No tests found on the topic");
-
-            return _mapper.Map<IEnumerable<TestDto>>(results);
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"An error occured while getting all tests by topic id. {ex}");
         }
     }
 
@@ -146,7 +124,7 @@ public class TestService(
             var results = tests.Where(x => x.User.Id == userId).ToList();
             return _mapper.Map<IEnumerable<TestDto>>(results);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             throw new Exception($"An error occured while getting all tests by user id. {ex}");
         }
@@ -160,7 +138,7 @@ public class TestService(
                 .Where(x => x.Status == TestStatus.Completed)
                 .ToListAsync(cancellation);
 
-            if(!tests.Any())
+            if (!tests.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No completed tests found");
 
             return _mapper.Map<IEnumerable<TestDto>>(tests);
@@ -193,11 +171,11 @@ public class TestService(
         try
         {
             var existsUser = await _unitOfWork.User.GetById(dto.UserId);
-            if(existsUser is null)
+            if (existsUser is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "User not found");
 
             var existsTest = await _unitOfWork.Test.GetById(id);
-            if(existsTest is null)
+            if (existsTest is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
             _mapper.Map(dto, existsTest);
