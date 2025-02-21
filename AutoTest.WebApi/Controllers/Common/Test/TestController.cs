@@ -3,6 +3,7 @@ using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.BLL.Interfaces.Tests.Test;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 
 namespace AutoTest.WebApi.Controllers.Common.Test;
 
@@ -84,6 +85,23 @@ public class TestController(ITestService service) : ControllerBase
         }
     }
 
+    [HttpGet("{topicId:long}/topic")]
+    public async Task<IActionResult> GetAllByTopicIdAsync(long topicId, CancellationToken cancellation = default)
+    {
+        try
+        {
+            var response = await _service.GetAllByTopicIdAsync(topicId, cancellation);
+            return Ok(response);
+        }
+        catch (StatusCodeException ex)
+        {
+            return StatusCode((int)ex.StatusCode, ex.Message);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
 
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] CreateTestDto dto, CancellationToken cancellation = default)
