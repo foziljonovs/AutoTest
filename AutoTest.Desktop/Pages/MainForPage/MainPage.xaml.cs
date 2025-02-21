@@ -89,16 +89,16 @@ namespace AutoTest.Desktop.Pages.MainForPage
             }
         }
 
-        private async Task GetAllByTopicAsync()
+        private async Task GetAllByTopicAsync(long topicId)
         {
-            st_tests.Children.Clear();
             TestLoader.Visibility = Visibility.Visible;
             if (IsInternetAvailable())
             {
-                var tests = await Task.Run(async () => await _testService.GetAllByTopicIdAsync(selectedTopicId));
+                var tests = await Task.Run(async () => await _testService.GetAllByTopicIdAsync(topicId));
                 int count = 1;
-                if (tests.Count > 0 || !tests.Any())
+                if (tests.Count > 0 || tests.Any())
                 {
+                    st_tests.Children.Clear();
                     TestLoader.Visibility = Visibility.Collapsed;
                     TestEmptyData.Visibility = Visibility.Collapsed;
                     foreach (var test in tests)
@@ -114,7 +114,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
                 {
                     notifier.ShowWarning("Bu mavzuga testlar topilmadi!");
                     TestLoader.Visibility = Visibility.Collapsed;
-                    TestEmptyData.Visibility = Visibility.Visible;
+                    GetAllTest();
                 }
             }
             else
@@ -174,7 +174,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
             if (selectedTopicId != component.GetId())
             {
                 selectedTopicId = component.GetId();
-                await GetAllByTopicAsync();
+                await GetAllByTopicAsync(selectedTopicId);
             }
         }
 
