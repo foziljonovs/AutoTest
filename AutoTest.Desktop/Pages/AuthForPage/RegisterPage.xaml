@@ -118,6 +118,7 @@
                             FontWeight="SemiBold"
                             FontSize="18"   
                             Width="160"
+                            MaxLength="8"
                             VerticalContentAlignment="Center"
                             Foreground="Black"
                             Background="Transparent"
@@ -132,6 +133,7 @@
                             BorderThickness="0"
                             VerticalContentAlignment="Center"
                             FontSize="18"
+                            MaxLength="8"
                             FontFamily="Jetbrains Mono"
                             FontWeight="SemiBold"
                             Foreground="Black"/>

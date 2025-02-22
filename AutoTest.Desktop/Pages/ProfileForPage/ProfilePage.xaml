@@ -141,9 +141,11 @@
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Border Grid.Column="0"
+                                            x:Name="VerifyBtn"
                                             Margin="0 5 10 5"
                                             CornerRadius="5"
-                                            Background="MediumSeaGreen">
+                                            Background="MediumSeaGreen"
+                                            MouseDown="VerifyBtn_MouseDown">
                                         <Label Content="Tekshirish"
                                                FontSize="13"
                                                HorizontalAlignment="Center"

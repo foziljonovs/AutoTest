@@ -81,5 +81,11 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             ChangePasswordWindow window = new ChangePasswordWindow();
             window.ShowDialog();
         }
+
+        private void VerifyBtn_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            VerifyPasswordWindow window = new VerifyPasswordWindow();
+            window.ShowDialog();
+        }
     }
 }
