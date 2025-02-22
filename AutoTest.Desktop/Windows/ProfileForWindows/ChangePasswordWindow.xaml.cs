@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoTest.BLL.DTOs.User;
+using AutoTest.Desktop.Integrated.Security;
+using AutoTest.Desktop.Integrated.Services.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +14,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace AutoTest.Desktop.Windows.ProfileForWindows
 {
@@ -19,14 +26,53 @@ namespace AutoTest.Desktop.Windows.ProfileForWindows
     /// </summary>
     public partial class ChangePasswordWindow : Window
     {
+        public readonly IUserService _service;
+        public long UserId { get; set; }
         public ChangePasswordWindow()
         {
             InitializeComponent();
+            this._service = new UserService();
         }
+
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 20,
+                offsetY: 20);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(2));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+
+            cfg.DisplayOptions.Width = 200;
+            cfg.DisplayOptions.TopMost = true;
+        });
+
+        Notifier notifierThis = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
+                corner: Corner.TopRight,
+                offsetX: 20,
+                offsetY: 20);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(2));
+
+            cfg.Dispatcher = Application.Current.Dispatcher;
+
+            cfg.DisplayOptions.Width = 200;
+            cfg.DisplayOptions.TopMost = true;
+        });
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            this.UserId = IdentitySingelton.GetInstance().Id;
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -68,9 +114,60 @@ namespace AutoTest.Desktop.Windows.ProfileForWindows
             NewDisEyeButton.Visibility = Visibility.Collapsed; // DisEyeButton ni yashirish
         }
 
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        private async void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                SaveBtn.Visibility = Visibility.Collapsed;
+                ChangeLoader.Visibility = Visibility.Visible;
 
+                if(!string.IsNullOrEmpty(OldPasswordTxt.Text) ||
+                    !string.IsNullOrEmpty(NewPasswordTxt.Text))
+                {
+                    var phoneNumber = IdentitySingelton.GetInstance().PhoneNumber;
+
+                    if(string.IsNullOrEmpty(phoneNumber))
+                    {
+                        notifierThis.ShowWarning("Foydalanuvchi ma'lumotlari topilmadi!");
+                        ChangeLoader.Visibility = Visibility.Collapsed;
+                        SaveBtn.Visibility = Visibility.Visible;
+                        return;
+                    }
+
+                    UserChangePasswordDto dto = new UserChangePasswordDto
+                    {
+                        PhoneNumber = phoneNumber,
+                        CurrentPassword = OldPasswordTxt.Text,
+                        NewPassword = NewPasswordTxt.Text
+                    };
+
+                    var res = await _service.ChangePasswordAsync(UserId, dto);
+
+                    if (res)
+                    {
+                        notifier.ShowSuccess("Parol muvaffaqiyatli o'zgartirildi!");
+                        this.Close();
+                    }
+                    else
+                    {
+                        notifierThis.ShowError("Parol o'zgartirishda xatolik yuz berdi!");
+                        ChangeLoader.Visibility = Visibility.Collapsed;
+                        SaveBtn.Visibility = Visibility.Visible;
+                        return;
+                    }
+                }
+                else
+                {
+                    notifierThis.ShowWarning("Parollar bo'sh bo'lmasligi kerak!");
+                    ChangeLoader.Visibility = Visibility.Collapsed;
+                    SaveBtn.Visibility = Visibility.Visible;
+                    return;
+                }
+            }
+            catch(Exception ex)
+            {
+                notifierThis.ShowError("Xatolik yuz berdi!");
+            }
         }
 
         private void OldPasswordPwd_PasswordChanged(object sender, RoutedEventArgs e)
