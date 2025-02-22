@@ -168,5 +168,10 @@ namespace AutoTest.Desktop.Windows.TestForWindows
                 notifierThis.ShowError("Testni yuklashda xatolik yuz berdi!");
             }
         }
+
+        private void GenerateTestBtn_Click(object sender, RoutedEventArgs e)
+        {
+            notifierThis.ShowInformation("Test generatsiya qilish hali to'liq ishlab chiqarilmagan!");
+        }
     }
 }
