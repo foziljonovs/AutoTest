@@ -11,6 +11,45 @@ public class UserService : IUserService
     {
         this._server = new UserServer();
     }
+
+    public async Task<bool> ChangePasswordAsync(long id, UserChangePasswordDto dto)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+            {
+                return await _server.ChangePasswordAsync(id, dto);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> DeleteAsync(long id)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+            {
+                return await _server.DeleteAsync(id);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
+    }
+
     public async Task<List<UserDto>> GetAllAsync()
     {
         try
@@ -48,6 +87,44 @@ public class UserService : IUserService
         catch (Exception ex)
         {
             return new UserDto();
+        }
+    }
+
+    public async Task<bool> UpdateAsync(long id, UpdateUserDto dto)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+            {
+                return await _server.UpdateAsync(id, dto);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> VerifyPasswordAsync(long id, string password)
+    {
+        try
+        {
+            if (IsInternetAvailable())
+            {
+                return await _server.VerifyPasswordAsync(id, password);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            return false;
         }
     }
 
