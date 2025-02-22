@@ -86,6 +86,7 @@
                             Background="Transparent"
                             BorderThickness="0"
                             Width="160"
+                            MaxLength="8"
                             HorizontalAlignment="Left"
                             VerticalContentAlignment="Center"
                             FontSize="18"
@@ -100,6 +101,7 @@
                             BorderThickness="0"
                             VerticalContentAlignment="Center"
                             FontSize="18"
+                            MaxLength="8"
                             FontFamily="Jetbrains Mono"
                             FontWeight="SemiBold"
                             Foreground="Black"/>
