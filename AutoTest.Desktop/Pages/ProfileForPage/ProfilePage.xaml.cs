@@ -2,6 +2,7 @@
 using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.User;
+using AutoTest.Desktop.Windows.ProfileForWindows;
 using System.Windows.Controls;
 
 namespace AutoTest.Desktop.Pages.ProfileForPage
@@ -73,6 +74,12 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
                 return user;
             else
                 return null;
+        }
+
+        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ChangePasswordWindow window = new ChangePasswordWindow();
+            window.ShowDialog();
         }
     }
 }
