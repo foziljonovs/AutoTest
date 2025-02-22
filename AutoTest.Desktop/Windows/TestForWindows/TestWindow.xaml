@@ -144,7 +144,8 @@
                                     Content="AI Generatsiya"
                                     Style="{DynamicResource mainButton}"
                                     Margin="5 10 5 0"
-                                    Background="Tomato"/>
+                                    Background="Tomato"
+                                    Click="GenerateTestBtn_Click"/>
 
                             <Button x:Name="ViewQuestionsBtn"
                                     Grid.Column="2"
