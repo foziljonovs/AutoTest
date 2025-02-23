@@ -12,4 +12,8 @@ public interface IUnitOfWork
     public IQuestion Question { get; set; }
     public IOption Option { get; set; }
     public ITestFile TestFile { get; set; }
+    public IUserTestSolution UserTestSolution { get; set; }
+    public ITestSolution TestSolution { get; set; }
+    public ISavedTest SavedTest { get; set; }
+    public IQuestionSolution QuestionSolution { get; set; }
 }

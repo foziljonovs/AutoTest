@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using AutoTest.BLL.DTOs.Tests.Option;
 using AutoTest.BLL.DTOs.Tests.Question;
+using AutoTest.BLL.DTOs.Tests.QuestionSolution;
 using AutoTest.BLL.DTOs.Tests.Test;
+using AutoTest.BLL.DTOs.Tests.TestSolution;
 using AutoTest.BLL.DTOs.Tests.Topic;
+using AutoTest.BLL.DTOs.Users.SavedTest;
 using AutoTest.BLL.DTOs.Users.User;
+using AutoTest.BLL.DTOs.Users.UserTestSolution;
 using AutoTest.Domain.Entities.Tests;
 using AutoTest.Domain.Entities.Users;
 
@@ -72,6 +76,40 @@ public class MapperProfile : Profile
             .ForMember(dest => dest.Tests, opt => opt.Ignore());
 
         CreateMap<UpdateTopicDto, Domain.Entities.Tests.Topic>()
-            .ForMember(dest => dest.Tests, opt => opt.Ignore()); ;
+            .ForMember(dest => dest.Tests, opt => opt.Ignore());
+
+        /*-----------------------------------TestSolution-----------------------------------*/
+        CreateMap<TestSolution, TestSolutionDto>();
+
+        CreateMap<TestSolutionDto, TestSolution>();
+
+        CreateMap<CreateTestSolutionDto, TestSolution>();
+
+        CreateMap<UpdateTestSolutionDto, TestSolution>();
+
+        /*-----------------------------------QuestionSolution-----------------------------------*/
+        CreateMap<QuestionSolution, QuestionSolutionDto>();
+
+        CreateMap<QuestionSolutionDto, QuestionSolution>();
+
+        CreateMap<CreateQuestionSolutionDto, QuestionSolution>();
+
+        CreateMap<UpdateQuestionSolutionDto, QuestionSolution>();
+        /*-----------------------------------SavedTest-----------------------------------*/
+        CreateMap<SavedTest, SavedTestDto>();
+
+        CreateMap<SavedTestDto, SavedTest>();
+
+        CreateMap<CreatedSavedTestDto, SavedTest>();
+
+        CreateMap<UpdateSavedTestDto, SavedTest>();
+        /*-----------------------------------UserTestSolution-----------------------------------*/
+        CreateMap<UserTestSolution, UserTestSolutionDto>();
+
+        CreateMap<UserTestSolutionDto, UserTestSolution>();
+
+        CreateMap<CreateUserTestSolutionDto, UserTestSolution>();
+
+        CreateMap<UpdateUserTestSolutionDto, UserTestSolution>();
     }
 }
