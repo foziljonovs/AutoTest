@@ -13,4 +13,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Option> Options { get; set; }
     public DbSet<Topic> Topics { get; set; }
     public DbSet<TestFile> TestFiles { get; set; }
+    public DbSet<UserTestSolution> UserTestSolutions { get; set; }
+    public DbSet<TestSolution> TestSolutions { get; set; }
+    public DbSet<QuestionSolution> QuestionSolutions { get; set; }
+    public DbSet<SavedTest> SavedTests { get; set; }
 }
