@@ -1,4 +1,4 @@
-﻿using AutoTest.BLL.DTOs.User;
+﻿using AutoTest.BLL.DTOs.Users.User;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Auth;
 
 namespace AutoTest.Desktop.Integrated.Services.Auth;

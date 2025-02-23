@@ -1,4 +1,4 @@
-﻿using AutoTest.BLL.DTOs.User;
+﻿using AutoTest.BLL.DTOs.Users.User;
 using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Servers.Repositories.Auth;
 using AutoTest.Desktop.Integrated.Services.Auth;

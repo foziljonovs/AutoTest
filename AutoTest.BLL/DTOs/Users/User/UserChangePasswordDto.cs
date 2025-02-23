@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace AutoTest.BLL.DTOs.User;
+namespace AutoTest.BLL.DTOs.Users.User;
 
 public class UserChangePasswordDto
 {

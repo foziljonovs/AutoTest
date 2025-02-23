@@ -1,14 +1,15 @@
 ﻿using AutoMapper;
 using AutoTest.BLL.Common.Exceptions;
 using AutoTest.BLL.Common.Security;
-using AutoTest.BLL.DTOs.User;
+using AutoTest.BLL.DTOs.Users.User;
 using AutoTest.BLL.Interfaces.Auth;
+using AutoTest.BLL.Interfaces.Users;
 using AutoTest.DAL.Interfaces;
 using AutoTest.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
 
-namespace AutoTest.BLL.Services.Auth;
+namespace AutoTest.BLL.Services.Users;
 
 public class UserService(
     IUnitOfWork unitOfWork,

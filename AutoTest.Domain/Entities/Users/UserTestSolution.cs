@@ -1,5 +1,4 @@
 ﻿using AutoTest.Domain.Entities.Tests;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoTest.Domain.Entities.Users;
