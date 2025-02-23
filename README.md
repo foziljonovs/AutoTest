@@ -45,16 +45,17 @@ Loyihani clone qilib olgach, **WebApi** ichidagi `appsettings.Development.json` 
 ```json
 {
   "ConnectionStrings": {
-    "localhost": "Host=localhost;Port=5432;Database=AutoTestDB;Username=your-username;Password=your-password"
+    "localhost": "your-postgres-localhost"
   },
   "Jwt": {
     "Issuer": "https://AutoAITest.uz",
     "Audience": "AutoAITest.uz",
-    "SecretKey": "1c9e6964-2125-57de-711b-e09fc1f77ai1",
+    "SecretKey": "your-jwt-secret-key",
     "Lifetime": 120
   },
-  "OpenAI": {
-    "ApiKey": "your-openai-api-key"
+  "Ollama": {
+    "Model": "llama3.2",
+    "localhost": "http://localhost:11434"
   },
   "Logging": {
     "LogLevel": {
@@ -64,6 +65,7 @@ Loyihani clone qilib olgach, **WebApi** ichidagi `appsettings.Development.json` 
   },
   "AllowedHosts": "*"
 }
+
 ```
 
 ℹ️ **Izoh**:
