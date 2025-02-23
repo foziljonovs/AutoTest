@@ -1,4 +1,4 @@
-﻿using AutoTest.BLL.DTOs.User;
+﻿using AutoTest.BLL.DTOs.Users.User;
 
 namespace AutoTest.Desktop.Integrated.Services.User;
 

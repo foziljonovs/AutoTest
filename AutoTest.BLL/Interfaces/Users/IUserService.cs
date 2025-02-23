@@ -1,6 +1,6 @@
-﻿using AutoTest.BLL.DTOs.User;
+﻿using AutoTest.BLL.DTOs.Users.User;
 
-namespace AutoTest.BLL.Interfaces.Auth;
+namespace AutoTest.BLL.Interfaces.Users;
 
 public interface IUserService
 {

@@ -1,6 +1,6 @@
 ﻿using AutoTest.BLL.Common.Exceptions;
-using AutoTest.BLL.DTOs.User;
-using AutoTest.BLL.Interfaces.Auth;
+using AutoTest.BLL.DTOs.Users.User;
+using AutoTest.BLL.Interfaces.Users;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoTest.WebApi.Controllers.Common.User;

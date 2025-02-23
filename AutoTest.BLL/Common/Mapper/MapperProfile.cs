@@ -3,7 +3,7 @@ using AutoTest.BLL.DTOs.Tests.Option;
 using AutoTest.BLL.DTOs.Tests.Question;
 using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.BLL.DTOs.Tests.Topic;
-using AutoTest.BLL.DTOs.User;
+using AutoTest.BLL.DTOs.Users.User;
 using AutoTest.Domain.Entities.Tests;
 using AutoTest.Domain.Entities.Users;
 

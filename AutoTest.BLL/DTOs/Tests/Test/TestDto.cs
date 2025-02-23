@@ -1,4 +1,4 @@
-﻿using AutoTest.BLL.DTOs.User;
+﻿using AutoTest.BLL.DTOs.Users.User;
 using AutoTest.Domain.Entities.Files;
 using AutoTest.Domain.Enums;
 using Et = AutoTest.Domain.Entities.Tests;

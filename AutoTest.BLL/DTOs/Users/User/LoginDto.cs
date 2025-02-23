@@ -1,4 +1,4 @@
-﻿namespace AutoTest.BLL.DTOs.User;
+﻿namespace AutoTest.BLL.DTOs.Users.User;
 
 public class LoginDto
 {
