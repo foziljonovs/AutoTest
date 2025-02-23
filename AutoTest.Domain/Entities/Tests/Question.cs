@@ -13,4 +13,5 @@ public class Question : BaseEntity
     public required long TestId { get; set; }
     public Test Test { get; set; }
     public List<Option> Options { get; set; } = new List<Option>();
+    public List<QuestionSolution> QuestionSolutions { get; set; } = new List<QuestionSolution>();
 }

@@ -3,6 +3,7 @@ using System;
 using AutoTest.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AutoTest.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250223095042_ThirdMigration")]
+    partial class ThirdMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,41 +289,6 @@ namespace AutoTest.DAL.Migrations
                     b.ToTable("Topics");
                 });
 
-            modelBuilder.Entity("AutoTest.Domain.Entities.Users.SavedTest", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long>("Test")
-                        .HasColumnType("bigint")
-                        .HasColumnName("test");
-
-                    b.Property<long>("TestId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("test_id");
-
-                    b.Property<DateTime>("UpdatedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TestId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("SavedTests");
-                });
-
             modelBuilder.Entity("AutoTest.Domain.Entities.Users.User", b =>
                 {
                     b.Property<long>("Id")
@@ -482,23 +450,6 @@ namespace AutoTest.DAL.Migrations
                     b.Navigation("Test");
                 });
 
-            modelBuilder.Entity("AutoTest.Domain.Entities.Users.SavedTest", b =>
-                {
-                    b.HasOne("AutoTest.Domain.Entities.Tests.Test", null)
-                        .WithMany("SavedTests")
-                        .HasForeignKey("TestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AutoTest.Domain.Entities.Users.User", "User")
-                        .WithMany("SavedTests")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("AutoTest.Domain.Entities.Users.UserTestSolution", b =>
                 {
                     b.HasOne("AutoTest.Domain.Entities.Tests.TestSolution", "TestSolution")
@@ -546,8 +497,6 @@ namespace AutoTest.DAL.Migrations
 
                     b.Navigation("Question");
 
-                    b.Navigation("SavedTests");
-
                     b.Navigation("TestSolutions");
                 });
 
@@ -560,8 +509,6 @@ namespace AutoTest.DAL.Migrations
 
             modelBuilder.Entity("AutoTest.Domain.Entities.Users.User", b =>
                 {
-                    b.Navigation("SavedTests");
-
                     b.Navigation("Tests");
 
                     b.Navigation("UserTestSolutions");

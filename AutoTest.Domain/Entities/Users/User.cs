@@ -17,4 +17,6 @@ public class User : BaseEntity
     [Column("salt")]
     public string Salt { get; set; }
     public List<Test> Tests { get; set; } = new List<Test>();
+    public List<UserTestSolution> UserTestSolutions { get; set; } = new List<UserTestSolution>();
+    public List<SavedTest> SavedTests { get; set; } = new List<SavedTest>();
 }

@@ -22,4 +22,6 @@ public class Test : BaseEntity
     public List<Question> Question { get; set; } = new List<Question>();
     public List<Topic> Topics { get; set; } = new List<Topic>();
     public List<TestFile> Files { get; set; } = new List<TestFile>();
+    public List<TestSolution> TestSolutions { get; set; } = new List<TestSolution>();
+    public List<SavedTest> SavedTests { get; set; } = new List<SavedTest>();
 }
