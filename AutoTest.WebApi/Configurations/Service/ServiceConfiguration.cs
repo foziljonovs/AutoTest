@@ -42,6 +42,10 @@ public static class ServiceConfiguration
         services.AddScoped<IQuestionService, QuestionService>();
         services.AddScoped<IOptionService, OptionService>();
         services.AddScoped<ITopicService, TopicService>();
+        services.AddScoped<IUserTestSolutionService, UserTestSolutionService>();
+        services.AddScoped<ISavedTestService, SavedTestService>();
+        services.AddScoped<ITestSolutionService, TestSolutionService>();
+        services.AddScoped<IQuestionSolutionService, QuestionSolutionService>();
 
         return services;
     }
