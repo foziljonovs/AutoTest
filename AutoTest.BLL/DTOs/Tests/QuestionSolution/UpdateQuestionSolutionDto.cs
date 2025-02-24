@@ -1,24 +1,19 @@
-﻿using Et = AutoTest.Domain.Entities.Tests;
-using System.Text.Json.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace AutoTest.BLL.DTOs.Tests.QuestionSolution;
 
 public class UpdateQuestionSolutionDto
 {
-    [JsonPropertyName("question_id")]
+    [JsonProperty("question_id")]
     public long QuestionId { get; set; }
-    [JsonPropertyName("question")]
-    public Et.Question Question { get; set; }
-    [JsonPropertyName("test_solution_id")]
+    [JsonProperty("test_solution_id")]
     public long TestSolutionId { get; set; }
-    [JsonPropertyName("test_solution")]
-    public Et.TestSolution TestSolution { get; set; }
-    [JsonPropertyName("selected_option_id")]
+    [JsonProperty("selected_option_id")]
     public long? SelectedOptionId { get; set; }
-    [JsonPropertyName("custom_answer")]
+    [JsonProperty("custom_answer")]
     public string? CustomAnswer { get; set; }
-    [JsonPropertyName("is_correct")]
+    [JsonProperty("is_correct")]
     public bool IsCorrect { get; set; }
-    [JsonPropertyName("score")]
+    [JsonProperty("score")]
     public int Score { get; set; }
 }

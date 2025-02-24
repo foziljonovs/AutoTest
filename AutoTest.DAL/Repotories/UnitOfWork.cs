@@ -17,6 +17,10 @@ public class UnitOfWork(AppDbContext dbContext) : IUnitOfWork, IDisposable
     public IQuestion Question { get; set; } = new QuestionRepository(dbContext);
     public IOption Option { get; set; } = new OptionRepository(dbContext);
     public ITestFile TestFile { get; set; } = new TestFileRepository(dbContext);
+    public IUserTestSolution UserTestSolution { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public ITestSolution TestSolution { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public ISavedTest SavedTest { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public IQuestionSolution QuestionSolution { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
     public void Dispose()
     {

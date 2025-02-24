@@ -18,7 +18,7 @@ public class TestSolutionService(
     {
         try
         {
-            var existsTest = await _unitOfWork.TestSolution.GetById(createTestSolutionDto.TestId);
+            var existsTest = await _unitOfWork.Test.GetById(createTestSolutionDto.TestId);
             if(existsTest is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
