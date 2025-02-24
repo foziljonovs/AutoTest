@@ -4,9 +4,6 @@ namespace AutoTest.BLL.DTOs.Users.SavedTest;
 
 public class UpdateSavedTestDto
 {
-
-    [JsonPropertyName("user_id")]
     public long UserId { get; set; }
-    [JsonPropertyName("test_id")]
     public long TestId { get; set; }
 }

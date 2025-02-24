@@ -79,12 +79,12 @@ public class TestSolutionService(
             if (existsTest is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test not found");
 
-            var testSolution = _mapper.Map<TestSolution>(updateTestSolutionDto);
-            testSolution.Id = id;
-            testSolution.UpdatedDate = DateTime.UtcNow.AddHours(5);
-            testSolution.FinishedAt = DateTime.UtcNow.AddHours(5);
+            _mapper.Map(updateTestSolutionDto, existsTestSolution);
+            existsTestSolution.Id = id;
+            existsTestSolution.UpdatedDate = DateTime.UtcNow.AddHours(5);
+            existsTestSolution.FinishedAt = DateTime.UtcNow.AddHours(5);
 
-            var result = await _unitOfWork.TestSolution.Update(testSolution);
+            var result = await _unitOfWork.TestSolution.Update(existsTestSolution);
             return result;
         }
         catch(Exception ex)

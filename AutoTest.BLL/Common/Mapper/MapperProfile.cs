@@ -81,35 +81,54 @@ public class MapperProfile : Profile
         /*-----------------------------------TestSolution-----------------------------------*/
         CreateMap<TestSolution, TestSolutionDto>();
 
-        CreateMap<TestSolutionDto, TestSolution>();
+        CreateMap<TestSolutionDto, TestSolution>()
+            .ForMember(dest => dest.QuestionSolutions, opt => opt.Ignore());
 
-        CreateMap<CreateTestSolutionDto, TestSolution>();
+        CreateMap<CreateTestSolutionDto, TestSolution>()
+            .ForMember(dest => dest.QuestionSolutions, opt => opt.Ignore());
 
-        CreateMap<UpdateTestSolutionDto, TestSolution>();
+        CreateMap<UpdateTestSolutionDto, TestSolution>()
+            .ForMember(dest => dest.QuestionSolutions, opt => opt.Ignore());
 
         /*-----------------------------------QuestionSolution-----------------------------------*/
         CreateMap<QuestionSolution, QuestionSolutionDto>();
 
-        CreateMap<QuestionSolutionDto, QuestionSolution>();
+        CreateMap<QuestionSolutionDto, QuestionSolution>()
+            .ForMember(dest => dest.TestSolution, opt => opt.Ignore())
+            .ForMember(dest => dest.Question, opt => opt.Ignore());
 
-        CreateMap<CreateQuestionSolutionDto, QuestionSolution>();
+        CreateMap<CreateQuestionSolutionDto, QuestionSolution>()
+            .ForMember(dest => dest.TestSolution, opt => opt.Ignore())
+            .ForMember(dest => dest.Question, opt => opt.Ignore());
 
-        CreateMap<UpdateQuestionSolutionDto, QuestionSolution>();
+        CreateMap<UpdateQuestionSolutionDto, QuestionSolution>()
+            .ForMember(dest => dest.TestSolution, opt => opt.Ignore())
+            .ForMember(dest => dest.Question, opt => opt.Ignore());
         /*-----------------------------------SavedTest-----------------------------------*/
         CreateMap<SavedTest, SavedTestDto>();
 
-        CreateMap<SavedTestDto, SavedTest>();
+        CreateMap<SavedTestDto, SavedTest>()
+            .ForMember(dest => dest.User, opt => opt.Ignore())
+            .ForMember(dest => dest.Test, opt => opt.Ignore());
 
-        CreateMap<CreatedSavedTestDto, SavedTest>();
+        CreateMap<CreatedSavedTestDto, SavedTest>()
+            .ForMember(dest => dest.User, opt => opt.Ignore())
+            .ForMember(dest => dest.Test, opt => opt.Ignore());
 
         CreateMap<UpdateSavedTestDto, SavedTest>();
         /*-----------------------------------UserTestSolution-----------------------------------*/
         CreateMap<UserTestSolution, UserTestSolutionDto>();
 
-        CreateMap<UserTestSolutionDto, UserTestSolution>();
+        CreateMap<UserTestSolutionDto, UserTestSolution>()
+            .ForMember(dest => dest.User, opt => opt.Ignore())
+            .ForMember(dest => dest.TestSolution, opt => opt.Ignore());
 
-        CreateMap<CreateUserTestSolutionDto, UserTestSolution>();
+        CreateMap<CreateUserTestSolutionDto, UserTestSolution>()
+            .ForMember(dest => dest.User, opt => opt.Ignore())
+            .ForMember(dest => dest.TestSolution, opt => opt.Ignore());
 
-        CreateMap<UpdateUserTestSolutionDto, UserTestSolution>();
+        CreateMap<UpdateUserTestSolutionDto, UserTestSolution>()
+            .ForMember(dest => dest.User, opt => opt.Ignore())
+            .ForMember(dest => dest.TestSolution, opt => opt.Ignore());
     }
 }

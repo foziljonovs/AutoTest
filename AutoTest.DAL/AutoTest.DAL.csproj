@@ -19,4 +19,8 @@
     <ProjectReference Include="..\AutoTest.Domain\AutoTest.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>

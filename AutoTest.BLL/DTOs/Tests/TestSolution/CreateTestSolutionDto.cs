@@ -5,6 +5,5 @@ namespace AutoTest.BLL.DTOs.Tests.TestSolution;
 public class CreateTestSolutionDto
 {
     public long TestId { get; set; }
-    public DateTime StartedAt { get; set; }
     public int Score { get; set; }
 }

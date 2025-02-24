@@ -16,5 +16,4 @@ public class TestSolution : BaseEntity
     [Column("score")]
     public required int Score { get; set; }
     public List<QuestionSolution> QuestionSolutions { get; set; } = new List<QuestionSolution>();
-    public List<UserTestSolution> UserTestSolutions { get; set; } = new List<UserTestSolution>();
 }
