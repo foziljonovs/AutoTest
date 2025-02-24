@@ -47,6 +47,10 @@ public static class LayerConfiguration
         services.AddScoped<ITopicService, TopicService>();
         services.AddScoped<IQuestionService, QuestionService>();
         services.AddScoped<IOptionService, OptionService>();
+        services.AddScoped<IUserTestSolutionService, UserTestSolutionService>();
+        services.AddScoped<ISavedTestService, SavedTestService>();
+        services.AddScoped<ITestSolutionService, TestSolutionService>();
+        services.AddScoped<IQuestionSolutionService, QuestionSolutionService>();
 
         services.AddScoped<IOpenAIService, OpenAIService>();
 

@@ -502,7 +502,7 @@ namespace AutoTest.DAL.Migrations
             modelBuilder.Entity("AutoTest.Domain.Entities.Users.UserTestSolution", b =>
                 {
                     b.HasOne("AutoTest.Domain.Entities.Tests.TestSolution", "TestSolution")
-                        .WithMany("UserTestSolutions")
+                        .WithMany()
                         .HasForeignKey("TestSolutionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -554,8 +554,6 @@ namespace AutoTest.DAL.Migrations
             modelBuilder.Entity("AutoTest.Domain.Entities.Tests.TestSolution", b =>
                 {
                     b.Navigation("QuestionSolutions");
-
-                    b.Navigation("UserTestSolutions");
                 });
 
             modelBuilder.Entity("AutoTest.Domain.Entities.Users.User", b =>

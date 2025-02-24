@@ -17,7 +17,7 @@ public class QuestionSolutionService(
     {
         try
         {
-            var existsQuestion = await _unitOfWork.QuestionSolution.GetById(dto.QuestionId);
+            var existsQuestion = await _unitOfWork.Question.GetById(dto.QuestionId);
             if(existsQuestion is null)
                 throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Question not found");
 
@@ -106,23 +106,23 @@ public class QuestionSolutionService(
     {
         try
         {
-            var exists = await _unitOfWork.QuestionSolution.GetById(id);
+            var exists = await _unitOfWork.Question.GetById(id);
             if (exists is null)
                 throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Question solution not found");
 
-            var existsQuestion = await _unitOfWork.QuestionSolution.GetById(dto.QuestionId);
-            if (existsQuestion is null)
+            var existsQuestionSolution = await _unitOfWork.QuestionSolution.GetById(dto.QuestionId);
+            if (existsQuestionSolution is null)
                 throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Question not found");
 
             var existsTestSolution = await _unitOfWork.TestSolution.GetById(dto.TestSolutionId);
             if (existsTestSolution is null)
                 throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Test solution not found");
 
-            var questionSolution = _mapper.Map<QuestionSolution>(dto);
-            questionSolution.Id = id;
-            questionSolution.UpdatedDate = DateTime.UtcNow.AddHours(5);
+            _mapper.Map(dto, existsQuestionSolution);
+            existsQuestionSolution.Id = id;
+            existsQuestionSolution.UpdatedDate = DateTime.UtcNow.AddHours(5);
 
-            var result = await _unitOfWork.QuestionSolution.Update(questionSolution);
+            var result = await _unitOfWork.QuestionSolution.Update(existsQuestionSolution);
             return result;
         }
         catch(Exception ex)
