@@ -45,6 +45,11 @@ public class SavedTestServer : ISavedTestServer
         }
     }
 
+    public Task<bool> DeleteAsync(long id)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<List<SavedTestDto>> GetAllAsync()
     {
         try
@@ -56,6 +61,46 @@ public class SavedTestServer : ISavedTestServer
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             HttpResponseMessage message = await client.GetAsync(client.BaseAddress);
 
+            var response = await message.Content.ReadAsStringAsync();
+
+            List<SavedTestDto> savedTests = JsonConvert.DeserializeObject<List<SavedTestDto>>(response)!;
+            return savedTests;
+        }
+        catch(Exception ex)
+        {
+            return new List<SavedTestDto>();
+        }
+    }
+
+    public async Task<IEnumerable<SavedTestDto>> GetAllByTestIdAsync(long testId)
+    {
+        try
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri($"{AuthApi.BASE_URL}/api/saved-tests/{testId}/test");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", IdentitySingelton.GetInstance().Token);
+
+            HttpResponseMessage message = await client.GetAsync(client.BaseAddress);
+            var response = await message.Content.ReadAsStringAsync();
+
+            List<SavedTestDto> savedTests = JsonConvert.DeserializeObject<List<SavedTestDto>>(response)!;
+            return savedTests;
+        }
+        catch(Exception ex)
+        {
+            return new List<SavedTestDto>();
+        }
+    }
+
+    public async Task<IEnumerable<SavedTestDto>> GetAllByUserIdAsync(long userId)
+    {
+        try
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri($"{AuthApi.BASE_URL}/api/saved-tests/{userId}/user");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", IdentitySingelton.GetInstance().Token);
+
+            HttpResponseMessage message = await client.GetAsync(client.BaseAddress);
             var response = await message.Content.ReadAsStringAsync();
 
             List<SavedTestDto> savedTests = JsonConvert.DeserializeObject<List<SavedTestDto>>(response)!;
