@@ -37,6 +37,7 @@
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="0"
                         CornerRadius="5"
+                        Width="130"
                         HorizontalAlignment="Center"
                         Background="Tomato">
                     <StackPanel>
@@ -47,15 +48,18 @@
                                Style="{DynamicResource Label}"
                                HorizontalAlignment="Center"/>
 
-                        <Label x:Name="YourTestCountText"
-                               Content="Testlaringiz soni"
-                               FontSize="14"
-                               Margin="5 0 5 10"
-                               Foreground="White"/>
+                        <TextBlock x:Name="YourTestCountText"
+                                   Text="Testlar"
+                                   FontSize="14"
+                                   HorizontalAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Margin="5 0 5 10"
+                                   Foreground="White"/>
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="1"
                         CornerRadius="5"
+                        Width="130"
                         HorizontalAlignment="Center"
                         Background="#2196F3">
                     <StackPanel>
@@ -66,12 +70,36 @@
                                Style="{DynamicResource Label}"
                                HorizontalAlignment="Center"/>
 
-                        <Label Content="Savollaringiz soni"
-                               FontSize="13"
-                               Margin="5 0 5 10"
-                               Foreground="White"/>
+                        <TextBlock Text="Savollar"
+                                   FontSize="13"
+                                   Margin="5 0 5 10"
+                                   HorizontalAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Foreground="White"/>
                     </StackPanel>
                 </Border>
+                <Border Grid.Column="2"
+                        CornerRadius="5"
+                        Width="130"
+                        HorizontalAlignment="Center"
+                        Background="MediumSeaGreen">
+                    <StackPanel>
+                        <Label x:Name="YourSavedTestsCount"
+                               Content="0"
+                               FontSize="25"
+                               Foreground="Wheat"
+                               Style="{DynamicResource Label}"
+                               HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Saqlanganlar"
+                                   FontSize="13"
+                                   Margin="5 0 5 10"
+                                   HorizontalAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Foreground="White"/>
+                    </StackPanel>
+                </Border>
+
             </Grid>
             <Grid Grid.Row="1"
                   Margin="5">
