@@ -16,7 +16,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="60"/>
             </Grid.ColumnDefinitions>
 
             <TextBlock x:Name="tbNumber"
@@ -31,7 +31,6 @@
                           Grid.Column="1"
                           Text="How to connect postgreSQL in .net core?"
                           VerticalAlignment="Center"
-                          HorizontalAlignment="Left"
                           FontSize="13"
                           FontWeight="SemiBold"/>
 
@@ -39,8 +38,8 @@
                           Grid.Column="2"
                           Text="Multiple"
                           VerticalAlignment="Center"
-                          HorizontalAlignment="Left"
                           FontSize="13"
+                          Margin="5 0"
                           FontWeight="SemiBold"/>
         </Grid>
     </Border>

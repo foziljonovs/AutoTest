@@ -14,6 +14,7 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
     {
         private readonly ITestService _testService;
         private readonly IUserService _userService;
+        private readonly ISavedTestService _savedTestService;
         private long userId { get; set; }
         public UserDto User { get; set; }
         public ProfilePage()
@@ -21,6 +22,7 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             InitializeComponent();
             this._testService = new TestService();
             this._userService = new UserService();
+            this._savedTestService = new SavedTestService();
         }
 
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -52,7 +54,15 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             else
             {
                 YourTestCount.Content = "0";
-                YourTestCountText.Content = "Testlar mavjud emas";
+                YourTestCountText.Text = "Testlar mavjud emas";
+            }
+
+            var savedCount = await GetSavedTestsCount(userId);
+            if (savedCount > 0)
+                YourSavedTestsCount.Content = savedCount.ToString();
+            else
+            {
+                YourSavedTestsCount.Content = "0";
             }
         }
 
@@ -65,6 +75,14 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             return tests.Count();
         }
 
+        private async Task<int> GetSavedTestsCount(long userId)
+        {
+            var tests = await _savedTestService.GetAllByUserIdAsync(userId);
+            if (!tests.Any())
+                return 0;
+         
+            return tests.Count();
+        }
         private async Task<UserDto> GetUser()
         {
             var id = IdentitySingelton.GetInstance().Id;
