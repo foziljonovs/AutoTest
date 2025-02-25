@@ -8,6 +8,6 @@ public interface ISavedTestServer
     Task<SavedTestDto> GetByIdAsync(long id);
     Task<bool> AddAsync(CreatedSavedTestDto dto);
     Task<bool> DeleteAsync(long id);
-    Task<IEnumerable<SavedTestDto>> GetAllByUserIdAsync(long userId);
-    Task<IEnumerable<SavedTestDto>> GetAllByTestIdAsync(long testId);
+    Task<List<SavedTestDto>> GetAllByUserIdAsync(long userId);
+    Task<List<SavedTestDto>> GetAllByTestIdAsync(long testId);
 }

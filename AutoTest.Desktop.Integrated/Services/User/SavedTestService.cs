@@ -52,7 +52,7 @@ public class SavedTestService : ISavedTestService
         }
     }
 
-    public async Task<IEnumerable<SavedTestDto>> GetAllByTestIdAsync(long testId)
+    public async Task<List<SavedTestDto>> GetAllByTestIdAsync(long testId)
     {
         try
         {
@@ -70,13 +70,13 @@ public class SavedTestService : ISavedTestService
         }
     }
 
-    public async Task<IEnumerable<SavedTestDto>> GetAllByUserIdAsync(long userId)
+    public async Task<List<SavedTestDto>> GetAllByUserIdAsync(long userId)
     {
         try
         {
             if (IsInternetAvailable())
             {
-                var res = _server.GetAllByUserIdAsync(userId);
+                var res = await _server.GetAllByUserIdAsync(userId);
                 return res;
             }
             else
