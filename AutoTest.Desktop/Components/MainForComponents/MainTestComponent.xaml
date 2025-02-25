@@ -13,7 +13,7 @@
         CornerRadius="5"
         BorderThickness="1"
         BorderBrush="#344e41"
-        MouseEnter="st_border_MouseEnter">
+        MouseDown="st_border_MouseEnter">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>

@@ -72,7 +72,7 @@ public class SavedTestServer : ISavedTestServer
         }
     }
 
-    public async Task<IEnumerable<SavedTestDto>> GetAllByTestIdAsync(long testId)
+    public async Task<List<SavedTestDto>> GetAllByTestIdAsync(long testId)
     {
         try
         {
@@ -92,7 +92,7 @@ public class SavedTestServer : ISavedTestServer
         }
     }
 
-    public async Task<IEnumerable<SavedTestDto>> GetAllByUserIdAsync(long userId)
+    public async Task<List<SavedTestDto>> GetAllByUserIdAsync(long userId)
     {
         try
         {

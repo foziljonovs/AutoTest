@@ -11,7 +11,7 @@
         Background="White"
         CornerRadius="5"
         BorderThickness="1"
-        BorderBrush="#  ">
+        BorderBrush="#344e41">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>

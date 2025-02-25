@@ -1,7 +1,7 @@
 ﻿using AutoTest.BLL.DTOs.Tests.Test;
 using AutoTest.BLL.DTOs.Users.SavedTest;
 using AutoTest.Desktop.Components.MainForComponents;
-using AutoTest.Desktop.Integrated.Services.Question;
+using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.User;
 using AutoTest.Domain.Entities.Tests;
@@ -19,7 +19,6 @@ namespace AutoTest.Desktop.Windows.TestForWindows;
 public partial class TestViewWindow : Window
 {
     private readonly ITestService _testService;
-    private readonly IQuestionService _questionService;
     private readonly ISavedTestService _savedtestService;
     private TestDto Test { get; set; }
     private long TestId { get; set; }
@@ -28,7 +27,6 @@ public partial class TestViewWindow : Window
     {
         InitializeComponent();
         this._testService = new TestService();
-        this._questionService = new QuestionService();
         this._savedtestService = new SavedTestService();
     }
 
@@ -90,7 +88,10 @@ public partial class TestViewWindow : Window
 
         if (questions.Any())
         {
-            foreach(var question in questions)
+            QuestionsLoader.Visibility = Visibility.Collapsed;
+            EmptyQuestionLbl.Visibility = Visibility.Collapsed;
+
+            foreach (var question in questions)
             {
                 MainQuestionComponent component = new MainQuestionComponent();
                 component.SetValues(count, question.Id, question.Problem, question.Type.ToString());
@@ -118,5 +119,34 @@ public partial class TestViewWindow : Window
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
         GetByTestId();
+    }
+
+    private async void SavedTestBtn_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            long userId = IdentitySingelton.GetInstance().Id;
+
+            CreatedSavedTestDto dto = new CreatedSavedTestDto
+            {
+                TestId = TestId,
+                UserId = userId
+            };
+
+            var res = await _savedtestService.AddAsync(dto);
+            if (res)
+            {
+                notifierThis.ShowSuccess("Test muvaffaqiyatli saqlandi!");
+                await GetAllSavedTestByTestId();
+            }
+            else
+            {
+                notifierThis.ShowWarning("Testni saqlanmado, qayta urining!");
+            }
+        }
+        catch (Exception ex)
+        {
+            notifierThis.ShowError("Xatolik yuz berdi!");
+        }
     }
 }

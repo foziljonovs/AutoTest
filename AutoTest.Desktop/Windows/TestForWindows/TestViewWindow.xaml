@@ -110,7 +110,8 @@
                             x:Name="SavedTestBtn"
                             Style="{DynamicResource savedButton}"
                             Width="30"
-                            Height="30"/>
+                            Height="30"
+                            Click="SavedTestBtn_Click"/>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">

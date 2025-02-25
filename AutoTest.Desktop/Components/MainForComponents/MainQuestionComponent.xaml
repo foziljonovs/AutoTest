@@ -31,6 +31,7 @@
                           Grid.Column="1"
                           Text="How to connect postgreSQL in .net core?"
                           VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
                           FontSize="13"
                           FontWeight="SemiBold"/>
 
@@ -38,6 +39,7 @@
                           Grid.Column="2"
                           Text="Multiple"
                           VerticalAlignment="Center"
+                          HorizontalAlignment="Left"
                           FontSize="13"
                           FontWeight="SemiBold"/>
         </Grid>
