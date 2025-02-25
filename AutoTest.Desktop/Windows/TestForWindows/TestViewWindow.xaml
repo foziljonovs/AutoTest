@@ -9,7 +9,8 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Height="350"
-        Width="600">
+        Width="600"
+        Loaded="Window_Loaded">
     <Grid Margin="10 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -113,13 +114,13 @@
                 </Grid>
             </Grid>
             <Grid Grid.Column="1">
-                <local1:Loader x:Name="TestLoader"
+                <local1:Loader x:Name="QuestionsLoader"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Visibility="Collapsed"/>
 
                 <ScrollViewer Margin="0 5">
-                    <StackPanel x:Name="stTests"
+                    <StackPanel x:Name="stQuestions"
                                 Margin="5 0"/>
                 </ScrollViewer>
 
