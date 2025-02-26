@@ -38,6 +38,13 @@
                 <StackPanel x:Name="stSavedTest"
                             Margin="0 0 5 0"/>
             </ScrollViewer>
+
+            <Label x:Name="EmptyData"
+                   Content="Saqlanganlar mavjud emas!"
+                   Style="{DynamicResource Label}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Visibility="Collapsed"/>
         </Grid>
     </Grid>
 </Window>

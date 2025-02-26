@@ -47,6 +47,11 @@ public partial class SavedTestWindow : Window
                 count++;
             }
         }
+        else
+        {
+            SavedTestLoader.Visibility = Visibility.Collapsed;
+            EmptyData.Visibility = Visibility.Visible;
+        }
     }
 
     public void SetUserId(long userId)
