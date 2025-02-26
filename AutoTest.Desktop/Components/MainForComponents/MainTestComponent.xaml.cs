@@ -33,5 +33,11 @@ namespace AutoTest.Desktop.Components.MainForComponents
                 window.ShowDialog();
             }
         }
+
+        private void SolutionBtn_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            TestSolutionWindow window = new TestSolutionWindow();
+            window.ShowDialog();
+        }
     }
 }
