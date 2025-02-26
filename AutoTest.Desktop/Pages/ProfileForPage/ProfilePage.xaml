@@ -82,7 +82,8 @@
                         CornerRadius="5"
                         Width="130"
                         HorizontalAlignment="Center"
-                        Background="MediumSeaGreen">
+                        Background="MediumSeaGreen"
+                        MouseDown="SavedTests_Border_MouseDown">
                     <StackPanel>
                         <Label x:Name="YourSavedTestsCount"
                                Content="0"

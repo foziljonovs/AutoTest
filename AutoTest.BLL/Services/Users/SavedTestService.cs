@@ -56,7 +56,7 @@ public class SavedTestService(
     {
         try
         {
-            var savedTests = _unitOfWork.SavedTest.GetAll();
+            var savedTests = await _unitOfWork.SavedTest.GetAllFullInformationAsync();
             if(!savedTests.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No saved tests found");
 
@@ -72,11 +72,13 @@ public class SavedTestService(
     {
         try
         {
-            var savedTests = _unitOfWork.SavedTest.GetAll().Where(x => x.TestId == testId);
-            if(!savedTests.Any())
+            var savedTests = await _unitOfWork.SavedTest.GetAllFullInformationAsync();
+            
+            var filteredSavedTests = savedTests.Where(x => x.TestId == testId);
+            if(!filteredSavedTests.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No saved tests found");
 
-            return _mapper.Map<IEnumerable<SavedTestDto>>(savedTests);
+            return _mapper.Map<IEnumerable<SavedTestDto>>(filteredSavedTests);
         }
         catch(Exception ex)
         {
@@ -88,11 +90,13 @@ public class SavedTestService(
     {
         try
         {
-            var savedTests = _unitOfWork.SavedTest.GetAll().Where(x => x.UserId == userId);
-            if(!savedTests.Any())
+            var savedTests = await _unitOfWork.SavedTest.GetAllFullInformationAsync();
+            
+            var filteredSavedTests = savedTests.Where(x => x.UserId == userId);
+            if(!filteredSavedTests.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No saved tests found");
 
-            return _mapper.Map<IEnumerable<SavedTestDto>>(savedTests);
+            return _mapper.Map<IEnumerable<SavedTestDto>>(filteredSavedTests);
         }
         catch(Exception ex)
         {

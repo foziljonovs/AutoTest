@@ -2,8 +2,16 @@
 using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.User;
+using AutoTest.Desktop.Pages.TestForPage;
+using AutoTest.Desktop.Windows;
 using AutoTest.Desktop.Windows.ProfileForWindows;
+using AutoTest.Desktop.Windows.TestForWindows;
+using System.Windows;
 using System.Windows.Controls;
+using ToastNotifications;
+using ToastNotifications.Lifetime;
+using ToastNotifications.Messages;
+using ToastNotifications.Position;
 
 namespace AutoTest.Desktop.Pages.ProfileForPage
 {
@@ -24,6 +32,42 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             this._userService = new UserService();
             this._savedTestService = new SavedTestService();
         }
+
+        Notifier notifier = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: System.Windows.Application.Current.MainWindow,
+                corner: Corner.TopRight,
+                offsetX: 20,
+                offsetY: 20);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(2));
+
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
+
+            cfg.DisplayOptions.Width = 200;
+            cfg.DisplayOptions.TopMost = true;
+        });
+
+        Notifier notifierThis = new Notifier(cfg =>
+        {
+            cfg.PositionProvider = new WindowPositionProvider(
+                parentWindow: System.Windows.Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive),
+                corner: Corner.TopRight,
+                offsetX: 20,
+                offsetY: 20);
+
+            cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(
+                notificationLifetime: TimeSpan.FromSeconds(3),
+                maximumNotificationCount: MaximumNotificationCount.FromCount(2));
+
+            cfg.Dispatcher = System.Windows.Application.Current.Dispatcher;
+
+            cfg.DisplayOptions.Width = 200;
+            cfg.DisplayOptions.TopMost = true;
+        });
 
         private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -103,6 +147,13 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
         private void VerifyBtn_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             VerifyPasswordWindow window = new VerifyPasswordWindow();
+            window.ShowDialog();
+        }
+
+        private void SavedTests_Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            SavedTestWindow window = new SavedTestWindow();
+            window.SetUserId(userId);
             window.ShowDialog();
         }
     }

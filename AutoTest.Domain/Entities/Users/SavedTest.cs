@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using AutoTest.Domain.Entities.Tests;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AutoTest.Domain.Entities.Users;
 
@@ -11,5 +12,5 @@ public class SavedTest : BaseEntity
     [Column("test_id")]
     public required long TestId { get; set; }
     [Column("test")]
-    public long Test { get; set; }    
+    public Test Test { get; set; }    
 }

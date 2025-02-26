@@ -107,9 +107,7 @@ public class MapperProfile : Profile
         /*-----------------------------------SavedTest-----------------------------------*/
         CreateMap<SavedTest, SavedTestDto>();
 
-        CreateMap<SavedTestDto, SavedTest>()
-            .ForMember(dest => dest.User, opt => opt.Ignore())
-            .ForMember(dest => dest.Test, opt => opt.Ignore());
+        CreateMap<SavedTestDto, SavedTest>();
 
         CreateMap<CreatedSavedTestDto, SavedTest>()
             .ForMember(dest => dest.User, opt => opt.Ignore())
