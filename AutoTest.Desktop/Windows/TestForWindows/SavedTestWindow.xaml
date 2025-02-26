@@ -1,0 +1,43 @@
+﻿<Window x:Class="AutoTest.Desktop.Windows.TestForWindows.SavedTestWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoTest.Desktop.Windows.TestForWindows" xmlns:local1="clr-namespace:AutoTest.Desktop.Components.Loader"
+        mc:Ignorable="d"
+        Title="SavedTestWindow"
+        Height="350"
+        Width="600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None">
+    <Grid Margin="10 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/> 
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Label Content="Saqlangan testlaringiz"
+                   Style="{DynamicResource Label}"
+                   VerticalAlignment="Center"
+                   FontSize="18"/>
+
+            <Button x:Name="CloseWindow"
+                    Style="{DynamicResource WindowCloseBtnStyle}"
+                    HorizontalAlignment="Right"
+                    Click="CloseWindow_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <local1:Loader x:Name="SavedTestLoader"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Visibility="Collapsed"/>
+
+            <ScrollViewer>
+                <StackPanel x:Name="stSavedTest"
+                            Margin="0 0 5 0"/>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
