@@ -29,9 +29,22 @@ public class SavedTestService : ISavedTestService
         }
     }
 
-    public Task<bool> DeleteAsync(long id)
+    public async Task<bool> DeleteAsync(long id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            if (IsInternetAvailable())
+            {
+                var res = await _server.DeleteAsync(id);
+                return res;
+            }
+            else
+                return false;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
     }
 
     public async Task<List<SavedTestDto>> GetAllAsync()

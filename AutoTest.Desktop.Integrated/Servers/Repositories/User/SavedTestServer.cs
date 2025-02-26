@@ -45,9 +45,27 @@ public class SavedTestServer : ISavedTestServer
         }
     }
 
-    public Task<bool> DeleteAsync(long id)
+    public async Task<bool> DeleteAsync(long id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            HttpClient client = new HttpClient();
+            var token = IdentitySingelton.GetInstance().Token;
+
+            client.BaseAddress = new Uri($"{AuthApi.BASE_URL}/api/saved-tests/{id}");
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+            var result = await client.DeleteAsync(client.BaseAddress);
+
+            if (result.IsSuccessStatusCode)
+                return true;
+            else 
+                return false;
+        }
+        catch(Exception ex)
+        {
+            return false;
+        }
     }
 
     public async Task<List<SavedTestDto>> GetAllAsync()
