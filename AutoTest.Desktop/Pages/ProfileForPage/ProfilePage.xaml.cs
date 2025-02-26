@@ -155,6 +155,7 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             SavedTestWindow window = new SavedTestWindow();
             window.SetUserId(userId);
             window.ShowDialog();
+            GetAll();
         }
     }
 }

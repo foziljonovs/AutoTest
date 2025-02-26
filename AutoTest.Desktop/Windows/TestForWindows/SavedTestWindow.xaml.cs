@@ -20,8 +20,9 @@ public partial class SavedTestWindow : Window
     private void CloseWindow_Click(object sender, RoutedEventArgs e)
         => this.Close();
 
-    private async void GetAllSavedTests()
+    private async Task GetAllSavedTests()
     {
+        stSavedTest.Children.Clear();
         int count = 1;
 
         var savedTests = await _service.GetAllByUserIdAsync(UserId);
@@ -38,8 +39,10 @@ public partial class SavedTestWindow : Window
                     savedTest.Id,
                     savedTest.Test.Title ?? "Nomalum",
                     savedTest.User.Firstname ?? "Nomalum",
-                    savedTest.Test.Level.ToString());
+                    savedTest.Test.Level.ToString(),
+                    savedTest.TestId);
 
+                component.SavedTestDelegate = GetAllSavedTests;
                 stSavedTest.Children.Add(component);
                 count++;
             }
