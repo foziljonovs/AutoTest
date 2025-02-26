@@ -80,6 +80,8 @@ namespace AutoTest.Desktop.Windows.TestForWindows
 
         private void SelectTopics(List<Topic> topics)
         {
+            stTopics.Children.Clear();
+
             if (topics.Any())
             {
                 TopicLoader.Visibility = Visibility.Collapsed;

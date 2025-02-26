@@ -1,0 +1,58 @@
+﻿<Page x:Class="AutoTest.Desktop.Pages.TestForPage.SolutionPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoTest.Desktop.Pages.TestForPage"
+      mc:Ignorable="d"
+      Title="SolutionPage">
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0">
+                <TextBlock x:Name="tbProblem"
+                           Text="OOP ning asosiy ustunlari?"
+                           FontSize="22"
+                           TextWrapping="Wrap"
+                           FontFamily="Jetbrains Mono"
+                           FontWeight="SemiBold"
+                           Margin="5 0"/>
+            </ScrollViewer>
+
+            <Grid Grid.Column="1">
+                <ScrollViewer>
+                    <StackPanel x:Name="stQuestions"
+                                Margin="5 0"/>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              Width="160"
+              Margin="0 5 0 0">
+            <Button x:Name="IntakeBtn"
+                    Content="Qabul qilish"
+                    Width="120"
+                    Style="{DynamicResource mainButton}"
+                    Height="30"
+                    Background="#2196F3"
+                    HorizontalAlignment="Left"/>
+
+            <Button x:Name="NextBtn"
+                    Style="{DynamicResource nextButton}"
+                    HorizontalAlignment="Right"
+                    Width="30"
+                    Height="30"/>
+        </Grid>
+    </Grid>
+</Page>
