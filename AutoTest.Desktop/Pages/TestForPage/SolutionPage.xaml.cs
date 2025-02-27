@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using AutoTest.BLL.DTOs.Tests.Question;
+using AutoTest.BLL.DTOs.Tests.Test;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace AutoTest.Desktop.Pages.TestForPage
+namespace AutoTest.Desktop.Pages.TestForPage;
+
+/// <summary>
+/// Interaction logic for SolutionPage.xaml
+/// </summary>
+public partial class SolutionPage : Page
 {
-    /// <summary>
-    /// Interaction logic for SolutionPage.xaml
-    /// </summary>
-    public partial class SolutionPage : Page
+    public TestDto Test { get; set; }
+    public long TestId { get; set; }
+    public Dictionary<int, QuestionDto> Questions { get; set; }
+    public SolutionPage()
     {
-        public SolutionPage()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
+
+    public void SetTestId(long testId)
+        => this.TestId = testId;
 }

@@ -31,7 +31,7 @@
 
             <Grid Grid.Column="1">
                 <ScrollViewer>
-                    <StackPanel x:Name="stQuestions"
+                    <StackPanel x:Name="stOptions"
                                 Margin="5 0"/>
                 </ScrollViewer>
             </Grid>

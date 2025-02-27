@@ -38,6 +38,7 @@ namespace AutoTest.Desktop.Components.MainForComponents
         {
             TestSolutionWindow window = new TestSolutionWindow();
             window.ShowDialog();
+            window.SetTestId(Id);
         }
     }
 }
