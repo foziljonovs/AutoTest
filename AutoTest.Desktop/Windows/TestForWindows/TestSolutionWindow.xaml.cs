@@ -17,8 +17,8 @@ public partial class TestSolutionWindow : Window
     private void CloseBtn_Click(object sender, RoutedEventArgs e)
         => this.Close();
 
-    public void SetTestId()
-        => this.TestId = TestId;
+    public void SetTestId(long testId)
+        => this.TestId = testId;
 
     private void StartBtn_Click(object sender, RoutedEventArgs e)
     {
