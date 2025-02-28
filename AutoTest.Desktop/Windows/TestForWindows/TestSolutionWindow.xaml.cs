@@ -27,7 +27,14 @@ public partial class TestSolutionWindow : Window
         CloseBtn.Visibility = Visibility.Collapsed;
 
         SolutionPage page = new SolutionPage();
-        page.TestId = TestId;
+        page.SetTestId(TestId);
         PageNavigator.Navigate(page);
+    }
+
+    private void StopBtn_Click(object sender, RoutedEventArgs e)
+    {
+        StopBtn.Visibility = Visibility.Collapsed;
+        StartBtn.Visibility = Visibility.Visible;
+        CloseBtn.Visibility = Visibility.Visible;
     }
 }

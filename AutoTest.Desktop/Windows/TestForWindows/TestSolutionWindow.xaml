@@ -53,7 +53,8 @@
                     Height="30"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Top"
-                    Style="{DynamicResource mainButton}"/>
+                    Style="{DynamicResource mainButton}"
+                    Click="StopBtn_Click"/>
         </Grid>
     </Grid>
 </Window>
