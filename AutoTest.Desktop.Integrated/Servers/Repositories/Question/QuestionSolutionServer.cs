@@ -24,7 +24,7 @@ public class QuestionSolutionServer : IQuestionSolutionServer
                 {
                     request.Headers.Add("Authorization", $"Bearer {token}");
 
-                    var json = JsonConvert.DeserializeObject(dto);
+                    var json = JsonConvert.SerializeObject(dto);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                     request.Content = content;
@@ -96,12 +96,13 @@ public class QuestionSolutionServer : IQuestionSolutionServer
             HttpClient client = new HttpClient();
             var token = IdentitySingelton.GetInstance().Token;
 
-            client.BaseAddress = new Uri($"{AuthApi.BASE_URL}/api/question/solutions/{id}/test-solution");
+            client.BaseAddress = new Uri($"{AuthApi.BASE_URL}/api/question/solutions/{testSolutionId}/test-solution");
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
             var response = await client.GetAsync(client.BaseAddress);
+            var result = await response.Content.ReadAsStringAsync();
 
-            List<QuestionSolutionDto> questionSolutions = JsonConvert.DeserializeObject<List<QuestionSolutionDto>>(response)!;
+            List<QuestionSolutionDto> questionSolutions = JsonConvert.DeserializeObject<List<QuestionSolutionDto>>(result)!;
             return questionSolutions;
         }
         catch(Exception ex)
@@ -121,13 +122,14 @@ public class QuestionSolutionServer : IQuestionSolutionServer
             client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
 
             var response = await client.GetAsync(client.BaseAddress);
+            string result = await response.Content.ReadAsStringAsync();
 
-            var questionSolution = JsonConvert.DeserializeObject<QuestionSolutionDto>(response)!;
+            var questionSolution = JsonConvert.DeserializeObject<QuestionSolutionDto>(result)!;
             return questionSolution;
         }
         catch(Exception ex)
         {
-            return new List<QuestionSolutionDto>();
+            return new QuestionSolutionDto();
         }
     }
 
