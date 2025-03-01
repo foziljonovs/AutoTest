@@ -35,6 +35,27 @@ public class TestSolutionService(
         }
     }
 
+    public async Task<long> AddTestSolutionAsync(CreateTestSolutionDto dto, CancellationToken cancellation = default)
+    {
+        try
+        {
+            var existsTest = await _unitOfWork.Test.GetById(dto.TestId);
+            if (existsTest is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, $"Test solution with id {dto.TestId} not found");
+
+            var testSolution = _mapper.Map<TestSolution>(dto);
+            testSolution.CreatedDate = DateTime.UtcNow.AddHours(5);
+            testSolution.StartedAt = DateTime.UtcNow.AddHours(5);
+
+            var result = await _unitOfWork.TestSolution.AddAsync(testSolution);
+            return result;
+        }
+        catch(Exception ex)
+        {
+            throw new Exception($"An error occured while adding the test solution", ex);
+        }
+    }
+
     public async Task<IEnumerable<TestSolutionDto>> GetAllAsync(CancellationToken cancellation = default)
     {
         try

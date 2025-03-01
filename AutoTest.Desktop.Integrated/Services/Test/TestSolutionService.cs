@@ -11,18 +11,18 @@ public class TestSolutionService : ITestSolutionService
     {
         this._server = new TestSolutionServer();
     }
-    public async Task<bool> AddAsync(CreateTestSolutionDto createTestSolutionDto)
+    public async Task<long> AddAsync(CreateTestSolutionDto createTestSolutionDto)
     {
         try
         {
             if (IsInternetAvailable())
                 return await _server.AddAsync(createTestSolutionDto);
             else
-                return false;
+                return -1;
         }
         catch (Exception ex)
         {
-            return false;
+            return -1;
         }
     }
 

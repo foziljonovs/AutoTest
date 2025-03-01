@@ -6,6 +6,6 @@ public interface IUserTestSolutionServer
 {
     Task<List<UserTestSolutionDto>> GetAllByUserIdAsync(long userId);
     Task<List<UserTestSolutionDto>> GetAllByTestIdAsync(long testId);
-    Task<bool> AddAsync(CreateUserTestSolutionDto dto);
+    Task<long> AddAsync(CreateUserTestSolutionDto dto);
     Task<bool> UpdateAsync(long id, UpdateUserTestSolutionDto dto);
 }
