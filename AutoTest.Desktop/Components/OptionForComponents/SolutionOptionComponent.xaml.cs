@@ -29,6 +29,8 @@ public partial class SolutionOptionComponent : UserControl
         tbOption.Text = option;
     }
 
+    public long GetOptionId()
+        => this.OptionId;
     public bool ChooseOptionResult()
         => this.IsCorrect;
 
