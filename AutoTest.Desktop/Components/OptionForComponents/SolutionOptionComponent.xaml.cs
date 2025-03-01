@@ -1,5 +1,9 @@
-﻿using System.Windows.Controls;
+﻿using AutoTest.Desktop.Pages.TestForPage;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace AutoTest.Desktop.Components.OptionForComponents;
 
@@ -30,6 +34,21 @@ public partial class SolutionOptionComponent : UserControl
 
     private void Border_MouseDown(object sender, MouseButtonEventArgs e)
     {
+        var page = FindParentPage(this);
 
+        if(page is SolutionPage solutionPage)
+            solutionPage.AddSolutionOption(this);
+    }
+
+    private Page FindParentPage(DependencyObject child)
+    {
+        DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+        if (parentObject is Page page)
+            return page;
+        else if(parentObject != null)
+            return FindParentPage(parentObject);
+
+        return null!;
     }
 }

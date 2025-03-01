@@ -70,7 +70,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
                     {
                         MainTestComponent component = new MainTestComponent();
                         component.Tag = test;
-                        component.SetValues(test, count);
+                        component.SetValues(test.Id, test, count);
                         st_tests.Children.Add(component);
                         count++;
                     }
@@ -105,7 +105,7 @@ namespace AutoTest.Desktop.Pages.MainForPage
                     {
                         MainTestComponent component = new MainTestComponent();
                         component.Tag = test;
-                        component.SetValues(test, count);
+                        component.SetValues(test.Id, test, count);
                         st_tests.Children.Add(component);
                         count++;
                     }

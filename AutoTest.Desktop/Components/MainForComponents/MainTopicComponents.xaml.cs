@@ -71,7 +71,7 @@ namespace AutoTest.Desktop.Components.MainForComponents
             else if (parentObject != null)
             {
                 return FindParentPage(parentObject);
-            }
+            }       
 
             return null!;
         }
