@@ -4,7 +4,6 @@ using AutoTest.Desktop.Integrated.Services.Question;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.User;
 using AutoTest.Domain.Entities.Tests;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Query.Internal;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -30,6 +29,7 @@ public partial class SolutionPage : Page
     private char[] Characters = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J' };
     private int maxQuestionCount = 0;
     private int nextQuestion = 1;
+    private long SelectedOptionId { get; set; }
     public SolutionPage()
     {
         InitializeComponent();
@@ -147,9 +147,18 @@ public partial class SolutionPage : Page
 
         component.st_Border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B6B6B6"));
         solutionOptionComponent = component;
+        var selectedOptionId = component.GetOptionId();
+
+        if (selectedOptionId > 0)
+            SelectedOptionId = selectedOptionId;
     }
     private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
         await GetTestAsync();
+    }
+
+    private void IntakeBtn_Click(object sender, RoutedEventArgs e)
+    {
+
     }
 }

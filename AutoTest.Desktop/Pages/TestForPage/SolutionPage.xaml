@@ -47,7 +47,8 @@
                     Style="{DynamicResource mainButton}"
                     Height="30"
                     Background="#2196F3"
-                    HorizontalAlignment="Left"/>
+                    HorizontalAlignment="Left"
+                    Click="IntakeBtn_Click"/>
 
             <Button x:Name="NextBtn"
                     Style="{DynamicResource nextButton}"
