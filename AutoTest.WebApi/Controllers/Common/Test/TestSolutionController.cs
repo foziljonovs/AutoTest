@@ -53,7 +53,7 @@ public class TestSolutionController(ITestSolutionService service) : ControllerBa
     {
         try
         {
-            var response = await _service.AddAsync(dto, cancellation);
+            var response = await _service.AddTestSolutionAsync(dto, cancellation);
             return Ok(response);
         }
         catch (StatusCodeException ex)

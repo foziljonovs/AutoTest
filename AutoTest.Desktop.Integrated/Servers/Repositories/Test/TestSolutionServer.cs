@@ -9,7 +9,7 @@ namespace AutoTest.Desktop.Integrated.Servers.Repositories.Test;
 
 public class TestSolutionServer : ITestSolutionServer
 {
-    public async Task<bool> AddAsync(CreateTestSolutionDto createTestSolutionDto)
+    public async Task<long> AddAsync(CreateTestSolutionDto createTestSolutionDto)
     {
         try
         {
@@ -32,15 +32,15 @@ public class TestSolutionServer : ITestSolutionServer
                     var result = await response.Content.ReadAsStringAsync();
 
                     if (response.IsSuccessStatusCode)
-                        return true;
+                        return long.Parse(result);
                     else
-                        return false;
+                        return -1;
                 }
             }
         }
         catch(Exception ex)
         {
-            return false;
+            return -1;
         }
     }
 

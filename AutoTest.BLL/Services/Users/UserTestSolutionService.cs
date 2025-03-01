@@ -37,6 +37,29 @@ public class UserTestSolutionService(
         }
     }
 
+    public async Task<long> AddUserTestSolutionAsync(CreateUserTestSolutionDto dto, CancellationToken cancellation = default)
+    {
+        try
+        {
+            var existsUser = await _unitOfWork.User.GetById(dto.UserId);
+            if (existsUser is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, $"User with id {dto.UserId} not found");
+
+            var existsTestSolution = await _unitOfWork.TestSolution.GetById(dto.TestSolutionId);
+            if (existsTestSolution is null)
+                throw new StatusCodeException(HttpStatusCode.NotFound, $"Test solution with id {dto.TestSolutionId} not found");
+
+            var userTestSolution = _mapper.Map<UserTestSolution>(dto);
+            var result = await _unitOfWork.UserTestSolution.AddAsync(userTestSolution);
+
+            return result;
+        }
+        catch(Exception ex)
+        {
+            throw new Exception("An error occured while adding the user test solution", ex);
+        }
+    }
+
     public async Task<IEnumerable<UserTestSolutionDto>> GetAllByTestIdAsync(long testId, CancellationToken cancellationToken = default)
     {
         try

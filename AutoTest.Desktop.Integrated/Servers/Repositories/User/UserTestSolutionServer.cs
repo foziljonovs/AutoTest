@@ -10,7 +10,7 @@ namespace AutoTest.Desktop.Integrated.Servers.Repositories.User;
 
 public class UserTestSolutionServer : IUserTestSolutionServer
 {
-    public async Task<bool> AddAsync(CreateUserTestSolutionDto dto)
+    public async Task<long> AddAsync(CreateUserTestSolutionDto dto)
     {
         try
         {
@@ -32,15 +32,15 @@ public class UserTestSolutionServer : IUserTestSolutionServer
                     var result = await response.Content.ReadAsStringAsync();
 
                     if (response.IsSuccessStatusCode)
-                        return true;
+                        return long.Parse(result);
                     else
-                        return false;
+                        return -1;
                 }
             }
         }
         catch(Exception ex)
         {
-            return false;
+            return -1;
         }
     }
 

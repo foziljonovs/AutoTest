@@ -53,7 +53,7 @@ public class UserTestSolutionController(IUserTestSolutionService service) : Cont
     {
         try
         {
-            var response = await _service.AddAsync(dto, cancellation);
+            var response = await _service.AddUserTestSolutionAsync(dto, cancellation);
             return Ok(response);
         }
         catch (StatusCodeException ex)
