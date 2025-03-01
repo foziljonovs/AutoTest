@@ -4,8 +4,10 @@ using AutoTest.Desktop.Integrated.Services.Question;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.User;
 using AutoTest.Domain.Entities.Tests;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Query.Internal;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using ToastNotifications;
 using ToastNotifications.Lifetime;
 using ToastNotifications.Messages;
@@ -24,7 +26,7 @@ public partial class SolutionPage : Page
     private readonly ITestService _testService;
     private TestDto Test { get; set; }
     private long TestId { get; set; }
-    private Dictionary<int, Question> Questions { get; set; }
+    private Dictionary<int, Question> Questions { get; set; } = new Dictionary<int, Question>();
     private char[] Characters = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J' };
     private int maxQuestionCount = 0;
     private int nextQuestion = 1;
@@ -82,6 +84,7 @@ public partial class SolutionPage : Page
             }
 
             maxQuestionCount = count;
+            tbProblem.Text = test.Title;
             ShowQuestion();
         }
     }
@@ -136,8 +139,17 @@ public partial class SolutionPage : Page
             return false;
     }
 
-    private void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+    private SolutionOptionComponent solutionOptionComponent = null!;
+    public async void AddSolutionOption(SolutionOptionComponent component)
     {
-        GetTestAsync();
+        if(solutionOptionComponent != null)
+            solutionOptionComponent.st_Border.Background = Brushes.White;
+
+        component.st_Border.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B6B6B6"));
+        solutionOptionComponent = component;
+    }
+    private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
+    {
+        await GetTestAsync();
     }
 }

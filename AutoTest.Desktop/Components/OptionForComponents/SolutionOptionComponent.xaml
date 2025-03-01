@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:AutoTest.Desktop.Components.OptionForComponents"
              mc:Ignorable="d" 
              Height="40">
-    <Border CornerRadius="5"
+    <Border x:Name="st_Border"
+            CornerRadius="5"
             BorderThickness="1"
             BorderBrush="#344e41"
             Margin="3 5 3 0"

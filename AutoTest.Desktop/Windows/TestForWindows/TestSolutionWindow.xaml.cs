@@ -8,7 +8,7 @@ namespace AutoTest.Desktop.Windows.TestForWindows;
 /// </summary>
 public partial class TestSolutionWindow : Window
 {
-    public long TestId { get; set; }
+    private long TestId { get; set; }
     public TestSolutionWindow()
     {
         InitializeComponent();
