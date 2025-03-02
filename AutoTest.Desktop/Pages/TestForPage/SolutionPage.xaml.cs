@@ -1,9 +1,14 @@
-﻿using AutoTest.BLL.DTOs.Tests.Test;
+﻿using AutoTest.BLL.DTOs.Tests.QuestionSolution;
+using AutoTest.BLL.DTOs.Tests.Test;
+using AutoTest.BLL.DTOs.Tests.TestSolution;
+using AutoTest.BLL.DTOs.Users.UserTestSolution;
 using AutoTest.Desktop.Components.OptionForComponents;
+using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Services.Question;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.User;
 using AutoTest.Domain.Entities.Tests;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -25,10 +30,12 @@ public partial class SolutionPage : Page
     private readonly ITestService _testService;
     private TestDto Test { get; set; }
     private long TestId { get; set; }
+    private long TestSolutionId { get; set; }
     private Dictionary<int, Question> Questions { get; set; } = new Dictionary<int, Question>();
     private char[] Characters = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J' };
     private int maxQuestionCount = 0;
     private int nextQuestion = 1;
+    private Question? currentQuestion { get; set; }
     private long SelectedOptionId { get; set; }
     public SolutionPage()
     {
@@ -84,9 +91,14 @@ public partial class SolutionPage : Page
             }
 
             maxQuestionCount = count;
-            tbProblem.Text = test.Title;
             ShowQuestion();
         }
+    }
+
+    private void Clear()
+    {
+        tbProblem.Text = "";
+        stOptions.Children.Clear();
     }
 
     private void ShowQuestion()
@@ -97,7 +109,9 @@ public partial class SolutionPage : Page
             {
                 if (question != null)
                 {
-                    stOptions.Children.Clear();
+                    Clear();
+                    tbProblem.Text = question.Problem;
+                    currentQuestion = question;
 
                     for (int i = 0; i < question.Options.Count(); i++)
                     {
@@ -152,13 +166,117 @@ public partial class SolutionPage : Page
         if (selectedOptionId > 0)
             SelectedOptionId = selectedOptionId;
     }
+
+    private async Task CreateTestSolution()
+    {
+        if(TestId > 0)
+        {
+            CreateTestSolutionDto dto = new CreateTestSolutionDto();
+            dto.TestId = TestId;
+            dto.Score = 0;
+
+            var res = await _testSolutionService.AddAsync(dto);
+            if(res > 0)
+            {
+                TestSolutionId = res;
+                notifierThis.ShowInformation("Test natijalari saqlanadi!");
+            }
+            else
+                notifierThis.ShowSuccess("Xatolik yuz berdi, sahifani qayta yuklang!");
+        }
+        else
+            notifierThis.ShowInformation("Xatolik yuz berdi!");
+    }
+
+    private async Task CreateUserTestSolution()
+    {
+        if(TestSolutionId > 0)
+        {
+            CreateUserTestSolutionDto dto = new CreateUserTestSolutionDto();
+            var userId = IdentitySingelton.GetInstance().Id;
+
+            if(userId > 0)
+            {
+                dto.TestSolutionId = TestSolutionId;
+                dto.UserId = userId;
+
+                var res = await _userTestSolutionService.AddAsync(dto);
+                if (res > 0)
+                    notifierThis.ShowSuccess("Test natijalari bog'landi");
+                else
+                    notifierThis.ShowError("Test natijalarini sizga bog'lashda xatolik yuz berdi!");
+            }
+            else
+                notifierThis.ShowWarning("Shaxsiy ma'lumotlaringiz bilan ishlashda xatolik yuz berdi!");
+        }
+        else
+            notifierThis.ShowWarning("Xatolik yuz berdi!");
+    }
+
     private async void Page_Loaded(object sender, System.Windows.RoutedEventArgs e)
     {
         await GetTestAsync();
+        await CreateTestSolution();
+        await CreateUserTestSolution();
     }
 
-    private void IntakeBtn_Click(object sender, RoutedEventArgs e)
+    private void NextQuestion()
     {
+        nextQuestion++;
 
+        if (nextQuestion <= maxQuestionCount && Questions.ContainsKey(nextQuestion))
+            ShowQuestion();
+        else
+            notifierThis.ShowInformation("Test savollari tugadi");
+    }
+
+    private async void IntakeBtn_Click(object sender, RoutedEventArgs e)
+    {
+        if(TestSolutionId > 0)
+        {
+            CreateQuestionSolutionDto dto = new CreateQuestionSolutionDto();
+
+            if(currentQuestion is not null)
+                dto.QuestionId = currentQuestion.Id;
+            else
+            {
+                notifierThis.ShowWarning("Savol aniqlanmadi!");
+                return;
+            }    
+            
+            dto.TestSolutionId = TestSolutionId;
+
+            if(SelectedOptionId > 0)
+                dto.SelectedOptionId = SelectedOptionId;
+            else
+            {
+                notifierThis.ShowWarning("Javob tanlanmagan!");
+                return;
+            }
+                
+            dto.IsCorrect = solutionOptionComponent.ChooseOptionResult();
+            if (dto.IsCorrect)
+                dto.Score = 5;
+            else
+                dto.Score = 0;
+
+            var res = await _questionSolutionService.AddAsync(dto);
+            if (res)
+            {
+                notifierThis.ShowInformation("Javob qabul qilindi");
+                NextQuestion();
+            }
+            else
+                notifierThis.ShowError("Xatolik yuz berdi! qayta urining");
+        }
+        else
+        {
+            notifierThis.ShowInformation("Xatolik yuz berdi!");
+        }
+    }
+
+    private void NextBtn_Click(object sender, RoutedEventArgs e)
+    {
+        NextQuestion();
     }
 }

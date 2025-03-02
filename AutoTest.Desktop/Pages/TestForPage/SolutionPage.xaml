@@ -43,18 +43,18 @@
               Margin="0 5 0 0">
             <Button x:Name="IntakeBtn"
                     Content="Qabul qilish"
-                    Width="120"
                     Style="{DynamicResource mainButton}"
                     Height="30"
                     Background="#2196F3"
-                    HorizontalAlignment="Left"
-                    Click="IntakeBtn_Click"/>
+                    Click="IntakeBtn_Click"
+                    Margin="0,0,40,0"/>
 
             <Button x:Name="NextBtn"
                     Style="{DynamicResource nextButton}"
                     HorizontalAlignment="Right"
                     Width="30"
-                    Height="30"/>
+                    Height="30"
+                    Click="NextBtn_Click"/>
         </Grid>
     </Grid>
 </Page>
