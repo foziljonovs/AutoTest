@@ -52,7 +52,7 @@ public static class LayerConfiguration
         services.AddScoped<ITestSolutionService, TestSolutionService>();
         services.AddScoped<IQuestionSolutionService, QuestionSolutionService>();
 
-        services.AddScoped<IOpenAIService, OpenAIService>();
+        //services.AddScoped<IOpenAIService, OpenAIService>();
 
         return services;
     }

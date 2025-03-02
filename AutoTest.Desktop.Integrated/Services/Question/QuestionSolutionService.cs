@@ -1,11 +1,16 @@
 ﻿using AutoTest.BLL.DTOs.Tests.QuestionSolution;
 using AutoTest.Desktop.Integrated.Servers.Interfaces.Question;
+using AutoTest.Desktop.Integrated.Servers.Repositories.Question;
 
 namespace AutoTest.Desktop.Integrated.Services.Question;
 
 public class QuestionSolutionService : IQuestionSolutionService
 {
     private readonly IQuestionSolutionServer _server;
+    public QuestionSolutionService()
+    {
+        this._server = new QuestionSolutionServer();
+    }
     public async Task<bool> AddAsync(CreateQuestionSolutionDto dto)
     {
         try
