@@ -231,7 +231,11 @@ public partial class SolutionPage : Page
         {
             var parentWindow = Window.GetWindow(this);
             if (parentWindow is TestSolutionWindow window)
-                window.PageNavigator.Navigate(new CompletedTestSolution());
+            {
+                CompletedTestSolution page = new CompletedTestSolution();
+                page.SetTestSolutionId(TestSolutionId);
+                window.PageNavigator.Content = page;
+            }
 
             notifierThis.ShowInformation("Test savollari tugadi");
         }
@@ -272,7 +276,6 @@ public partial class SolutionPage : Page
             var res = await _questionSolutionService.AddAsync(dto);
             if (res)
             {
-                notifierThis.ShowInformation("Javob qabul qilindi");
                 NextQuestion();
             }
             else

@@ -31,6 +31,8 @@ public partial class TestSolutionWindow : Window
         PageNavigator.Navigate(page);
     }
 
+
+
     private void StopBtn_Click(object sender, RoutedEventArgs e)
     {
         StopBtn.Visibility = Visibility.Collapsed;
