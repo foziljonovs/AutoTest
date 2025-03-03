@@ -23,6 +23,7 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
         private readonly ITestService _testService;
         private readonly IUserService _userService;
         private readonly ISavedTestService _savedTestService;
+        private readonly IUserTestSolutionService _userTestSolutionService;
         private long userId { get; set; }
         public UserDto User { get; set; }
         public ProfilePage()
@@ -31,6 +32,7 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             this._testService = new TestService();
             this._userService = new UserService();
             this._savedTestService = new SavedTestService();
+            this._userTestSolutionService = new UserTestSolutionService();
         }
 
         Notifier notifier = new Notifier(cfg =>
@@ -105,9 +107,13 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             if (savedCount > 0)
                 YourSavedTestsCount.Content = savedCount.ToString();
             else
-            {
                 YourSavedTestsCount.Content = "0";
-            }
+
+            var userTestSolutionCount = await GetUserTestSolution();
+            if (userTestSolutionCount > 0)
+                YourTestSolutionCount.Content = userTestSolutionCount.ToString();
+            else
+                YourTestSolutionCount.Content = "0";
         }
 
         private async Task<int> GetTestsCount(long userId)
@@ -138,6 +144,15 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
                 return null;
         }
 
+        private async Task<int> GetUserTestSolution()
+        {
+            var userTestSolution = await _userTestSolutionService.GetAllByUserIdAsync(userId);
+            if(!userTestSolution.Any())
+                return 0;
+
+            return userTestSolution.Count();
+        }
+
         private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ChangePasswordWindow window = new ChangePasswordWindow();
@@ -156,6 +171,12 @@ namespace AutoTest.Desktop.Pages.ProfileForPage
             window.SetUserId(userId);
             window.ShowDialog();
             GetAll();
+        }
+
+        private void Border_MouseDown_1(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            TestSolutionViewWindow window = new TestSolutionViewWindow();
+            window.ShowDialog();
         }
     }
 }
