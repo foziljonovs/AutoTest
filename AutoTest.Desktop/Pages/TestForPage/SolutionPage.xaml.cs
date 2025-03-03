@@ -7,6 +7,7 @@ using AutoTest.Desktop.Integrated.Security;
 using AutoTest.Desktop.Integrated.Services.Question;
 using AutoTest.Desktop.Integrated.Services.Test;
 using AutoTest.Desktop.Integrated.Services.User;
+using AutoTest.Desktop.Windows.TestForWindows;
 using AutoTest.Domain.Entities.Tests;
 using System.Threading.Tasks;
 using System.Windows;
@@ -226,8 +227,16 @@ public partial class SolutionPage : Page
 
         if (nextQuestion <= maxQuestionCount && Questions.ContainsKey(nextQuestion))
             ShowQuestion();
-        else
+        else if (nextQuestion == maxQuestionCount)
+        {
+            var parentWindow = Window.GetWindow(this);
+            if (parentWindow is TestSolutionWindow window)
+                window.PageNavigator.Navigate(new CompletedTestSolution());
+
             notifierThis.ShowInformation("Test savollari tugadi");
+        }
+        else
+            notifierThis.ShowWarning("Xatolik yuz bermoqda!");
     }
 
     private async void IntakeBtn_Click(object sender, RoutedEventArgs e)

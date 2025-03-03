@@ -1,0 +1,49 @@
+﻿<Page x:Class="AutoTest.Desktop.Pages.TestForPage.CompletedTestSolution"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoTest.Desktop.Pages.TestForPage"
+      mc:Ignorable="d" 
+      Title="CompletedTestSolution">
+
+    <StackPanel Height="100"
+                Width="300"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10 0">
+        <TextBlock Text="Testni muvaffaqiyatli tugatdingiz!"
+                   FontSize="20"
+                   HorizontalAlignment="Center"
+                   FontWeight="SemiBold"
+                   FontFamily="Jetbrains Mono"/>
+
+        <Grid Margin="0 5">
+            <TextBlock Text="To'g'ri javoblar soni:"
+                       FontSize="14"
+                       HorizontalAlignment="Left"
+                       FontWeight="DemiBold"
+                       FontFamily="Jetbrains Mono"/>
+
+            <TextBlock x:Name="tbIsCorrectTrue"
+                       Text="9"
+                       HorizontalAlignment="Right"
+                       FontWeight="Bold"
+                       FontFamily="Jetbrains Mono"/>
+        </Grid>
+
+        <Grid Margin="0 5">
+            <TextBlock Text="To'plangan ball:"
+                       FontSize="14"
+                       HorizontalAlignment="Left"
+                       FontWeight="DemiBold"
+                       FontFamily="Jetbrains Mono"/>
+
+            <TextBlock x:Name="tbAllScore"
+                       Text="45"
+                       HorizontalAlignment="Right"
+                       FontWeight="Bold"
+                       FontFamily="Jetbrains Mono"/>
+        </Grid>
+    </StackPanel>
+</Page>
