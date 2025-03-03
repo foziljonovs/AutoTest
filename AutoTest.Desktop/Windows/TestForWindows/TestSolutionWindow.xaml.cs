@@ -28,10 +28,17 @@ public partial class TestSolutionWindow : Window
 
         SolutionPage page = new SolutionPage();
         page.SetTestId(TestId);
-        PageNavigator.Navigate(page);
+        PageNavigator.Content = page;
     }
 
-
+    public void CompletedTest(long testSolutionId)
+    {
+        CompletedTestSolution page = new CompletedTestSolution();
+        page.SetTestSolutionId(testSolutionId);
+        PageNavigator.Content = page;
+        StopBtn.Visibility = Visibility.Collapsed;
+        CloseBtn.Visibility = Visibility.Visible;
+    }
 
     private void StopBtn_Click(object sender, RoutedEventArgs e)
     {
