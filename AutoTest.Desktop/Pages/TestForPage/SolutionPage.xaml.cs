@@ -231,11 +231,7 @@ public partial class SolutionPage : Page
         {
             var parentWindow = Window.GetWindow(this);
             if (parentWindow is TestSolutionWindow window)
-            {
-                CompletedTestSolution page = new CompletedTestSolution();
-                page.SetTestSolutionId(TestSolutionId);
-                window.PageNavigator.Content = page;
-            }
+                window.CompletedTest(TestSolutionId);
 
             notifierThis.ShowInformation("Test savollari tugadi");
         }
