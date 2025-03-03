@@ -60,7 +60,7 @@ public class TestSolutionService(
     {
         try
         {
-            var testSolutions = _unitOfWork.TestSolution.GetAll();
+            var testSolutions = await _unitOfWork.TestSolution.GetAllFullInformationAsync();
             if(!testSolutions.Any())
                 throw new StatusCodeException(HttpStatusCode.NotFound, "No test solutions found");
 
@@ -76,7 +76,7 @@ public class TestSolutionService(
     {
         try
         {
-            var testSolution = await _unitOfWork.TestSolution.GetById(id);
+            var testSolution = await _unitOfWork.TestSolution.GetSolutionAsync(id);
             if (testSolution is null)
                 throw new StatusCodeException(HttpStatusCode.NotFound, "Test solution not found");
 
