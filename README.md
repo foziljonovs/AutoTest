@@ -7,7 +7,9 @@
 - ✅ Testlarni avtomatlashtirish  
 - ✅ Foydalanuvchi tomonidan yaratilgan testlarni boshqarish  
 - ✅ Test hisobotlarini PDF shaklida eksport qilish  
-- ✅ Savollarni AI orqali generatsiya qilish  
+- ✅ Savollarni AI orqali generatsiya qilish
+- ✅ Test sinovlari o'tqazish
+- ✅ Test yechish va statiskani kuzatib borish
 
 ## 📝 Birinchi Test Misoli
 
@@ -71,7 +73,7 @@ Loyihani clone qilib olgach, **WebApi** ichidagi `appsettings.Development.json` 
 ℹ️ **Izoh**:
 - `ConnectionStrings.localhost` bo‘limida PostgreSQL ma'lumotlarini to‘ldiring.
 - `Jwt` bo‘limida **secret key** va **token muddati** kiritilgan.
-- `OpenAI.ApiKey` bo‘limida **AI uchun API kalit** kiritiladi.
+- `Ollama` bo‘limida **AI uchun Model va Host** kiritiladi.
 
 ---
 
